@@ -4,19 +4,8 @@ function MyFooter() {
   const Data: { title: string; label: string }[] = [
     {
       title: "Trụ sở chính",
-      label: "75 Giang Văn Minh, Phường Đội Cấn, Quận Ba Đình, Hà Nội",
-    },
-    {
-      title: "Trụ sở chính",
-      label: "75 Giang Văn Minh, Phường Đội Cấn, Quận Ba Đình, Hà Nội",
-    },
-    {
-      title: "Trụ sở chính",
-      label: "75 Giang Văn Minh, Phường Đội Cấn, Quận Ba Đình, Hà Nội",
-    },
-    {
-      title: "Trụ sở chính",
-      label: "75 Giang Văn Minh, Phường Đội Cấn, Quận Ba Đình, Hà Nội",
+      label:
+        " 300A – Nguyễn Tất Thành, Phường 13, Quận 4, TP. Hồ Chí Minh, Việt Nam",
     },
   ];
   const Data1: { title: string }[] = [
@@ -24,7 +13,7 @@ function MyFooter() {
       title: "Tuyển dụng",
     },
     {
-      title: "Về chúng tôi",
+      title: "Ứng tuyển",
     },
     {
       title: "Chính sách bảo mật",
@@ -34,15 +23,12 @@ function MyFooter() {
   return (
     <div className="h-auto w-full bg-[#1F2937] text-[#ffffff]">
       <MyLayout>
-        <div className="flex flex-col gap-10 pt-20 pb-30 md:flex-row xl:gap-40">
+        <div className="itens-center flex flex-col justify-center gap-10 pt-10 pb-20 md:flex-row xl:gap-40">
           {/* left */}
           <div className="flex flex-col gap-10">
             <div>
-              <img
-                src="https://elearning.iigvietnam.com/images/logo-footer.png"
-                alt=""
-                className="h-[64px] w-[98px]"
-              />
+              <span className="text-3xl font-bold text-[#fff]">H O</span>
+              <span className="text-3xl font-bold text-[#fff]"> P E</span>
             </div>
 
             <div className="flex flex-col gap-4">
@@ -72,7 +58,7 @@ function MyFooter() {
                       </clipPath>
                     </defs>
                   </svg>
-                  <p>1800909090</p>
+                  <div>(84+) 0918607139</div>
                 </div>
                 <div className="flex items-center gap-1">
                   <svg
@@ -88,7 +74,7 @@ function MyFooter() {
                       fill="white"
                     ></path>
                   </svg>
-                  <p>info@iigvietnam.edu.vn</p>
+                  <p>info.Hope@gmail.com</p>
                 </div>
               </div>
               <div className="flex gap-2">
@@ -156,7 +142,7 @@ function MyFooter() {
               <h1 className="h-[28px] w-[255px] text-[20px] font-medium">
                 LIÊN KẾT
               </h1>
-              <div className="flex h-[148px] w-full flex-col gap-15 lg:gap-13">
+              <div className="flex h-[148px] w-full flex-col gap-7 lg:gap-4">
                 <div className="w-full md:flex md:gap-10 lg:flex-col lg:gap-4">
                   {Data1.map((i, k) => (
                     <h3 key={k} className="h-[24px] text-[16px] font-medium">
@@ -169,7 +155,7 @@ function MyFooter() {
                   <img
                     src="https://elearning.iigvietnam.com/_next/image?url=%2Fimages%2Fimage_f.png&w=128&q=75"
                     alt=""
-                    className="h-[40px] w-[106px] lg:h-[60px] lg:w-[150px]"
+                    className="h-[70px] w-[156px] lg:h-[60px] lg:w-[150px]"
                   />
                 </div>
               </div>

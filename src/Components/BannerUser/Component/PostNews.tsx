@@ -1,5 +1,8 @@
 import { Camera, Smile, Video } from "lucide-react";
-function PostNews() {
+type Props = {
+  onClick: () => void;
+};
+function PostNews({ onClick }: Props) {
   return (
     <div className="flex flex-col gap-5 rounded-lg p-4">
       <div className="flex gap-2">
@@ -11,7 +14,8 @@ function PostNews() {
         <input
           type="text"
           placeholder="What's on your mind, Đỗ?"
-          className="w-[100%] rounded-3xl pl-2 text-[#94979b]"
+          className="w-[100%] rounded-3xl pl-2 text-[#94979b] outline-none"
+          onClick={onClick}
         />
       </div>
 

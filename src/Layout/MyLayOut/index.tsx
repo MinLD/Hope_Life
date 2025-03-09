@@ -4,7 +4,9 @@ type Props = {
 function MyLayout({ children }: Props) {
   return (
     <div className="flex justify-center">
-      <div className="w-[400px] sm:w-[600px] md:w-[700px] lg:w-[900px] xl:w-[1200px]">{children}</div>
+      <div className="w-[400px] sm:w-[550px] md:w-[650px] lg:w-[800px] xl:w-[1000px]">
+        {children}
+      </div>
     </div>
   );
 }

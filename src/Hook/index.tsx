@@ -7,7 +7,7 @@ const useScrollHandling = () => {
 
   const scrollTracking = () => {
     const currenScrollPosition = window.pageYOffset;
-    console.log(currenScrollPosition);
+
 
     if (currenScrollPosition > previousScrollPosition.current) {
       setScrollDriction("down");

@@ -4,39 +4,58 @@ import SearchBox from "../../Components/SearchBox";
 import useScrollHandling from "../../Hook";
 import MyLayout from "../../Layout/MyLayOut";
 import HeaderJamb from "../HeaderJamb";
-import { FaUserCircle } from "react-icons/fa";
+
 import MainHomePages from "../MainHomePages";
-import { FaRegComment } from "react-icons/fa6";
-import { CiHeart } from "react-icons/ci";
+
 import ArticleItems from "../../Components/ArticleItems";
+import { useContext, useState } from "react";
+import CommentBox from "../../Components/ArticleItems/component/CommentBox";
+import { PostContext } from "../../Context/PostProvider";
+import MenuMobile from "../../Components/MenuMobile.tsx";
+
 function UserHome() {
   const { scrollPosition } = useScrollHandling();
+  const handleShowComnent = () => {
+    setShowComnent(!isShowComnent);
+    if (isShowComnent) {
+      document.body.classList.remove("overflow-hidden");
+    } else if (isShowComnent === false) {
+      document.body.classList.add("overflow-hidden");
+    }
+  };
+  const [isShowComnent, setShowComnent] = useState<boolean>(false);
+  const postcontext = useContext(PostContext);
+  if (!postcontext) return;
+  const { PostProducts } = postcontext;
 
   return (
     <MainHomePages>
-      <div>{scrollPosition >= 0 && <HeaderJamb />}</div>
+      <div>{scrollPosition > 0 && <HeaderJamb />}</div>
 
       <MyLayout>
         <SearchBox />
         <div className="border-1-[#e1e1e1] h-auto w-full rounded-2xl border shadow-2xl">
-          <div>
-            <PostNews />
+          <div className="p-3 px-5">
+            <PostNews onClick={handleShowComnent} />
+            {isShowComnent && (
+              <CommentBox
+                setShowComnent={setShowComnent}
+                isShowComnent={isShowComnent}
+                onClick={handleShowComnent}
+                handleShowComnent={handleShowComnent}
+              />
+            )}
           </div>
-          <div className="p-3">
-            <ArticleItems />
-            <ArticleItems />
-            <ArticleItems />
-            <ArticleItems />
-            <ArticleItems />
-            <ArticleItems />
-            <ArticleItems />
-            <ArticleItems />
-            <ArticleItems />
-            <ArticleItems />
-            <ArticleItems />
+          <div className="p-3 px-15">
+            {PostProducts.map((i, k) => (
+              <div key={k}>
+                <ArticleItems image={i.image || []} label={i.label || ""} />
+              </div>
+            ))}
           </div>
         </div>
       </MyLayout>
+      <MenuMobile />
     </MainHomePages>
   );
 }
