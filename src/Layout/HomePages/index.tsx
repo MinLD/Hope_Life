@@ -1,5 +1,5 @@
+import UserHeader from "../../LayoutUser/MyHeaderUser";
 import MyFooter from "../Footer";
-import MyHeader from "../Header";
 
 type Props = {
   children: React.ReactNode;
@@ -7,7 +7,10 @@ type Props = {
 function MyHomePages({ children }: Props) {
   return (
     <div>
-      <MyHeader />
+      <div className="fixed inset-x-0 z-99999 shadow-2xl">
+        <UserHeader />
+      </div>
+
       {children}
       <MyFooter />
     </div>

@@ -7,6 +7,7 @@ import { FaInstagram } from "react-icons/fa";
 import { FaYoutube } from "react-icons/fa";
 import { AiOutlineMenu } from "react-icons/ai";
 import { MenuContext } from "../../../Context/MenuProvider";
+import { useNavigate } from "react-router-dom";
 function HeaderMenuTop() {
   const data: {
     id: number;
@@ -21,6 +22,7 @@ function HeaderMenuTop() {
     { name: <FaInstagram />, id: 1 },
     { name: <FaYoutube />, id: 1 },
   ];
+  const navigate = useNavigate();
   const [isShowSearch, setIsShowSearch] = useState<boolean>(false);
   const [isShowMenuSub, setIsShowMenuSub] = useState<boolean>(false);
   const menuContext = useContext(MenuContext);
@@ -38,6 +40,11 @@ function HeaderMenuTop() {
       document.body.classList.remove("overflow-hidden");
     }
   }, [isOpen]); // Theo dõi thay đổi của `isOpen`
+  const handleReturnComponents = (name: string) => {
+    if (name === "Giới Thiệu") {
+      navigate("/Gioi-Thieu");
+    }
+  };
 
   return (
     <div className="flex h-[50px] w-full items-center justify-center bg-[#013035]">
@@ -80,7 +87,11 @@ function HeaderMenuTop() {
             {/* menu */}
             <div className="hidden items-center gap-5 lg:flex">
               {data.map((item) => (
-                <div>
+                <div
+                  key={item.id}
+                  onClick={() => handleReturnComponents(item.name)}
+                  className="cursor-pointer text-md hover:text-green-500 font-medium"
+                >
                   <h1>{item.name}</h1>
                 </div>
               ))}
@@ -96,7 +107,7 @@ function HeaderMenuTop() {
             <div className="hidden items-center justify-center gap-4 md:flex">
               <div className="flex gap-2">
                 {icons.map((item) => (
-                  <div className="text-2xl">{item.name}</div>
+                  <div className="cursor-pointer text-2xl">{item.name}</div>
                 ))}
               </div>
 

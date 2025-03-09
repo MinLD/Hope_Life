@@ -3,14 +3,9 @@ import { useContext, useEffect, useRef } from "react";
 import Typed from "typed.js";
 
 import { MenuContext } from "../../Context/MenuProvider";
-import {
-  Menu,
-  Heart,
-  Users,
-  HelpingHand,
-  HeartHandshake,
-  Handshake,
-} from "lucide-react";
+import { Heart, Users, HelpingHand } from "lucide-react";
+import bn1 from "../../assets/hãy vẽ cho tôi niềm hi vọng 09-03-2025 at 22-01-32.jpeg";
+import bn2 from "../../assets/hãy vẽ cho tôi niềm hi vọng 09-03-2025 at 22-01-35.jpeg";
 function Banner() {
   const textRef = useRef(null);
   const menuContext = useContext(MenuContext);
@@ -35,7 +30,7 @@ function Banner() {
   return (
     <div className="relative flex h-screen w-full flex-col items-center justify-center overflow-hidden">
       {/* Video Background */}
-      <video
+      {/* <video
         className="absolute top-0 left-0 h-full w-full object-cover"
         autoPlay
         loop
@@ -43,7 +38,13 @@ function Banner() {
         playsInline
       >
         <source src={video} type="video/mp4" />
-      </video>
+      </video> */}
+      {/* https://www.nghilucsong.net/wp-content/uploads/2020/12/trung-tam-nghi-luc-song-top-banner3.jpg */}
+      <img
+        className="absolute top-0 left-0 h-full w-full object-cover"
+        src={bn2}
+        alt=""
+      />
 
       {/* Overlay */}
       <div className="absolute inset-0 bg-black opacity-50"></div>

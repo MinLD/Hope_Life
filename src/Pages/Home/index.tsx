@@ -2,16 +2,18 @@ import { use, useContext } from "react";
 import AgencySection from "../../Components/AgencySection";
 import Banner from "../../Components/Banner";
 
-import MyHomePages from "../HomePages";
+
 import { MenuContext } from "../../Context/MenuProvider";
 import MyLogIn from "../../Components/Loggin";
 
-import MyLayout from "../MyLayOut";
+
 import SliderCommon from "../../Components/SliderCommon";
 
 import GettingStarted from "../../Components/GettingStarted";
 
 import { useNavigate } from "react-router-dom";
+import MyHomePages from "../../Layout/HomePages";
+import MyLayout from "../../Layout/MyLayOut";
 
 function Home() {
   const navigate = useNavigate();
@@ -57,17 +59,20 @@ function Home() {
   return (
     <>
       <MyHomePages>
-        <Banner />
+        <div className="pt-20">
+          <Banner />
+        </div>
 
         <MyLayout>
-          <div className="flex flex-col pt-20 pb-20 md:flex-row">
+          {/* <div className="flex flex-col pt-20 pb-20 md:flex-row">
             <div className="h-auto w-full rounded-xl shadow-2xl md:w-1/2">
               <MyLogIn />
             </div>
             <div className="h-auto md:w-1/2">
-              <AgencySection />
+          
             </div>
-          </div>
+          </div> */}
+          <AgencySection />
           <GettingStarted />
           <div className="pb-40">
             <SliderCommon
