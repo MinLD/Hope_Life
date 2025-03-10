@@ -7,7 +7,7 @@ type Props = {
 function MyHomePages({ children }: Props) {
   return (
     <div>
-      <div className="fixed inset-x-0 z-99999 shadow-2xl">
+      <div className="fixed top-0 inset-0 z-99">
         <UserHeader />
       </div>
 

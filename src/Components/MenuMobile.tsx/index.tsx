@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { IoIosArrowDown, IoIosArrowForward } from "react-icons/io";
 
 import { MenuContext } from "../../Context/MenuProvider";
+import { useNavigate } from "react-router-dom";
 
 function MenuMobile() {
   const [isShowMenu] = useState<number | null>(null);
@@ -18,10 +19,20 @@ function MenuMobile() {
     { name: "Giúp đỡ", id: 2 },
     { name: "Khó khăn", id: 2 },
   ];
+  const navigate = useNavigate();
   const menuContext = useContext(MenuContext);
   if (!menuContext) return;
   const { setIsOpen, isOpen } = menuContext;
-
+  const handleRenderComponents = (i: string) => {
+    if (i === "Giới thiệu") {
+      navigate("/Gioi-Thieu");
+      setIsOpen(false);
+    }
+    if (i === "Trang Chủ") {
+      navigate("/");
+      setIsOpen(false);
+    }
+  };
   return (
     <div>
       {isOpen && (
@@ -31,7 +42,7 @@ function MenuMobile() {
       <div
         className={`fixed top-0 right-0 z-9999 h-auto w-full bg-[#fff] p-2 shadow-md transition-all duration-600 ${isOpen ? "left-0 opacity-100" : "left-[-2500px] opacity-0"}`}
       >
-        <div className="flex w-full justify-between pb-3">
+        <div className="flex w-full justify-between px-7 pb-3">
           <div className="flex space-x-2 pl-3">
             <span className="text-3xl font-bold text-gray-900">H</span>
             <span className="text-3xl font-bold text-gray-900">O</span>
@@ -69,7 +80,12 @@ function MenuMobile() {
           {menu.map((i, k) => (
             <div className="" key={k}>
               <div className="flex cursor-pointer justify-between text-[16px] font-medium text-[#333] hover:text-[#1890ff]">
-                <p className="cursor-pointer">{i.name}</p>
+                <p
+                  className="cursor-pointer"
+                  onClick={() => handleRenderComponents(i.name)}
+                >
+                  {i.name}
+                </p>
                 {i.name !== "Tin tức" && i.name !== "Trang Chủ" && (
                   <p className="text-2xl font-bold">
                     {isShowMenu === k ? (
