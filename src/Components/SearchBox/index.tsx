@@ -4,7 +4,7 @@ import { IoFilterOutline } from "react-icons/io5";
 
 function SearchBox() {
   return (
-    <div className="pb-2">
+    <div className="pb-2 p-2">
       <div className="flex gap-2 pt-10 pb-2">
         <div className="bg-amber-10 w-50% flex h-auto gap-2">
           <div className="flex items-center gap-1">
@@ -15,7 +15,7 @@ function SearchBox() {
             <IoIosArrowDown />
           </div>
         </div>
-        <div className="w-50% h-auto">
+        <div className="hidden sm:flex w-auto h-auto">
           <input
             type="text"
             className="rounded-2xl border p-2"

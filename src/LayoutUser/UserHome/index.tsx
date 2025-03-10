@@ -1,9 +1,7 @@
 import PostNews from "../../Components/BannerUser/Component/PostNews";
 import SearchBox from "../../Components/SearchBox";
 
-import useScrollHandling from "../../Hook";
 import MyLayout from "../../Layout/MyLayOut";
-import HeaderJamb from "../HeaderJamb";
 
 import MainHomePages from "../MainHomePages";
 
@@ -14,7 +12,6 @@ import { PostContext } from "../../Context/PostProvider";
 import MenuMobile from "../../Components/MenuMobile.tsx";
 
 function UserHome() {
-  const { scrollPosition } = useScrollHandling();
   const handleShowComnent = () => {
     setShowComnent(!isShowComnent);
     if (isShowComnent) {
@@ -30,12 +27,12 @@ function UserHome() {
 
   return (
     <MainHomePages>
-      <div>{scrollPosition > 0 && <HeaderJamb />}</div>
+      {/* <div>{scrollPosition > 0 && <HeaderJamb />}</div> */}
 
       <MyLayout>
         <SearchBox />
         <div className="border-1-[#e1e1e1] h-auto w-full rounded-2xl border shadow-2xl">
-          <div className="p-3 px-5">
+          <div className="px-5 py-5">
             <PostNews onClick={handleShowComnent} />
             {isShowComnent && (
               <CommentBox
@@ -46,13 +43,13 @@ function UserHome() {
               />
             )}
           </div>
-          <div className="p-3 px-15">
+          <MyLayout>
             {PostProducts.map((i, k) => (
               <div key={k}>
                 <ArticleItems image={i.image || []} label={i.label || ""} />
               </div>
             ))}
-          </div>
+          </MyLayout>
         </div>
       </MyLayout>
       <MenuMobile />

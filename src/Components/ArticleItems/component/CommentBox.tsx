@@ -58,7 +58,7 @@ function CommentBox({
 
       {/* Popup Login/Register */}
       <div
-        className={`fixed z-[1001] h-auto w-[60%] overflow-y-auto bg-[#fff] p-4 transition-all duration-500 md:w-[50%] lg:w-[40%] ${
+        className={`fixed z-[1001] h-auto w-[80%] overflow-y-auto bg-[#fff] p-4 transition-all duration-500 md:w-[50%] lg:w-[40%] ${
           isShowComnent
             ? "top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] scale-100 rounded-2xl opacity-100 shadow-2xl"
             : "pointer-events-none top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] scale-1 opacity-0"

@@ -3,16 +3,12 @@ import { FaFacebookF } from "react-icons/fa";
 import InputBox from "./Component/inputBox";
 import MyButton from "../Button";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+
 function MyLogIn() {
   const [isType, setIsType] = useState<string>("Login");
-  const navigate = useNavigate();
-  const handleReturnToHome = () => {
-    navigate("/Home");
-    window.location.reload();
-  };
+
   return (
-    <div className="h-auto max-w-[100%] rounded-lg bg-[#fff] px-10 pt-5 pb-10">
+    <div className="h-auto max-w-full w-full rounded-lg bg-[#fff]  pt-5 pb-10 sm:px-10">
       <h1 className="pb-10 text-center text-[30px] font-bold text-[#0b4d8d]">
         {isType === "Register" ? "Đăng ký" : "Đăng nhập"}
       </h1>
@@ -39,7 +35,7 @@ function MyLogIn() {
         )}
       </div>
       <div className="flex flex-col gap-2">
-        <div onClick={() => handleReturnToHome()}>
+        <div>
           <MyButton
             content={isType === "Login" ? "Đăng nhập" : "Đăng ký"}
             isColor="bg-[#0b4d8d]"
@@ -47,12 +43,12 @@ function MyLogIn() {
         </div>
         <div className="flex justify-between">
           <div className="flex gap-1">
-            <p>
+            <p className="text-[12px]">
               {isType === "Login"
                 ? " Bạn chưa có tài khoản?"
                 : "Bạn đã có tài khoản?"}
             </p>
-            <p className="text-[#0b4d8d] hover:cursor-pointer">
+            <p className="text-[12px] text-[#0b4d8d] hover:cursor-pointer">
               {isType === "Login" ? (
                 <span onClick={() => setIsType("Register")}> Đăng ký ngay</span>
               ) : (
@@ -60,7 +56,7 @@ function MyLogIn() {
               )}
             </p>
           </div>
-          <p className="text-[#0b4d8d]">
+          <p className="text-[12px] text-[#0b4d8d]">
             {isType === "Login" ? " Quên mật khẩu?" : ""}
           </p>
         </div>
@@ -69,7 +65,7 @@ function MyLogIn() {
         <div className="flex flex-col gap-5 pt-5">
           <div className="flex items-center gap-2">
             <div className="h-px w-full bg-gray-300"></div>
-            <p className="w-[300px] text-gray-500">Đăng nhập với</p>
+            <p className="w-[300px] text-[12px] text-gray-500">Đăng nhập với</p>
             <div className="h-px w-full bg-gray-300"></div>
           </div>
 

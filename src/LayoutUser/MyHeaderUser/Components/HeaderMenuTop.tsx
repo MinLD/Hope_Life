@@ -46,10 +46,13 @@ function HeaderMenuTop() {
     }
   };
 
+  const handleReturnToLoggin = () => {
+    navigate("/Loggin");
+  };
   return (
     <div className="flex h-[50px] w-full items-center justify-center bg-[#013035]">
       <MyLayout>
-        <div className="flex items-center justify-between text-[#fff]">
+        <div className="gap-10 sm:gap-0 flex items-center justify-between text-[#fff]">
           <div className="flex items-center gap-10">
             {/* info */}
             <div className="flex items-center gap-1">
@@ -83,7 +86,7 @@ function HeaderMenuTop() {
                 0918607139
               </p>
             </div>
-            <div className="h-[30px] w-[1px] bg-[#e1e1e1] opacity-50"></div>
+            <div className="hidden lg-flex h-[30px] w-[1px] bg-[#e1e1e1] opacity-50"></div>
             {/* menu */}
             <div className="hidden items-center gap-5 lg:flex">
               {data.map((item) => (
@@ -106,13 +109,17 @@ function HeaderMenuTop() {
             {/* Loggin -pc*/}
             <div className="hidden items-center justify-center gap-4 md:flex">
               <div className="flex gap-2">
-                {icons.map((item) => (
-                  <div className="cursor-pointer text-2xl">{item.name}</div>
+                {icons.map((item, k) => (
+                  <div key={k} className="cursor-pointer text-2xl">
+                    {item.name}
+                  </div>
                 ))}
               </div>
 
               <div className="flex gap-1">
-                <MyButton content={"Đăng nhập"} isColor="bg-[green]" />
+                <div onClick={handleReturnToLoggin}>
+                  <MyButton content={"Đăng nhập"} isColor="bg-[green]" />
+                </div>
                 <div>
                   <svg
                     width="32"
@@ -150,13 +157,13 @@ function HeaderMenuTop() {
 
                 {isShowMenuSub && (
                   <div
-                    className={`position } absolute top-0 right-11 z-99 flex h-[110px] w-[222px] scale-100 transform flex-col gap-2 rounded-lg bg-[#ffff] p-3 font-medium shadow-md transition-all duration-300 ease-in-out`}
+                    className={`position } absolute top-10 right-1 z-99 flex w-auto h-auto scale-100 transform flex-col gap-2 rounded-lg bg-[#ffff] p-2 font-medium shadow-md transition-all duration-300 ease-in-out`}
                   >
-                    <p className="h-[24px] w-[198px] cursor-pointer text-[16px] text-[#0b4d8d]">
+                    <p
+                      className="h-[24px] w-[198px] cursor-pointer text-[16px] text-[#0b4d8d]"
+                      onClick={handleReturnToLoggin}
+                    >
                       Đăng nhập
-                    </p>
-                    <p className="h-[24px] w-[198px] cursor-pointer text-[16px] text-[#0b4d8d]">
-                      Đăng ký
                     </p>
                     <div className="flex h-[24px] w-[198px] justify-between text-[16px] text-[#333]">
                       <p>Ngôn ngữ</p>
