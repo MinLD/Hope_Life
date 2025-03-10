@@ -23,7 +23,7 @@ function PostJob() {
     <div>
       <ChooseJob />
       <div className="flex justify-between">
-        <div className="h-[100vh] w-full overflow-auto p-20 lg:w-[70%]">
+        <div className="h-[100vh] w-full overflow-auto p-2 lg:w-[70%]">
           <RegisterPostJob />
 
           <RecruiterForm />

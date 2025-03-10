@@ -37,9 +37,15 @@ function TextBox({ text, maxLines = 3 }: Props) {
     <div className="relative">
       <p
         ref={textRef}
-        className={`transition-all duration-300 ${
-          !expanded && shouldTruncate ? `line-clamp-${maxLines}` : ""
-        }`}
+        className="overflow-hidden break-words text-ellipsis whitespace-pre-wrap transition-all duration-300"
+        style={{
+          wordBreak: "break-word", // Cho phép cắt từ dài
+          overflowWrap: "break-word", // Đảm bảo xuống dòng nếu cần
+          whiteSpace: "pre-wrap", // Giữ khoảng trắng và xuống dòng đúng
+          display: expanded ? "block" : "-webkit-box",
+          WebkitBoxOrient: "vertical",
+          WebkitLineClamp: shouldTruncate && !expanded ? maxLines : "unset",
+        }}
       >
         {text}
       </p>

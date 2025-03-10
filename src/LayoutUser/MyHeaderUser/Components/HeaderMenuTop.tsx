@@ -52,7 +52,7 @@ function HeaderMenuTop() {
   return (
     <div className="flex h-[40px] w-full items-center justify-center bg-[#013035]">
       <MyLayout>
-        <div className="gap-29 sm:gap-0 flex items-center justify-between text-[#fff]">
+        <div className="gap-30 sm:gap-0 flex items-center justify-between text-[#fff]">
           <div className="flex items-center gap-10">
             {/* info */}
             <div className="flex items-center gap-1">

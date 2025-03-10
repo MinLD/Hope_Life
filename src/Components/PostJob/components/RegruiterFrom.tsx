@@ -24,7 +24,7 @@ export default function RecruiterForm() {
   const [step, setStep] = useState(1);
 
   return (
-    <div className="mx-auto flex max-w-2xl flex-col gap-10">
+    <div className="mx-auto flex w-full flex-col gap-10">
       <ProgressBar step={step} />
       <div className="rounded-lg bg-white p-6 shadow-md">
         <h2 className="mb-4 text-xl font-bold text-gray-900">

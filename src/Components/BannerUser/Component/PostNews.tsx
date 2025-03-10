@@ -1,22 +1,18 @@
-
 type Props = {
   onClick: () => void;
 };
 function PostNews({ onClick }: Props) {
   return (
-    <div className="flex flex-col gap-5 rounded-lg w-full h-auto">
-      <div className="flex gap-2">
+    <div className="flex h-auto w-full flex-col gap-5 rounded-lg">
+      <div className="items-center flex gap-2" onClick={onClick}>
         <img
           src="https://scontent.fsgn21-1.fna.fbcdn.net/v/t39.30808-1/453654638_1497123177844017_3448351565239802597_n.jpg?stp=cp0_dst-jpg_s40x40_tt6&_nc_cat=104&ccb=1-7&_nc_sid=e99d92&_nc_ohc=hm9-cv1bMtAQ7kNvgEq7xiY&_nc_oc=AdgM370qIXnGJovPygypIWAe8yReJsBaZWT72S-JDABGocJGrFopfEgpfsPtRAeKm0X8k9aV2kfRMXB03cS8sVYH&_nc_zt=24&_nc_ht=scontent.fsgn21-1.fna&_nc_gid=A7xtAT0g-Gh6OY_EL9Dzov3&oh=00_AYAb7tVJ-_0sQdc9NvWQAt6b4xJ6xQS-Bjc8CcTngJlmRQ&oe=67CF1F79"
           alt=""
           className="h-[50px] w-[50px] rounded-full"
         />
-        <input
-          type="text"
-          placeholder="What's on your mind, Đỗ?"
-          className="w-[100%] rounded-3xl pl-2 text-[#94979b] outline-none"
-          onClick={onClick}
-        />
+        <p className="w-[100%] rounded-3xl pl-2 text-[#94979b] outline-none">
+          What's on your mind, Đỗ?
+        </p>
       </div>
 
       {/* <div className="flex items-center justify-between">

@@ -40,7 +40,6 @@ function CommentBox({
       image: isFileImages.map((src) => ({ src })),
     };
 
-    console.log(newPost);
     setPostProdcts([newPost, ...PostProducts]);
     setText(""); // Xóa input sau khi đăng
     setIsFileImages([]); // Xóa hình ảnh sau khi đăng
@@ -58,14 +57,14 @@ function CommentBox({
 
       {/* Popup Login/Register */}
       <div
-        className={`fixed z-[1001] h-auto w-[80%] overflow-y-auto bg-[#fff] p-4 transition-all duration-500 md:w-[50%] lg:w-[40%] ${
+        className={`fixed z-[1001] h-auto w-[95%] overflow-y-auto bg-[#fff] p-4 shadow-2xl transition-all duration-500 md:w-[50%] lg:w-[40%] ${
           isShowComnent
             ? "top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] scale-100 rounded-2xl opacity-100 shadow-2xl"
             : "pointer-events-none top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] scale-1 opacity-0"
         }`}
       >
         <div className="flex items-center justify-between border-b border-[#e1e1e1] pb-4">
-          <div>Cancel</div>
+          <div onClick={onClick}>Cancel</div>
           <h2 className="font-semibold">New Post</h2>
           <div className="flex gap-2 text-2xl">
             <IoSaveOutline className="text-xl text-gray-600" />
@@ -118,7 +117,7 @@ function CommentBox({
               <HiOutlineGif className="cursor-pointer text-2xl" />
             </div>
             <button
-              className={`rounded-lg px-4 ${
+              className={`rounded-lg px-4 text-center text-xl font-bold ${
                 text.trim()
                   ? "bg-blue-500 text-white"
                   : "bg-gray-300 text-gray-500"
@@ -126,7 +125,7 @@ function CommentBox({
               disabled={!text.trim()}
               onClick={handleAddPostNew}
             >
-              Post
+              POST
             </button>
           </div>
         </div>

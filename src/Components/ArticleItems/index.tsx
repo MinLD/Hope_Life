@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { CiHeart } from "react-icons/ci";
 import { FaRegComment, FaUserCircle } from "react-icons/fa";
-
+import { IoIosClose } from "react-icons/io";
 import TextBox from "./component/textBox";
 import CommentBox from "./component/CommentBox";
 type layoutProps = {
@@ -25,8 +25,8 @@ function ArticleItems({ image = [], label }: layoutProps) {
       document.body.classList.add("overflow-hidden");
     }
   };
-  console.log(image);
-
+  const text: string = label;
+  const [selectedImage, setSelectedImage] = useState<any | null>(null);
   return (
     <div>
       <div className="flex flex-col gap-5 pb-10">
@@ -56,7 +56,7 @@ function ArticleItems({ image = [], label }: layoutProps) {
           </div>
         </div>
 
-        <TextBox text={label} />
+        <TextBox text={text} />
 
         <div className="flex h-auto w-full flex-wrap gap-[8px]">
           {image.map((item, index) => (
@@ -65,6 +65,7 @@ function ArticleItems({ image = [], label }: layoutProps) {
               alt=""
               className="h-auto w-[calc(100%/2-8px)] rounded-[10px] object-cover"
               key={index}
+              onClick={() => setSelectedImage(item.src)}
             />
           ))}
         </div>
@@ -99,6 +100,25 @@ function ArticleItems({ image = [], label }: layoutProps) {
           />
         )}
       </div>
+      {/* Hiển thị ảnh đã chọn */}
+      {selectedImage && (
+        <div className="w-full fixed inset-0 z-50 flex items-center justify-center">
+          <div className="relative rounded-lg shadow-lg">
+            <button
+              className="absolute top-2 right-2 text-5xl hover:text-red-500"
+              onClick={() => setSelectedImage(null)}
+            >
+              <IoIosClose />
+            </button>
+
+            <img
+              src={selectedImage}
+              alt="Ảnh được chọn"
+              className="max-h-[80vh] max-w-full rounded-lg"
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 }

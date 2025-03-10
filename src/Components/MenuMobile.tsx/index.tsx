@@ -32,6 +32,9 @@ function MenuMobile() {
       navigate("/");
       setIsOpen(false);
     }
+    if (i === "/app/register") {
+      navigate("/app/register");
+    }
   };
   return (
     <div>
@@ -40,9 +43,9 @@ function MenuMobile() {
       )}
 
       <div
-        className={`fixed top-0 right-0 z-9999 h-auto w-full bg-[#fff] p-2 shadow-md transition-all duration-600 ${isOpen ? "left-0 opacity-100" : "left-[-2500px] opacity-0"}`}
+        className={`fixed top-0 right-0 z-9999 h-auto w-full bg-[#fff] transition-all duration-600 ${isOpen ? "left-0 opacity-100" : "left-[-2500px] opacity-0"}`}
       >
-        <div className="flex w-full justify-between px-7 pb-3">
+        <div className="flex w-full justify-between bg-[#fff] p-2 px-7 pb-3">
           <div className="flex space-x-2 pl-3">
             <span className="text-3xl font-bold text-gray-900">H</span>
             <span className="text-3xl font-bold text-gray-900">O</span>
@@ -51,11 +54,11 @@ function MenuMobile() {
           </div>
           <div
             onClick={() => setIsOpen(false)}
-            className="cursor-pointer rounded-xl border border-[#e1e1e1] bg-[#e1e1e1] p-3"
+            className="cursor-pointer p-2 shadow-2xl"
           >
             <svg
-              width="12"
-              height="12"
+              width="22"
+              height="22"
               viewBox="0 0 12 12"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -74,19 +77,17 @@ function MenuMobile() {
             </svg>
           </div>
         </div>
-        <div className="h-[1px] w-full bg-[#e1e1e1]"></div>
 
-        <div className="flex flex-col gap-5 p-5">
+        <div className="h-1 w-full border-b-1 border-[#e1e1e1]"></div>
+        <div className="flex flex-col gap-3 p-5">
           {menu.map((i, k) => (
-            <div className="" key={k}>
-              <div className="flex cursor-pointer justify-between text-[16px] font-medium text-[#333] hover:text-[#1890ff]">
-                <p
-                  className="cursor-pointer"
-                  onClick={() => handleRenderComponents(i.name)}
-                >
-                  {i.name}
-                </p>
-                {i.name !== "Tin tức" && i.name !== "Trang Chủ" && (
+            <div className="rounded-2xl border border-[#e1e1e1] p-2" key={k}>
+              <div
+                onClick={() => handleRenderComponents(i.name)}
+                className="flex cursor-pointer justify-between text-[16px] font-medium text-[#00c951] hover:text-[#1890ff]"
+              >
+                <p className="cursor-pointer">{i.name}</p>
+                {i.name !== "Giới thiệu" && i.name !== "Trang Chủ" && (
                   <p className="text-2xl font-bold">
                     {isShowMenu === k ? (
                       <IoIosArrowDown />
@@ -98,6 +99,17 @@ function MenuMobile() {
               </div>
             </div>
           ))}
+          <p className="font-medium text-[#333]">Dành cho nhà tuyển dụng</p>
+          <div className="">
+            <div className="rounded-2xl border border-[#e1e1e1] p-2">
+              <div
+                onClick={() => handleRenderComponents("/app/register")}
+                className="flex cursor-pointer justify-between text-[16px] font-medium text-[#00c951] hover:text-[#1890ff]"
+              >
+                <p className="cursor-pointer">Đăng tin tuyển dụng</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

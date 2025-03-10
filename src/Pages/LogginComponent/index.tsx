@@ -2,8 +2,8 @@ import MyLogIn from "../../Components/Loggin";
 
 function Logginbox() {
   return (
-    <div className="flex h-[100vh]">
-      <div className="w-full overflow-auto p-10 shadow-2xl lg:w-[50%]">
+    <div className="flex h-[100vh] opacity-90">
+      <div className="w-full overflow-auto p-2 shadow-2xl lg:w-[50%]">
         <MyLogIn />
       </div>
       {/* Cột bên trái - Giới thiệu */}

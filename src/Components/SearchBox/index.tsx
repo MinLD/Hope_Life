@@ -1,11 +1,21 @@
 import { IoIosArrowDown } from "react-icons/io";
 import { FaLightbulb } from "react-icons/fa6";
 import { IoFilterOutline } from "react-icons/io5";
-
+import { CiSearch } from "react-icons/ci";
 function SearchBox() {
   return (
-    <div className="pb-2 p-2">
-      <div className="flex gap-2 pt-10 pb-2">
+    <div className="max-w-[80%] p-2 pt-35">
+      <div className="relative">
+        <input
+          type="text"
+          className="shadow-2xl w-full rounded-2xl border border-[#e1e1e1] p-2 outline-none sm:hidden"
+          placeholder="Tìm kiếm..."
+        />
+        <div className="absolute top-1/2 right-3 -translate-y-[50%] transform text-3xl">
+          <CiSearch />
+        </div>
+      </div>
+      <div className="flex gap-2 pt-2 pb-2">
         <div className="bg-amber-10 w-50% flex h-auto gap-2">
           <div className="flex items-center gap-1">
             <IoFilterOutline /> Lọc theo:
@@ -15,7 +25,7 @@ function SearchBox() {
             <IoIosArrowDown />
           </div>
         </div>
-        <div className="hidden sm:flex w-auto h-auto">
+        <div className="hidden h-auto w-auto sm:flex">
           <input
             type="text"
             className="rounded-2xl border p-2"
@@ -23,7 +33,7 @@ function SearchBox() {
           />
         </div>
       </div>
-      <div className="flex h-auto w-full items-center gap-2 rounded-lg border border-[#82afed] bg-[#f0f6ff] p-2">
+      <div className="hidden h-auto w-full items-center gap-2 rounded-lg border border-[#82afed] bg-[#f0f6ff] p-2 lg:flex">
         {" "}
         <FaLightbulb className="text-[#1a6fe6]" />
         <p className="text-md">

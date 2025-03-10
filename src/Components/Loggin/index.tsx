@@ -8,7 +8,7 @@ function MyLogIn() {
   const [isType, setIsType] = useState<string>("Login");
 
   return (
-    <div className="h-auto max-w-full w-full rounded-lg bg-[#fff]  pt-5 pb-10 sm:px-10">
+    <div className="h-auto w-full max-w-full rounded-lg   pt-5 pb-10 sm:px-10">
       <h1 className="pb-10 text-center text-[30px] font-bold text-[#0b4d8d]">
         {isType === "Register" ? "Đăng ký" : "Đăng nhập"}
       </h1>
@@ -64,9 +64,11 @@ function MyLogIn() {
       {isType === "Login" && (
         <div className="flex flex-col gap-5 pt-5">
           <div className="flex items-center gap-2">
-            <div className="h-px w-full bg-gray-300"></div>
-            <p className="w-[300px] text-[12px] text-gray-500">Đăng nhập với</p>
-            <div className="h-px w-full bg-gray-300"></div>
+            <div className="h-[1px] flex-1 bg-gray-300"></div>
+            <p className="text-[12px] whitespace-nowrap text-gray-500">
+              Đăng nhập với
+            </p>
+            <div className="h-[1px] flex-1 bg-gray-300"></div>
           </div>
 
           <div className="flex justify-between gap-2">

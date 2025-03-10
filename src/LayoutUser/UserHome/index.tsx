@@ -31,7 +31,7 @@ function UserHome() {
 
       <MyLayout>
         <SearchBox />
-        <div className="border-1-[#e1e1e1] h-auto w-full rounded-2xl border shadow-2xl">
+        <div className=" border-1-[#e1e1e1] h-auto w-full rounded-2xl border shadow-2xl">
           <div className="px-5 py-5">
             <PostNews onClick={handleShowComnent} />
             {isShowComnent && (

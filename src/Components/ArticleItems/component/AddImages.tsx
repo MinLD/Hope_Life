@@ -52,7 +52,7 @@ function AddImages({ SetIsFileImages, setShowAddImage = () => {} }: Props) {
                   className="h-full w-full rounded object-cover"
                 />
 
-                <button className="absolute top-0 right-0 cursor-pointer text-2xl text-gray-400">
+                <button className="absolute top-0 right-0 cursor-pointer text-2xl text-[34px] font-bold text-[#333] ">
                   <IoClose onClick={() => handleDeleteImage(file)} />
                 </button>
               </div>
