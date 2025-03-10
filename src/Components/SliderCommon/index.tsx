@@ -1,9 +1,9 @@
 import Slider from "react-slick";
+
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./css.css";
 import MarketIntroduction from "../MarketIntroduction";
-import { div } from "framer-motion/client";
 
 type LayoutProps = {
   BoxImg: { src?: string; title?: string; id?: number; lable?: string }[];
