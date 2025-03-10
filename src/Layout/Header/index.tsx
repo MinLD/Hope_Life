@@ -7,7 +7,7 @@ function MyHeader() {
     { name: "Liên hệ", id: 2 },
   ];
   return (
-    <div className="fixed inset-x-0 z-99999 flex h-[70px] items-center justify-center bg-[#3333]">
+    <div className="fixed inset-x-0 z-99999 flex h-[30px] items-center justify-center bg-[#3333]">
       <MyLayout>
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-2">

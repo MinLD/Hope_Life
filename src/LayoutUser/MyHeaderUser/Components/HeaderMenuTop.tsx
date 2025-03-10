@@ -50,9 +50,9 @@ function HeaderMenuTop() {
     navigate("/Loggin");
   };
   return (
-    <div className="flex h-[50px] w-full items-center justify-center bg-[#013035]">
+    <div className="flex h-[40px] w-full items-center justify-center bg-[#013035]">
       <MyLayout>
-        <div className="gap-10 sm:gap-0 flex items-center justify-between text-[#fff]">
+        <div className="gap-29 sm:gap-0 flex items-center justify-between text-[#fff]">
           <div className="flex items-center gap-10">
             {/* info */}
             <div className="flex items-center gap-1">
@@ -79,10 +79,8 @@ function HeaderMenuTop() {
                   </clipPath>
                 </defs>
               </svg>
-              <p>
-                <span className="text-[14px] font-bold text-[#e1e1e1]">
-                  ( 84+ )
-                </span>{" "}
+              <p className="text-[14px]">
+           
                 0918607139
               </p>
             </div>
@@ -103,7 +101,7 @@ function HeaderMenuTop() {
 
           <div className="flex items-center justify-between gap-4">
             {/* ShowMenu mobile */}
-            <div className="text-3xl lg:hidden" onClick={handleDeleteScross}>
+            <div className="text-2xl lg:hidden" onClick={handleDeleteScross}>
               <AiOutlineMenu />
             </div>
             {/* Loggin -pc*/}

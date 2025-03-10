@@ -27,7 +27,7 @@ function Banner() {
   }, []);
 
   return (
-    <div className="relative flex h-[340px] min-h-[300px] w-full flex-col items-center justify-center overflow-hidden">
+    <div className=" relative flex h-[340px] min-h-[300px] w-full flex-col items-center justify-center overflow-hidden">
       {/* Video Background */}
       {/* <video
         className="absolute top-0 left-0 h-full w-full object-cover"

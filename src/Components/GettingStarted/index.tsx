@@ -99,13 +99,13 @@ const GettingStarted = () => {
         </div>
       </div>
 
-      <div >
-        <h2 className="pt-5 mb-2 text-[20px] font-bold">
+      <div>
+        <h2 className="mb-2 pt-5 text-[20px] font-bold">
           Cách thức hoạt động quyên góp từ thiện và giúp đỡ những người khó khăn
         </h2>
         {data.map((i, k) => (
           <div key={k}>
-            <BoxAdding label={i.label} src={i.src} id={i.id} title={i.title} />
+            <BoxAdding label={i.label} src={i.src} title={i.title} />
           </div>
         ))}
       </div>

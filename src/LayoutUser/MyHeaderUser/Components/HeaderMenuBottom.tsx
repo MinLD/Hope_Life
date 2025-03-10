@@ -21,9 +21,9 @@ function HeaderMenuBottom() {
     navigate("/app/register");
   };
   return (
-    <div className="flex h-[72px] w-full items-center justify-center bg-[#fff] shadow-2xl">
+    <div className="flex h-[62px] w-full items-center justify-center bg-[#fff] shadow-2xl">
       <MyLayout>
-        <div className="flex gap-10 sm:gap-0 items-center justify-between">
+        <div className="flex items-center justify-between gap-15 sm:gap-0">
           <div className="flex items-center justify-center gap-10">
             <div className="flex items-center space-x-2">
               <span className="text-xl font-bold text-gray-900 sm:text-3xl">

@@ -54,7 +54,7 @@ function Home() {
   return (
     <>
       <MyHomePages>
-        <div className="">
+        <div className="pt-20">
           <Banner />
         </div>
         <MyLayout>

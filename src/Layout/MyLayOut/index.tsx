@@ -13,7 +13,7 @@ function MyLayout({ children }: Props) {
       >
         {children}
       </div> */}
-      <div className="mx-auto px-1 sm:px-7 md:px-8">{children}</div>
+      <div className="mx-auto px-3 sm:px-7 md:px-8">{children}</div>
     </div>
   );
 }

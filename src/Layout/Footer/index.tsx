@@ -23,7 +23,7 @@ function MyFooter() {
   return (
     <div className="h-auto w-full bg-[#1F2937] text-[#ffffff]">
       <MyLayout>
-        <div className="itens-center flex flex-col justify-center gap-10 pt-10 pb-20 md:flex-row xl:gap-40">
+        <div className="flex flex-col justify-center gap-10 pt-10 pb-20 md:flex-row xl:gap-40">
           {/* left */}
           <div className="flex flex-col gap-10">
             <div>
@@ -155,7 +155,7 @@ function MyFooter() {
                   <img
                     src="https://elearning.iigvietnam.com/_next/image?url=%2Fimages%2Fimage_f.png&w=128&q=75"
                     alt=""
-                    className="h-[70px] w-[156px] lg:h-[60px] lg:w-[150px]"
+                    className="h-[50px] w-[126px] lg:h-[60px] lg:w-[150px]"
                   />
                 </div>
               </div>
