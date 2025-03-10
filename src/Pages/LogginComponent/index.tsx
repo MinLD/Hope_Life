@@ -1,22 +1,6 @@
 import MyLogIn from "../../Components/Loggin";
-import SliderCommon from "../../Components/SliderCommon";
-import MyLayout from "../../Layout/MyLayOut";
-import br from "../../assets/image.png";
-function Logginbox() {
-  const data: {
-    id: number;
-    src: string;
-  }[] = [
-    {
-      id: 1,
-      src: "https://tuyendung.topcv.vn/app/_nuxt/img/banner-02.3506b83.png",
-    },
-    {
-      id: 2,
-      src: "https://tuyendung.topcv.vn/app/_nuxt/img/banner-02.3506b83.png",
-    },
-  ];
 
+function Logginbox() {
   return (
     <div className="flex h-[100vh]">
       <div className="w-full overflow-auto p-10 shadow-2xl lg:w-[50%]">

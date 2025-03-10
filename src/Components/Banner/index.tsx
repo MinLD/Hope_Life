@@ -1,10 +1,9 @@
-import video from "../../assets/3313_rain_raining_rain_drops_RaindropsVidevo.mp4";
 import { useContext, useEffect, useRef } from "react";
 import Typed from "typed.js";
 
 import { MenuContext } from "../../Context/MenuProvider";
 import { Heart, Users, HelpingHand } from "lucide-react";
-import bn1 from "../../assets/hãy vẽ cho tôi niềm hi vọng 09-03-2025 at 22-01-32.jpeg";
+
 import bn2 from "../../assets/hãy vẽ cho tôi niềm hi vọng 09-03-2025 at 22-01-35.jpeg";
 function Banner() {
   const textRef = useRef(null);

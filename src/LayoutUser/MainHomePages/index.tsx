@@ -1,6 +1,3 @@
-import { useContext } from "react";
-import { MenuContext } from "../../Context/MenuProvider";
-
 import UserHeader from "../MyHeaderUser";
 import MyFooter from "../../Layout/Footer";
 

@@ -1,22 +1,17 @@
-import { use, useContext } from "react";
+import { useContext } from "react";
 import AgencySection from "../../Components/AgencySection";
 import Banner from "../../Components/Banner";
 
-
 import { MenuContext } from "../../Context/MenuProvider";
-import MyLogIn from "../../Components/Loggin";
-
 
 import SliderCommon from "../../Components/SliderCommon";
 
 import GettingStarted from "../../Components/GettingStarted";
 
-import { useNavigate } from "react-router-dom";
 import MyHomePages from "../../Layout/HomePages";
 import MyLayout from "../../Layout/MyLayOut";
 
 function Home() {
-  const navigate = useNavigate();
   const menuContext = useContext(MenuContext);
   if (!menuContext) {
     return;

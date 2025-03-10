@@ -4,7 +4,7 @@ type Props = {
   title: string;
   lable: string;
 };
-function MarketIntroduction({ src, id, title, lable }: Props) {
+function MarketIntroduction({ src, title, lable }: Props) {
   return (
     <div className="flex w-[100%] flex-col items-center rounded-lg p-6 shadow-lg md:flex-row">
       {/* Hình ảnh bên trái */}

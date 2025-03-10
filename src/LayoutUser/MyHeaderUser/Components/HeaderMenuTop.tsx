@@ -23,7 +23,7 @@ function HeaderMenuTop() {
     { name: <FaYoutube />, id: 1 },
   ];
   const navigate = useNavigate();
-  const [isShowSearch, setIsShowSearch] = useState<boolean>(false);
+
   const [isShowMenuSub, setIsShowMenuSub] = useState<boolean>(false);
   const menuContext = useContext(MenuContext);
   if (!menuContext) return;
@@ -90,7 +90,7 @@ function HeaderMenuTop() {
                 <div
                   key={item.id}
                   onClick={() => handleReturnComponents(item.name)}
-                  className="cursor-pointer text-md hover:text-green-500 font-medium"
+                  className="text-md cursor-pointer font-medium hover:text-green-500"
                 >
                   <h1>{item.name}</h1>
                 </div>

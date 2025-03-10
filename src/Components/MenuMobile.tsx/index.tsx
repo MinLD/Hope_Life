@@ -1,12 +1,11 @@
 import { useContext, useState } from "react";
 import { IoIosArrowDown, IoIosArrowForward } from "react-icons/io";
 
-import { useNavigate } from "react-router-dom";
 import { MenuContext } from "../../Context/MenuProvider";
 
 function MenuMobile() {
-  const [isShowMenu, setIsShowMenu] = useState<number | null>(null);
-  const Navigate = useNavigate();
+  const [isShowMenu] = useState<number | null>(null);
+
   //   ${isOpen ? "left-0 opacity-100" : "left-[-2500px] opacity-0"}
   const menu: {
     name: string;

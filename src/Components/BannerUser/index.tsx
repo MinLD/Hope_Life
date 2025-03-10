@@ -1,8 +1,7 @@
-import MyLayout from "../../Layout/MyLayOut";
-import Banner from "../Banner";
+
 import SliderCommon from "../SliderCommon";
 
-import PostNews from "./Component/PostNews";
+
 
 function BannerUser() {
   const data: {

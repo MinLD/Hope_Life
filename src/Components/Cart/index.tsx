@@ -4,7 +4,7 @@ type Props = {
   src: string;
   title: string;
 };
-function CartItems({ id, title, src }: Props) {
+function CartItems({ title, src }: Props) {
   const [isShow, setIsShow] = useState(false);
   return (
     <div

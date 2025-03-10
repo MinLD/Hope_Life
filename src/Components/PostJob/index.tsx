@@ -3,7 +3,6 @@ import RegisterPostJob from "./components/RegisterPostJob";
 import ChooseJob from "./components/ChooseJob";
 import RecruiterForm from "./components/RegruiterFrom";
 import SliderCommon from "../SliderCommon";
-import ProgressBar from "./components/ProcessBar";
 
 function PostJob() {
   const data: { src: string; id: number }[] = [
