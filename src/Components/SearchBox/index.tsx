@@ -5,10 +5,10 @@ import { CiSearch } from "react-icons/ci";
 function SearchBox() {
   return (
     <div className="max-w-[80%] p-2 pt-35">
-      <div className="relative">
+      <div className="relative sm:hidden">
         <input
           type="text"
-          className="shadow-2xl w-full rounded-2xl border border-[#e1e1e1] p-2 outline-none sm:hidden"
+          className="w-full rounded-2xl border border-[#e1e1e1] p-2 shadow-2xl outline-none"
           placeholder="Tìm kiếm..."
         />
         <div className="absolute top-1/2 right-3 -translate-y-[50%] transform text-3xl">

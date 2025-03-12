@@ -15,7 +15,7 @@ function HeaderMenuBottom() {
   ];
   const menuContext = useContext(MenuContext);
   if (!menuContext) return;
-  const { isWindowSize } = menuContext;
+
   const navigate = useNavigate();
   const handleReuturnPostJob = () => {
     navigate("/app/register");
@@ -23,38 +23,36 @@ function HeaderMenuBottom() {
   return (
     <div className="flex h-[62px] w-full items-center justify-center bg-[#fff] shadow-2xl">
       <MyLayout>
-        <div className="flex items-center justify-between gap-15 sm:gap-0">
-          <div className="flex items-center justify-center gap-10">
+        <div className="flex items-center justify-between sm:gap-0">
+          <div className="flex items-center justify-center gap-6 lg:gap-15 xl:gap-25">
             <div className="flex items-center space-x-2">
-              <span className="text-xl font-bold text-gray-900 sm:text-3xl">
+              <span className="text-2xl font-bold text-gray-900 sm:text-3xl">
                 H O
               </span>
-              <span className="text-xl font-bold text-green-500 sm:text-3xl">
+              <span className="text-2xl font-bold text-green-500 sm:text-3xl">
                 P E
               </span>
             </div>
 
-            {isWindowSize.width >= 1026 && (
-              <div className="flex gap-5">
-                {data.map((item, k) => (
-                  <div key={k}>
-                    <h1>{item.name}</h1>
-                  </div>
-                ))}
-              </div>
-            )}
+            <div className="mdd:flex hidden gap-5">
+              {data.map((item, k) => (
+                <div key={k}>
+                  <h1 className="text-[16px] font-medium">{item.name}</h1>
+                </div>
+              ))}
+            </div>
           </div>
 
           <div className="flex items-center gap-2">
-            <div className="hidden flex-col gap-1 sm:flex">
-              <p className="text-[12px] text-[#c5c5c5]">
+            <div className="s:flex hidden flex-col gap-1">
+              <p className="text-[11px] text-[#c5c5c5]">
                 Bạn là nhà tuyển dụng?
               </p>
               <div
                 className="flex cursor-pointer items-center gap-1 text-[14px] hover:text-[#00b14f]"
                 onClick={handleReuturnPostJob}
               >
-                <p className="text-md font-medium">Đăng tuyển ngay</p>
+                <p className="text-[14px] font-medium">Đăng tuyển ngay</p>
                 <MdKeyboardDoubleArrowRight size={20} />
               </div>
             </div>

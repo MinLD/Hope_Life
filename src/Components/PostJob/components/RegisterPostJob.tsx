@@ -5,7 +5,7 @@ function RegisterPostJob() {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <div>
-      <div className="mx-auto max-w-2xl p-6">
+      <div className="mx-auto p-6">
         <div className="flex items-center space-x-2">
           <span className="text-3xl font-bold text-gray-900">H O</span>
           <span className="text-3xl font-bold text-green-500">P E</span>
@@ -20,7 +20,7 @@ function RegisterPostJob() {
         </p>
 
         {/* Accordion */}
-        <div className="mt-6 overflow-hidden rounded-lg border border-green-600">
+        <div className="max-w-md mt-6 overflow-hidden rounded-lg border border-green-600">
           <button
             className="flex w-full items-center justify-between p-4 text-left font-bold text-green-600"
             onClick={() => setIsOpen(!isOpen)}

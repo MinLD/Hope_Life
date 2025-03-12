@@ -17,10 +17,10 @@ function HeaderJamb() {
   const { scrollPosition } = useScrollHandling();
   return (
     <div
-      className={`hidden fixed top-10 sm:flex h-[100vh] w-auto flex-col gap-2 pr-5 transition-all duration-500 ${scrollPosition >= 99 ? "left-0" : "left-[-50px]"}`}
+      className={`pl-3 hidden fixed top-[30%] s:flex h-[100vh] w-auto flex-col gap-2 pr-5 transition-all duration-500 ${scrollPosition >= 99 ? "left-0" : "left-[-50px]"}`}
     >
       {" "}
-      <div className="flex flex-col space-x-2 pl-3">
+      <div className="hidden  flex-col space-x-2 pl-3">
         <span className="text-3xl font-bold text-gray-900">H</span>
         <span className="text-3xl font-bold text-gray-900">O</span>
         <span className="text-3xl font-bold text-green-500">P</span>

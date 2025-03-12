@@ -27,7 +27,7 @@ function Banner() {
   }, []);
 
   return (
-    <div className=" relative flex h-[340px] min-h-[300px] w-full flex-col items-center justify-center overflow-hidden">
+    <div className="relative flex h-[340px] min-h-[300px] w-full flex-col items-center justify-center overflow-hidden">
       {/* Video Background */}
       {/* <video
         className="absolute top-0 left-0 h-full w-full object-cover"
@@ -40,7 +40,7 @@ function Banner() {
       </video> */}
       {/* https://www.nghilucsong.net/wp-content/uploads/2020/12/trung-tam-nghi-luc-song-top-banner3.jpg */}
       <img
-        className="absolute top-0 max-h-[300px] w-full object-cover"
+        className="absolute top-0 h-[300px] w-full object-cover"
         src={bn2}
         alt=""
       />
@@ -56,8 +56,8 @@ function Banner() {
               preserveAspectRatio="xMidYMid meet"
               data-bbox="21.693 67.788 156.613 72.155"
               viewBox="21.693 67.788 156.613 72.155"
-              height="80"
-              width="80"
+              height="70"
+              width="70"
               xmlns="http://www.w3.org/2000/svg"
               data-type="color"
               role="presentation"
@@ -78,17 +78,17 @@ function Banner() {
               </g>
             </svg>
           </div>
-          <h1 className="text-lg font-bold drop-shadow-lg sm:text-4xl md:text-5xl lg:text-6xl">
+          <h1 className="text-lg font-bold drop-shadow-lg sm:text-2xl md:text-3xl lg:text-4xl">
             Chung tay trao yêu thương và Thắp sáng hy vọng
           </h1>
-          <p className="mt-4 text-md font-semibold sm:text-2xl md:text-3xl lg:text-4xl">
+          <p className="text-md mt-4 font-semibold sm:text-xl md:text-2xl lg:text-3xl">
             <span ref={textRef}></span>
           </p>
-          <p className="mt-4 text-md font-semibold sm:text-2xl md:text-3xl lg:text-4xl">
+          <p className="text-md mt-4 font-semibold sm:text-2xl md:text-2xl lg:text-3xl">
             Ngày 04 tháng 04 Năm 2025
           </p>
 
-          <button className="mt-2 rounded-lg bg-yellow-500 px-2 py-2 text-[12px] font-bold shadow-lg transition hover:bg-yellow-600">
+          <button className="md:text-lg mt-2 rounded-lg bg-yellow-500 px-2 py-2 text-[12px] font-bold shadow-lg transition hover:bg-yellow-600">
             Tham gia ngay
           </button>
         </div>
@@ -100,23 +100,23 @@ function Banner() {
           Cùng nhau tạo nên những điều tốt đẹp!
         </p>
       </div> */}
-      <div className="absolute bottom-[10px] left-1/2 z-20 flex h-auto p-2 w-[90%] -translate-x-1/2 transform items-center justify-center rounded-lg bg-[#fdf1e3] shadow-lg">
+      <div className="md:w-[70%] lg:w-[60%] absolute bottom-[4px] left-1/2 z-20 flex h-[70px] w-[85%] -translate-x-1/2 transform items-center justify-center rounded-lg bg-[#fdf1e3] p-2 shadow-lg">
         <div className="flex items-center gap-2 text-center">
           <div className="flex flex-col items-center">
-            <Heart className="text-red-500" size={20} />
-            <p className="text-[8px] font-semibold text-gray-700">
+            <Heart className="text-red-500" size={25} />
+            <p className="s:text-[10px] text-[8px] font-semibold text-gray-700 sm:text-[12px]">
               Giúp đỡ người khó khăn
             </p>
           </div>
           <div className="flex flex-col items-center">
-            <Users className="text-blue-500" size={20} />
-            <p className="text-[8px] font-semibold text-gray-700">
+            <Users className="text-blue-500" size={25} />
+            <p className="s:text-[10px] text-[8px] font-semibold text-gray-700 sm:text-[12px]">
               Hỗ trợ trẻ em mồ côi
             </p>
           </div>
           <div className="flex flex-col items-center">
-            <HelpingHand className="text-green-500" size={20} />
-            <p className="text-[8px] font-semibold text-gray-700">
+            <HelpingHand className="text-green-500" size={25} />
+            <p className="s:text-[10px] text-[8px] font-semibold text-gray-700 sm:text-[12px]">
               Đồng hành cùng người khuyết tật
             </p>
           </div>

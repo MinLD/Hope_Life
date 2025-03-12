@@ -17,7 +17,7 @@ function AgencySection() {
         </h2>
 
         {/* Nội dung */}
-        <p className="mt-4 max-w-[250px] text-[10px] text-[#444] xl:max-w-2xl">
+        <p className="mt-4 max-w-[250px] text-[15px] text-[#444] xl:text-2xl xl:max-w-2xl">
           Trong cuộc sống, một bàn tay đưa ra có thể thay đổi cả một cuộc đời.
           Hãy cùng nhau trao đi yêu thương, sẻ chia những điều tốt đẹp và mang
           lại hy vọng cho những người đang cần giúp đỡ. Khi chúng ta chung tay,

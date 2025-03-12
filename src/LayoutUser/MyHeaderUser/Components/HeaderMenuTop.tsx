@@ -52,8 +52,8 @@ function HeaderMenuTop() {
   return (
     <div className="flex h-[40px] w-full items-center justify-center bg-[#013035]">
       <MyLayout>
-        <div className="gap-30 sm:gap-0 flex items-center justify-between text-[#fff]">
-          <div className="flex items-center gap-10">
+        <div className="flex items-center justify-between text-[#fff] sm:gap-0">
+          <div className="flex items-center gap-15  xl:gap-25">
             {/* info */}
             <div className="flex items-center gap-1">
               <svg
@@ -79,21 +79,19 @@ function HeaderMenuTop() {
                   </clipPath>
                 </defs>
               </svg>
-              <p className="text-[14px]">
-           
-                0918607139
-              </p>
+              <p className="text-[14px]">0918607139</p>
+            
             </div>
-            <div className="hidden lg-flex h-[30px] w-[1px] bg-[#e1e1e1] opacity-50"></div>
+        
             {/* menu */}
-            <div className="hidden items-center gap-5 lg:flex">
+            <div className="mx-auto hidden items-center gap-3 mdd:flex">
               {data.map((item) => (
                 <div
                   key={item.id}
                   onClick={() => handleReturnComponents(item.name)}
-                  className="text-md cursor-pointer font-medium hover:text-green-500"
+                  className="cursor-pointer text-sm font-medium hover:text-green-500"
                 >
-                  <h1>{item.name}</h1>
+                  <h1 className="text-[16px]">{item.name}</h1>
                 </div>
               ))}
             </div>
@@ -101,11 +99,11 @@ function HeaderMenuTop() {
 
           <div className="flex items-center justify-between gap-4">
             {/* ShowMenu mobile */}
-            <div className="text-2xl lg:hidden" onClick={handleDeleteScross}>
+            <div className="text-2xl mdd:hidden" onClick={handleDeleteScross}>
               <AiOutlineMenu />
             </div>
             {/* Loggin -pc*/}
-            <div className="hidden items-center justify-center gap-4 md:flex">
+            <div className=" items-center justify-center gap-4 flex">
               <div className="flex gap-2">
                 {icons.map((item, k) => (
                   <div key={k} className="cursor-pointer text-2xl">
@@ -114,8 +112,8 @@ function HeaderMenuTop() {
                 ))}
               </div>
 
-              <div className="flex gap-1">
-                <div onClick={handleReturnToLoggin}>
+              <div className="gap-1 hidden s:flex">
+                <div onClick={handleReturnToLoggin} className="">
                   <MyButton content={"Đăng nhập"} isColor="bg-[green]" />
                 </div>
                 <div>
@@ -155,7 +153,7 @@ function HeaderMenuTop() {
 
                 {isShowMenuSub && (
                   <div
-                    className={`position } absolute top-10 right-1 z-99 flex w-auto h-auto scale-100 transform flex-col gap-2 rounded-lg bg-[#ffff] p-2 font-medium shadow-md transition-all duration-300 ease-in-out`}
+                    className={`position } absolute top-10 right-1 z-99 flex h-auto w-auto scale-100 transform flex-col gap-2 rounded-lg bg-[#ffff] p-2 font-medium shadow-md transition-all duration-300 ease-in-out`}
                   >
                     <p
                       className="h-[24px] w-[198px] cursor-pointer text-[16px] text-[#0b4d8d]"

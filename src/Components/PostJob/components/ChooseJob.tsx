@@ -35,7 +35,7 @@ function ChooseJob() {
                       alt=""
                     />
                     <div
-                      className="w-[100%] text-[12px]"
+                      className="w-[100%] text-[12px] mdd:text-[14px] lg:text-[18px]"
                       onClick={() => setIsOpen(false)}
                     >
                       {" "}
@@ -50,7 +50,7 @@ function ChooseJob() {
                       src="https://tuyendung.topcv.vn/app/_nuxt/img/student.c1c39ee.png"
                       alt=""
                     />
-                    <div className="w-[100%] text-[12px]">
+                    <div className="w-[100%] text-[12px] mdd:text-[14px] lg:text-[18px]">
                       <MyButton
                         content={"Tôi là ứng viên tìm việc"}
                         isColor="bg-[#00b14f]"
