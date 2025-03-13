@@ -11,7 +11,7 @@ import { StoreContext } from "../../Context/StoreProvider";
 import { useNavigate } from "react-router-dom";
 import { MenuContext } from "../../Context/MenuProvider";
 import LoadingTextCommon from "../LoaddingCommon";
-import { i } from "framer-motion/client";
+
 function MyLogIn() {
   const [isloading, setLoading] = useState<boolean>(false);
   const menuContext = useContext(MenuContext);

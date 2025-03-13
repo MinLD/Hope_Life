@@ -48,9 +48,10 @@ function HeaderJamb() {
           })}
         </div>
         <div className="flex flex-col gap-10">
-          {icons.slice(5).map((item, k) => {
+          {icons.slice(5).map((item) => {
             return (
               <div
+
                 key={item.id}
                 className="cursor-pointer text-4xl"
                 onClick={() => handleReturnMenu(item.id)}
