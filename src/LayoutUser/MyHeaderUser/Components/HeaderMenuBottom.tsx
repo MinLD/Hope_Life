@@ -136,7 +136,7 @@ function HeaderMenuBottom() {
 
                   {isShowUserMenu && (
                     <div
-                      className={`absolute top-10 flex h-screen w-[400px] flex-col gap-4 bg-[#fff] p-5 shadow-2xl`}
+                      className={`absolute top-10 flex right-0 h-screen w-[300px] s:w-[400px]  flex-col gap-4 bg-[#fff] p-5 shadow-2xl`}
                     >
                       <div>
                         <div className="flex items-center gap-2">
