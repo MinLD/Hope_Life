@@ -43,7 +43,7 @@ function MenuMobile() {
       )}
 
       <div
-        className={`fixed top-0 right-0 z-9999 h-auto w-full bg-[#fff] transition-all duration-600 ${isOpen ? "left-0 opacity-100" : "left-[-2500px] opacity-0"}`}
+        className={`fixed top-0 right-0 z-9999 h-screen w-[80vw] s:w-[50vw] bg-[#fff] transition-all duration-600 ${isOpen ? "left-0 opacity-100" : "left-[-2500px] opacity-0"}`}
       >
         <div className="flex w-full justify-between bg-[#fff] p-2 px-7 pb-3">
           <div className="flex space-x-2 pl-3">

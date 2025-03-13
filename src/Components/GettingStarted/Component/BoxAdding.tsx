@@ -3,11 +3,12 @@ type props = {
   src: string;
   label: string;
   title: string;
+  id: number;
 };
 
-function BoxAdding({ src, label, title }: props) {
-  const [isOpen, setIsOpen] = useState(false);
-  console.log(isOpen);
+function BoxAdding({ src, label, title, id }: props) {
+  const [isOpen, setIsOpen] = useState(id===0);
+
   return (
     <div
       className="mt-2 overflow-hidden rounded-lg border-b-2"

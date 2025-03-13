@@ -21,7 +21,7 @@ interface LayoutProps {
 
 // 📌 Tạo Provider bọc ứng dụng
 export const MenuProvider = ({ children }: LayoutProps) => {
-  const [isType, setIsType] = useState<string>("");
+  const [isType, setIsType] = useState<string>("Login");
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isWindowSize, setIsWindowSize] = useState<{
     width: number;

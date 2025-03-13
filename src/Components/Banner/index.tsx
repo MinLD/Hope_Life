@@ -16,6 +16,17 @@ function Banner() {
         "Hãy cùng nhau lan tỏa hy vọng!",
         "Giúp đỡ những người khó khăn!",
         "Mỗi hành động nhỏ mang đến sự thay đổi lớn!",
+        "“Lá lành đùm lá rách”",
+        "“Một miếng khi đói bằng một gói khi no”",
+        "“Thương người như thể thương thân”",
+        "“Bầu ơi thương lấy bí cùng, tuy rằng khác giống nhưng chung một giàn”",
+        "“Nhiễu điều phủ lấy giá gương, người trong một nước phải thương nhau cùng",
+        "“Đồng tiền bát gạo khi khốn khó, bằng một kho khi dư dả” ",
+        "“Đỡ nhau lúc hoạn nạn, sẻ chia lúc cơ hàn”",
+        "“Chia ngọt sẻ bùi”",
+        "“Hạt muối cắn đôi, bát cơm sẻ nửa” ",
+        "“Giúp người là giúp mình”"
+
       ],
       typeSpeed: 50,
       backSpeed: 30,
@@ -27,26 +38,15 @@ function Banner() {
   }, []);
 
   return (
-    <div className="relative flex h-[340px] min-h-[300px] w-full flex-col items-center justify-center overflow-hidden">
-      {/* Video Background */}
-      {/* <video
-        className="absolute top-0 left-0 h-full w-full object-cover"
-        autoPlay
-        loop
-        muted
-        playsInline
-      >
-        <source src={video} type="video/mp4" />
-      </video> */}
-      {/* https://www.nghilucsong.net/wp-content/uploads/2020/12/trung-tam-nghi-luc-song-top-banner3.jpg */}
+    <div className="relative flex h-[520px] w-full flex-col items-center justify-center overflow-hidden bg-[#fff]">
       <img
-        className="absolute top-0 h-[300px] w-full object-cover"
+        className="absolute top-0 h-[450px] w-full object-cover"
         src={bn2}
         alt=""
       />
 
       {/* Overlay */}
-      <div className="absolute inset-0 h-[300px] bg-black opacity-50"></div>
+      <div className="absolute inset-0 h-[450px] bg-black opacity-50"></div>
 
       {/* Content */}
       <div className="absolute z-10 mt-[-90px] flex flex-col items-center px-4 text-center text-white">
@@ -56,8 +56,8 @@ function Banner() {
               preserveAspectRatio="xMidYMid meet"
               data-bbox="21.693 67.788 156.613 72.155"
               viewBox="21.693 67.788 156.613 72.155"
-              height="70"
-              width="70"
+              height="90"
+              width="90"
               xmlns="http://www.w3.org/2000/svg"
               data-type="color"
               role="presentation"
@@ -88,19 +88,13 @@ function Banner() {
             Ngày 04 tháng 04 Năm 2025
           </p>
 
-          <button className="md:text-lg mt-2 rounded-lg bg-yellow-500 px-2 py-2 text-[12px] font-bold shadow-lg transition hover:bg-yellow-600">
+          <button className="mt-2 rounded-lg bg-yellow-500 px-2 py-2 text-[12px] font-bold shadow-lg transition hover:bg-yellow-600 md:text-lg">
             Tham gia ngay
           </button>
         </div>
       </div>
-
-      {/* Bottom Section */}
-      {/* <div className="bg-opacity-30 absolute bottom-0 w-full bg-white py-4 text-center text-gray-100 backdrop-blur-md">
-        <p className="text-[10px] sm:text-lg">
-          Cùng nhau tạo nên những điều tốt đẹp!
-        </p>
-      </div> */}
-      <div className="md:w-[70%] lg:w-[60%] absolute bottom-[4px] left-1/2 z-20 flex h-[70px] w-[85%] -translate-x-1/2 transform items-center justify-center rounded-lg bg-[#fdf1e3] p-2 shadow-lg">
+        {/* Footer */}
+      <div className="z-10 absolute bottom-[30px] left-1/2 flex h-[90px] w-[85%] -translate-x-1/2 transform items-center justify-center rounded-lg bg-[#fdf1e3] p-2 shadow-lg md:w-[70%] lg:w-[60%]">
         <div className="flex items-center gap-2 text-center">
           <div className="flex flex-col items-center">
             <Heart className="text-red-500" size={25} />

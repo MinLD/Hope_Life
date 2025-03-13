@@ -43,7 +43,7 @@ const GettingStarted = () => {
 
   return (
     <div className="pb-10">
-      <div className="mx-auto hidden max-w-5xl px-4 py-10 text-center">
+      <div className="mx-auto hidden max-w-5xl flex-col px-4 py-10 text-center lg:flex">
         <h2 className="mb-6 text-3xl font-bold">
           Cách thức hoạt động quyên góp từ thiện và giúp đỡ những người khó khăn
         </h2>
@@ -99,13 +99,13 @@ const GettingStarted = () => {
         </div>
       </div>
 
-      <div>
+      <div className="lg:hidden">
         <h2 className="mb-2 pt-5 text-[20px] font-bold">
           Cách thức hoạt động quyên góp từ thiện và giúp đỡ những người khó khăn
         </h2>
         {data.map((i, k) => (
           <div key={k}>
-            <BoxAdding label={i.label} src={i.src} title={i.title} />
+            <BoxAdding label={i.label} src={i.src} title={i.title} id={i.id}/>
           </div>
         ))}
       </div>

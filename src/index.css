@@ -16,4 +16,5 @@ body {
 @theme {
   --breakpoint-mdd: 850px;
   --breakpoint-s: 550px;
+  --breakpoint-mddd: 940px;
 }

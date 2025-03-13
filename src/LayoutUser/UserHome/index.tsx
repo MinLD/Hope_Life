@@ -9,9 +9,10 @@ import ArticleItems from "../../Components/ArticleItems";
 import { useContext, useState } from "react";
 import CommentBox from "../../Components/ArticleItems/component/CommentBox";
 import { PostContext } from "../../Context/PostProvider";
-import MenuMobile from "../../Components/MenuMobile.tsx";
+import MenuMobile from "../../Components/MenuMobile/index.tsx";
 import HeaderJamb from "../HeaderJamb/index.tsx";
 import useScrollHandling from "../../Hook/index.tsx";
+
 
 function UserHome() {
   const handleShowComnent = () => {
@@ -28,6 +29,7 @@ function UserHome() {
   if (!postcontext) return;
   const { PostProducts } = postcontext;
   const { scrollPosition } = useScrollHandling();
+
   return (
     <MainHomePages>
       <div className="">{scrollPosition > 0 && <HeaderJamb />}</div>

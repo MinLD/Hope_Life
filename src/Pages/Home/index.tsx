@@ -8,7 +8,7 @@ import GettingStarted from "../../Components/GettingStarted";
 
 import MyHomePages from "../../Layout/HomePages";
 import MyLayout from "../../Layout/MyLayOut";
-import MenuMobile from "../../Components/MenuMobile.tsx";
+import MenuMobile from "../../Components/MenuMobile/index.tsx";
 
 function Home() {
   const menuContext = useContext(MenuContext);

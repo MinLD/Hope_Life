@@ -13,7 +13,7 @@ function MyLayout({ children }: Props) {
       >
         {children}
       </div> */}
-      <div className="mx-auto w-[80vw] lg:w-[70vw] xl:w-[65vw]">{children}</div>
+      <div className="mx-auto w-[85vw] lg:w-[75vw] xl:w-[65vw]">{children}</div>
     </div>
   );
 }

@@ -25,10 +25,10 @@ function MyFooter() {
       <MyLayout>
         <div className="flex flex-col justify-center gap-10 pt-10 pb-20 md:flex-row xl:gap-40">
           {/* left */}
-          <div className="flex flex-col gap-10">
+          <div className="flex flex-col gap-5">
             <div>
               <span className="text-3xl font-bold text-[#fff]">H O</span>
-              <span className="text-3xl font-bold text-[#fff]"> P E</span>
+              <span className="text-3xl font-bold text-[#16b741]"> P E</span>
             </div>
 
             <div className="flex flex-col gap-4">

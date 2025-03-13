@@ -23,14 +23,12 @@ function CommentBox({
   const postcontext = useContext(PostContext);
   const [isShowAddImage, setShowAddImage] = useState(false);
   if (!postcontext) {
-    console.error("PostContext is not available");
     return null;
   }
   const { PostProducts, setPostProdcts } = postcontext;
 
   const handleAddPostNew = () => {
     if (!setPostProdcts) {
-      console.error("setPostProdcts is not defined");
       return;
     }
 
