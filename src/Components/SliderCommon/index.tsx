@@ -14,6 +14,7 @@ type LayoutProps = {
 
 function SliderCommon({ BoxImg, slidesToShow, dots, type }: LayoutProps) {
   const settings = {
+    arrows: false, // Ẩn mũi tên điều hướng
     centerMode: true, // Căn giữa item
     centerPadding: "0px", // Tránh padding dư thừa
     dots: dots || false, // Đặt giá trị mặc định là false nếu không truyền
@@ -21,7 +22,7 @@ function SliderCommon({ BoxImg, slidesToShow, dots, type }: LayoutProps) {
     speed: 500,
     slidesToShow: slidesToShow,
     slidesToScroll: 1,
-    autoplay: true,
+    autoplay: false,
     autoplaySpeed: 5000, // Giảm thời gian autoplay xuống để tăng trải nghiệm người dùng
     rtl: false, // Nếu bạn muốn xoay từ phải qua trái, hãy để true
   };
@@ -38,18 +39,18 @@ function SliderCommon({ BoxImg, slidesToShow, dots, type }: LayoutProps) {
         );
       case "images":
         return (
-          <div>
+          <div className="flex flex-col items-center justify-center">
             <img
               src={item.src}
               alt=""
-              className="h-full w-[98%] object-cover"
+              className="min-h-[20vh] h-[25vh] w-[98%] object-cover"
             />
           </div>
         );
       case "imagesZoom":
         return (
-          <div>
-            <img src={item.src} alt="" className="h-full w-full" />
+          <div className="flex flex-col items-center justify-center">
+            <img src={item.src} alt="" className="h-[80vh] w-full" />
           </div>
         );
 

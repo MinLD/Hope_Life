@@ -126,14 +126,14 @@ function ArticleItems({ image = [], label }: layoutProps) {
           onClick={handleCloseImage}
           className="bg-opacity-[20%] fixed inset-0 z-[99999999] flex items-center justify-center bg-black"
         >
-          <div className="relative h-[50vw] w-[70vw] rounded-lg shadow-lg">
+          <div className="relative w-[80%]">
             <button
-              className="absolute top-10 right-2 z-[999999] cursor-pointer text-6xl text-[#333] hover:text-red-500"
+              className="absolute top-0 right-0 z-[999999] cursor-pointer text-6xl text-[#333] hover:text-red-500"
               onClick={handleCloseImage}
             >
               <IoIosClose />
             </button>
-            <div>
+            <div className="">
               {selectedImage.length > 1 ? (
                 <SliderCommon
                   slidesToShow={1}
