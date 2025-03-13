@@ -141,11 +141,13 @@ function ArticleItems({ image = [], label }: layoutProps) {
                   type="imagesZoom"
                 />
               ) : (
-                <img
-                  src={selectedImage[0].src}
-                  alt=""
-                  className="h-full w-full"
-                />
+                <div className="flex items-center justify-center">
+                  <img
+                    src={selectedImage[0].src}
+                    alt=""
+                    className="s:h-[70vh] h-[80vw] w-[90%]"
+                  />
+                </div>
               )}
             </div>
           </div>

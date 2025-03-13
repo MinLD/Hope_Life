@@ -43,14 +43,14 @@ function SliderCommon({ BoxImg, slidesToShow, dots, type }: LayoutProps) {
             <img
               src={item.src}
               alt=""
-              className="min-h-[20vh] h-[25vh] w-[98%] object-cover"
+              className="h-[25vh] min-h-[20vh] w-[98%] object-cover"
             />
           </div>
         );
       case "imagesZoom":
         return (
           <div className="flex flex-col items-center justify-center">
-            <img src={item.src} alt="" className="h-[80vh] w-full" />
+            <img src={item.src} alt="" className="h-[70vh] w-[70%]" />
           </div>
         );
 

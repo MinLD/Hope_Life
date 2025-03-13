@@ -1,17 +1,20 @@
-import { IoIosArrowDown } from "react-icons/io";
+import { IoIosArrowDown, IoIosClose } from "react-icons/io";
 import { FaLightbulb } from "react-icons/fa6";
 import { IoFilterOutline } from "react-icons/io5";
 import { CiSearch } from "react-icons/ci";
+import { useState } from "react";
+
 function SearchBox() {
+  const [isShowNati, setIsShowNati] = useState(true);
   return (
-    <div className="max-w-[80%] p-2 pt-35">
-      <div className="relative sm:hidden">
+    <div className="max-w-[100%] p-2 pt-35">
+      <div className="relative max-w-[70%] sm:hidden">
         <input
           type="text"
           className="w-full rounded-2xl border border-[#e1e1e1] p-2 shadow-2xl outline-none"
           placeholder="Tìm kiếm..."
         />
-        <div className="absolute top-1/2 right-3 -translate-y-[50%] transform text-3xl">
+        <div className="absolute top-1/2 right-3 -translate-y-[50%] transform text-2xl">
           <CiSearch />
         </div>
       </div>
@@ -33,15 +36,27 @@ function SearchBox() {
           />
         </div>
       </div>
-      <div className="hidden h-auto w-full items-center gap-2 rounded-lg border border-[#82afed] bg-[#f0f6ff] p-2 lg:flex">
-        {" "}
-        <FaLightbulb className="text-[#1a6fe6]" />
-        <p className="text-md">
+      {isShowNati && (
+        <div className="relative h-auto w-full rounded-lg border border-[#82afed] bg-[#f0f6ff] p-2">
           {" "}
-          <b>Gợi ý:</b> Di chuột vào tiêu đề việc làm để xem thêm thông tin chi
-          tiết
-        </p>
-      </div>
+          <p className="text-md flex gap-2 flex-col mddd:flex-row">
+            {" "}
+            <div className="flex items-center gap-1">
+              {" "}
+              <FaLightbulb className="text-[#1a6fe6]" />
+              <b>Gợi ý:</b>
+            </div>
+            <span>
+              {" "}
+              bạn có thể kéo sang trái để xem hết hình ảnh, hoặc bấm trực tiếp
+              vào ảnh để xem rõ hơn!!!
+            </span>
+          </p>
+          <div className="cursor-pointer absolute top-0 right-4" onClick={() => setIsShowNati(false)}>
+            <IoIosClose size={30} />
+          </div>
+        </div>
+      )}
     </div>
   );
 }
