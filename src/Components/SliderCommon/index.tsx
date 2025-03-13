@@ -36,6 +36,23 @@ function SliderCommon({ BoxImg, slidesToShow, dots, type }: LayoutProps) {
             lable={item.lable}
           />
         );
+      case "images":
+        return (
+          <div>
+            <img
+              src={item.src}
+              alt=""
+              className="h-full w-[98%] object-cover"
+            />
+          </div>
+        );
+      case "imagesZoom":
+        return (
+          <div>
+            <img src={item.src} alt="" className="h-full w-full" />
+          </div>
+        );
+
       default:
         return (
           <div className="relative">

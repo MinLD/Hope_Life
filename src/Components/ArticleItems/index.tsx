@@ -4,6 +4,7 @@ import { FaRegComment, FaUserCircle } from "react-icons/fa";
 import { IoIosClose } from "react-icons/io";
 import TextBox from "./component/textBox";
 import CommentBox from "./component/CommentBox";
+import SliderCommon from "../SliderCommon";
 type layoutProps = {
   name?: string;
   image?: { src?: string }[];
@@ -14,6 +15,7 @@ type layoutProps = {
 function ArticleItems({ image = [], label }: layoutProps) {
   const [IsHeart, setHeart] = useState<boolean>(false);
   const [isShowComnent, setShowComnent] = useState<boolean>(false);
+  const [selectedImage, setSelectedImage] = useState<any | null | []>(null);
   const handleHeart = () => {
     setHeart(!IsHeart);
   };
@@ -26,7 +28,17 @@ function ArticleItems({ image = [], label }: layoutProps) {
     }
   };
   const text: string = label;
-  const [selectedImage, setSelectedImage] = useState<any | null>(null);
+  const handleShowImage = (src: any) => {
+    setSelectedImage(src);
+
+    document.body.classList.add("overflow-hidden"); // Chặn cuộn trang khi mở ảnh
+  };
+
+  const handleCloseImage = () => {
+    setSelectedImage(null);
+    document.body.classList.remove("overflow-hidden"); // Gỡ bỏ chặn cuộn khi đóng ảnh
+  };
+
   return (
     <div>
       <div className="flex flex-col gap-5 pb-10">
@@ -58,16 +70,24 @@ function ArticleItems({ image = [], label }: layoutProps) {
 
         <TextBox text={text} />
 
-        <div className="flex h-auto w-full flex-wrap gap-[8px]">
-          {image.map((item, index) => (
-            <img
-              src={item.src}
-              alt=""
-              className="h-auto w-[calc(100%/2-8px)] rounded-[10px] object-cover"
-              key={index}
-              onClick={() => setSelectedImage(item.src)}
-            />
-          ))}
+        <div className="h-auto w-full">
+          {image.length >= 3 ? (
+            <div onClick={() => handleShowImage(image)}>
+              <SliderCommon slidesToShow={3} BoxImg={image} type="images" />
+            </div>
+          ) : (
+            <div className="flex-wrap gap-[8px]">
+              {image.map((item, index) => (
+                <img
+                  src={item.src}
+                  alt={`Hình ảnh ${index}`}
+                  className="h-auto w-[calc(100%/2-8px)] cursor-pointer rounded-[10px] object-cover"
+                  key={index}
+                  onClick={() => handleShowImage(image)}
+                />
+              ))}
+            </div>
+          )}
         </div>
         <div className="flex items-center gap-4 text-xl">
           <div
@@ -102,20 +122,32 @@ function ArticleItems({ image = [], label }: layoutProps) {
       </div>
       {/* Hiển thị ảnh đã chọn */}
       {selectedImage && (
-        <div className="w-full fixed inset-0 z-50 flex items-center justify-center">
-          <div className="relative rounded-lg shadow-lg">
+        <div
+          onClick={handleCloseImage}
+          className="bg-opacity-[20%] fixed inset-0 z-[99999999] flex items-center justify-center bg-black"
+        >
+          <div className="relative h-[50vw] w-[70vw] rounded-lg shadow-lg">
             <button
-              className="absolute top-2 right-2 text-5xl hover:text-red-500"
-              onClick={() => setSelectedImage(null)}
+              className="absolute top-10 right-2 z-[999999] cursor-pointer text-6xl text-[#333] hover:text-red-500"
+              onClick={handleCloseImage}
             >
               <IoIosClose />
             </button>
-
-            <img
-              src={selectedImage}
-              alt="Ảnh được chọn"
-              className="max-h-[80vh] max-w-full rounded-lg"
-            />
+            <div>
+              {selectedImage.length > 1 ? (
+                <SliderCommon
+                  slidesToShow={1}
+                  BoxImg={selectedImage}
+                  type="imagesZoom"
+                />
+              ) : (
+                <img
+                  src={selectedImage[0].src}
+                  alt=""
+                  className="h-full w-full"
+                />
+              )}
+            </div>
           </div>
         </div>
       )}

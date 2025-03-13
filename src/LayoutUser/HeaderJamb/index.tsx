@@ -28,7 +28,7 @@ function HeaderJamb() {
   };
   return (
     <div
-      className={`s:flex fixed top-[30%] hidden h-[100vh] w-auto flex-col gap-2 pr-5 pl-2 transition-all duration-500 ${scrollPosition >= 99 ? "left-0" : "left-[-50px]"}`}
+      className={`s:flex fixed top-[30%] hidden h-[100vh] w-auto flex-col gap-2 pl-1 transition-all duration-500 ${scrollPosition >= 99 ? "left-0" : "left-[-50px]"}`}
     >
       {" "}
       <div className="hidden flex-col space-x-2 pl-3">
@@ -41,7 +41,7 @@ function HeaderJamb() {
         <div className="flex flex-col gap-7">
           {icons.slice(0, 5).map((item, k) => {
             return (
-              <div key={k} className="text-4xl">
+              <div key={k} className="text-3xl md:text-4xl">
                 {item.name}
               </div>
             );
@@ -51,9 +51,8 @@ function HeaderJamb() {
           {icons.slice(5).map((item) => {
             return (
               <div
-
                 key={item.id}
-                className="cursor-pointer text-4xl"
+                className="cursor-pointer text-3xl md:text-4xl"
                 onClick={() => handleReturnMenu(item.id)}
               >
                 {item.name}
