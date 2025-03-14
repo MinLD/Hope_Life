@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import MyLayout from "../../../Layout/MyLayOut";
 import MyButton from "../../../Components/Button";
 import { IoIosArrowDown } from "react-icons/io";
@@ -28,9 +28,9 @@ function HeaderMenuTop() {
   const [isShowMenuSub, setIsShowMenuSub] = useState<boolean>(false);
   const menuContext = useContext(MenuContext);
   if (!menuContext) return;
-  const { setIsOpen, isOpen, setIsType } = menuContext;
+  const { setIsOpen, setIsType } = menuContext;
   const handleDeleteScross = () => {
-    setIsType("MenuHeader/")
+    setIsType("MenuHeader/");
     setIsOpen(true);
   };
 

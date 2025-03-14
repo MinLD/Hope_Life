@@ -1,11 +1,9 @@
 import {
   LucideIcon,
-  BarChart,
-  Gift,
-  Brain,
+
   FileText,
   Users,
-  Briefcase,
+
   ClipboardList,
   Settings,
   Bell,

@@ -21,7 +21,7 @@ function MenuHeader() {
   const navigate = useNavigate();
   const menuContext = useContext(MenuContext);
   if (!menuContext) return;
-  const { setIsOpen, isOpen, isType } = menuContext;
+  const { setIsOpen } = menuContext;
   const handleRenderComponents = (i: string) => {
     if (i === "Giới thiệu") {
       navigate("/Gioi-Thieu");
