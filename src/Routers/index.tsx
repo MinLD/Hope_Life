@@ -19,5 +19,9 @@ const Routerss: {
     path: "/Loggin",
     component: lazy(() => import("../Pages/LogginComponent/index.tsx")),
   },
+  {
+    path: "/app/dashboard",
+    component: lazy(() => import("../Pages/AppDashBoard/index.tsx")),
+  },
 ];
 export default Routerss;

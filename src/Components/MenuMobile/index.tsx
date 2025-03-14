@@ -3,6 +3,8 @@ import { IoIosArrowDown, IoIosArrowForward } from "react-icons/io";
 
 import { MenuContext } from "../../Context/MenuProvider";
 import { useNavigate } from "react-router-dom";
+import MenuHeader from "./Components/MenuHeader";
+import MenuDashBoard from "./Components/MenuDashBoard";
 
 function MenuMobile() {
   const [isShowMenu] = useState<number | null>(null);
@@ -22,7 +24,7 @@ function MenuMobile() {
   const navigate = useNavigate();
   const menuContext = useContext(MenuContext);
   if (!menuContext) return;
-  const { setIsOpen, isOpen } = menuContext;
+  const { setIsOpen, isOpen, isType } = menuContext;
   const handleRenderComponents = (i: string) => {
     if (i === "Giới thiệu") {
       navigate("/Gioi-Thieu");
@@ -38,12 +40,12 @@ function MenuMobile() {
   };
   return (
     <div>
-      {isOpen && (
+      {isOpen === true && (
         <div className="fixed top-0 left-0 z-9999 h-full w-full bg-[#000] opacity-30"></div>
       )}
 
       <div
-        className={`fixed top-0 right-0 z-9999 h-screen w-[80vw] s:w-[50vw] bg-[#fff] transition-all duration-600 ${isOpen ? "left-0 opacity-100" : "left-[-2500px] opacity-0"}`}
+        className={`s:w-[50vw] fixed top-0 right-0 z-9999 h-screen w-[80vw] bg-[#fff] transition-all duration-600 ${isOpen ? "left-0 opacity-100" : "left-[-2500px] opacity-0"}`}
       >
         <div className="flex w-full justify-between bg-[#fff] p-2 px-7 pb-3">
           <div className="flex space-x-2 pl-3">
@@ -79,38 +81,15 @@ function MenuMobile() {
         </div>
 
         <div className="h-1 w-full border-b-1 border-[#e1e1e1]"></div>
-        <div className="flex flex-col gap-3 p-5">
-          {menu.map((i, k) => (
-            <div className="rounded-2xl border border-[#e1e1e1] p-2" key={k}>
-              <div
-                onClick={() => handleRenderComponents(i.name)}
-                className="flex cursor-pointer justify-between text-[16px] font-medium text-[#00c951] hover:text-[#1890ff]"
-              >
-                <p className="cursor-pointer">{i.name}</p>
-                {i.name !== "Giới thiệu" && i.name !== "Trang Chủ" && (
-                  <p className="text-2xl font-bold">
-                    {isShowMenu === k ? (
-                      <IoIosArrowDown />
-                    ) : (
-                      <IoIosArrowForward />
-                    )}
-                  </p>
-                )}
-              </div>
-            </div>
-          ))}
-          <p className="font-medium text-[#333]">Dành cho nhà tuyển dụng</p>
-          <div className="">
-            <div className="rounded-2xl border border-[#e1e1e1] p-2">
-              <div
-                onClick={() => handleRenderComponents("/app/register")}
-                className="flex cursor-pointer justify-between text-[16px] font-medium text-[#00c951] hover:text-[#1890ff]"
-              >
-                <p className="cursor-pointer">Đăng tin tuyển dụng</p>
-              </div>
-            </div>
-          </div>
-        </div>
+
+        {/* menu */}
+        {isType === "MenuHeader/" ? (
+          <MenuHeader />
+        ) : isType === "MenuDashBoard" ? (
+          <MenuDashBoard />
+        ) : (
+          ""
+        )}
       </div>
     </div>
   );

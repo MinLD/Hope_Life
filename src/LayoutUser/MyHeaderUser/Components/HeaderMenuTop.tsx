@@ -30,17 +30,18 @@ function HeaderMenuTop() {
   if (!menuContext) return;
   const { setIsOpen, isOpen, setIsType } = menuContext;
   const handleDeleteScross = () => {
+    setIsType("MenuHeader/")
     setIsOpen(true);
   };
 
-  // Khi `isOpen` thay đổi, cập nhật class của `body`
-  useEffect(() => {
-    if (isOpen) {
-      document.body.classList.add("overflow-hidden");
-    } else {
-      document.body.classList.remove("overflow-hidden");
-    }
-  }, [isOpen]); // Theo dõi thay đổi của `isOpen`
+  // // Khi `isOpen` thay đổi, cập nhật class của `body`
+  // useEffect(() => {
+  //   if (isOpen) {
+  //     document.body.classList.add("overflow-hidden");
+  //   } else {
+  //     document.body.classList.remove("overflow-hidden");
+  //   }
+  // }, [isOpen]); // Theo dõi thay đổi của `isOpen`
   const handleReturnComponents = (name: string) => {
     if (name === "Giới Thiệu") {
       navigate("/Gioi-Thieu");
@@ -126,7 +127,7 @@ function HeaderMenuTop() {
                 ) : (
                   <div className="flex items-center gap-1">
                     <div onClick={() => handleReturnToLoggin(1)}>
-                      <MyButton content={"Đăng nhập"} isColor="bg-[green]" />
+                      <MyButton content={"Đăng nhập"} isColor="bg-[#00b14f]" />
                     </div>
                     <div onClick={() => handleReturnToLoggin(2)}>
                       <MyButton content={"Đăng ký"} />

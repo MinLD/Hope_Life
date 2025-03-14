@@ -1,0 +1,67 @@
+import { useContext } from "react";
+import { CgMenuGridO, CgMenuRound } from "react-icons/cg";
+import { MenuContext } from "../../Context/MenuProvider";
+import { TbMenuDeep } from "react-icons/tb";
+import dataMenu from "../../ComponentsDashBoard/Contants/index";
+
+function HeaderDashBoard() {
+  const menuContext = useContext(MenuContext);
+  if (!menuContext) return;
+  const { setIsOpenSibar, isOpenSibar, setIsOpen, setIsType } = menuContext;
+  const handlOpenSibar = () => {
+    setIsOpenSibar(!isOpenSibar);
+  };
+  const handleShowMenuMobile = () => {
+    setIsType("MenuDashBoard");
+    setIsOpen(true);
+  };
+  return (
+    <div className="flex h-[65px] w-full items-center justify-between bg-[#212f3f] px-4 text-[#fff]">
+      <div className="flex items-center gap-1">
+        <div onClick={handlOpenSibar} className="cursor-pointer">
+          {isOpenSibar ? (
+            <>
+              <TbMenuDeep size={30} />
+            </>
+          ) : (
+            <>
+              <CgMenuGridO size={30} />
+            </>
+          )}
+        </div>
+        <div className="flex items-center space-x-2">
+          <span className="s:text-3xl text-xl font-bold text-amber-50">
+            H O
+          </span>
+          <span className="s:text-3xl text-xl font-bold text-green-500">
+            P E
+          </span>
+        </div>
+      </div>
+      <div onClick={handleShowMenuMobile} className="md:hidden">
+        <CgMenuRound size={30} />
+      </div>
+
+      <div className="hidden items-center gap-2 text-white shadow-2xl md:flex">
+        {dataMenu.headerMenu.map((i, k) => (
+          <div
+            key={k}
+            className={`relative flex cursor-pointer items-center gap-2 rounded-full bg-gray-700 p-2 px-3 transition-all hover:bg-gray-600`}
+          >
+            {i.icon && <i.icon className="h-5 w-5" />}
+            <span className="text-[14px]">
+              {k === 8 ? <i.title /> : i.title}
+            </span>
+            {i.badge && (
+              <span className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-xs font-bold text-white">
+                {i.badge}
+              </span>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+export default HeaderDashBoard;
