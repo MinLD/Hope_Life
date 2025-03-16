@@ -23,5 +23,15 @@ const Routerss: {
     path: "/app/dashboard",
     component: lazy(() => import("../Pages/AppDashBoard/index.tsx")),
   },
+  {
+    path: "/app/hopeshop",
+    component: lazy(() => import("../Pages/HomeShop/index.tsx")),
+  },
+  {
+    path: "/hopeshop/:id",
+    component: lazy(
+      () => import("../ComponentsHopeShop/DetailsProducts/index.tsx"),
+    ),
+  },
 ];
 export default Routerss;
