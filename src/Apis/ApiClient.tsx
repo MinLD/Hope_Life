@@ -1,24 +1,31 @@
 import axios from "axios";
 import Cookies from "js-cookie";
 export const axiosClient = axios.create({
-  baseURL: "https://be-project-reactjs.vercel.app/api/v1",
+  baseURL: "http://localhost:8080/",
   timeout: 10000,
   headers: {
     "Content-Type": "application/json",
   },
 });
-axiosClient.interceptors.request.use(
-  async (config) => {
-    const token = Cookies?.get("token");
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
-    }
-    return config;
-  },
-  (err) => {
-    return Promise.reject(err);
-  },
-);
+axiosClient.interceptors.request.use((config) => {
+  const token = Cookies.get("token");
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+  return config;
+});
+// axiosClient.interceptors.request.use(
+//   async (config) => {
+//     const token = Cookies?.get("token");
+//     if (token) {
+//       config.headers.Authorization = `Bearer ${token}`;
+//     }
+//     return config;
+//   },
+//   (err) => {
+//     return Promise.reject(err);
+//   },
+// );
 axiosClient.interceptors.response.use(
   (res) => {
     return res;
@@ -45,5 +52,6 @@ axiosClient.interceptors.response.use(
         return Promise.reject(err);
       }
     }
+    return Promise.reject(err);
   },
 );

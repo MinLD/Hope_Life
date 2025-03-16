@@ -107,12 +107,8 @@ function HeaderMenuTop() {
           </div>
 
           <div className="flex items-center justify-between gap-4">
-            {/* ShowMenu mobile */}
-            <div className="text-2xl lg:hidden" onClick={handleDeleteScross}>
-              <AiOutlineMenu />
-            </div>
             {/* Loggin -pc*/}
-            <div className="flex items-center justify-center gap-4">
+            <div className="flex items-center justify-center gap-1">
               <div className="flex gap-2">
                 {icons.map((item, k) => (
                   <div key={k} className="cursor-pointer text-2xl">
@@ -201,6 +197,10 @@ function HeaderMenuTop() {
                 </div>
               </>
             )}
+            {/* ShowMenu mobile */}
+            <div className="text-2xl lg:hidden" onClick={handleDeleteScross}>
+              <AiOutlineMenu />
+            </div>
           </div>
         </div>
       </MyLayout>

@@ -6,6 +6,9 @@ import { IoSaveOutline } from "react-icons/io5";
 import { PiImagesSquareThin } from "react-icons/pi";
 import AddImages from "./AddImages";
 import { PostContext } from "../../../Context/PostProvider";
+// import { form, title } from "framer-motion/m";
+import Post from "../../../Apis/PostApi";
+import { toast } from "react-toastify";
 type Props = {
   onClick: () => void;
   isShowComnent: boolean;
@@ -19,31 +22,41 @@ function CommentBox({
   handleShowComnent,
 }: Props) {
   const [text, setText] = useState("");
-  const [isFileImages, setIsFileImages] = useState<string[]>([]);
+  const [isFileImages, setIsFileImages] = useState<File[]>([]);
   const postcontext = useContext(PostContext);
   const [isShowAddImage, setShowAddImage] = useState(false);
   if (!postcontext) {
     return null;
   }
-  const { PostProducts, setPostProdcts } = postcontext;
+  // const { PostProducts, setPostProdcts } = postcontext;
 
-  const handleAddPostNew = () => {
-    if (!setPostProdcts) {
+  const handleAddPostNew = async () => {
+    // Kiểm tra danh sách file
+    if (!isFileImages.length) {
+      console.warn("No images selected!");
       return;
     }
+    const formData = new FormData();
 
-    const newPost = {
-      id: Date.now(), // Dùng timestamp để tạo id duy nhất
-      label: text.trim(),
-      image: isFileImages.map((src) => ({ src })),
-    };
+    isFileImages.forEach((file) => {
+      formData.append("images", file);
+    });
 
-    setPostProdcts([newPost, ...PostProducts]);
+    formData.append("content", text);
+    Post(formData)
+      .then((re) => {
+        console.log(re);
+        toast.success("Đăng bài viet thanh cong");
+      })
+      .catch((err) => {
+        toast.error(err.response.data.message);
+      });
     setText(""); // Xóa input sau khi đăng
     setIsFileImages([]); // Xóa hình ảnh sau khi đăng
     setShowComnent && setShowComnent(false);
     handleShowComnent && handleShowComnent();
   };
+
   return (
     <div className="relative">
       {/* Lớp phủ màn hình (overlay) */}
@@ -99,7 +112,7 @@ function CommentBox({
             <div className="flex h-auto w-full flex-wrap gap-[10px]">
               <div className="w-[salce(100%/1-10px)]">
                 <AddImages
-                  SetIsFileImages={setIsFileImages}
+                  setIsFileImages={setIsFileImages}
                   setShowAddImage={setShowAddImage}
                 />
               </div>

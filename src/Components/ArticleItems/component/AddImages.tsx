@@ -1,29 +1,24 @@
-
-import {  useState } from "react";
+import { useState } from "react";
 import { FaPlus } from "react-icons/fa";
 import { IoClose } from "react-icons/io5";
 
 type Props = {
-  SetIsFileImages: (images: string[]) => void;
+  setIsFileImages: (images: File[]) => void;
   setShowAddImage: (value: boolean) => void;
 };
 
-function AddImages({ SetIsFileImages, setShowAddImage = () => {} }: Props) {
-  const [files, setFiles] = useState<string[]>([]);
+function AddImages({ setIsFileImages, setShowAddImage = () => {} }: Props) {
+  const [files, setFiles] = useState<File[]>([]);
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (!event.target.files) return;
 
-    const selectedFiles = Array.from(event.target.files);
-    const fileURLs = selectedFiles.map((file) => URL.createObjectURL(file));
+    const selectedFiles = Array.from(event.target.files); // lấy hết danh sách chuyển thành mảng
+    setIsFileImages(selectedFiles);
 
-    setFiles((prevFiles) => {
-      const updatedFiles = [...prevFiles, ...fileURLs];
-      SetIsFileImages(updatedFiles); // Cập nhật ngay lập tức
-      return updatedFiles;
-    });
+    setFiles((prevFiles) => [...prevFiles, ...selectedFiles]);
   };
-  const handleDeleteImage = (index: string) => {
+  const handleDeleteImage = (index: any) => {
     setFiles((prevFiles) => prevFiles.filter((file) => file !== index));
   };
 
@@ -47,12 +42,12 @@ function AddImages({ SetIsFileImages, setShowAddImage = () => {} }: Props) {
             {files.map((file, index) => (
               <div key={index} className="relative">
                 <img
-                  src={file}
+                  src={file && URL.createObjectURL(file)}
                   alt="Preview"
                   className="h-full w-full rounded object-cover"
                 />
 
-                <button className="absolute top-0 right-0 cursor-pointer text-2xl text-[34px] font-bold text-[#333] ">
+                <button className="absolute top-0 right-0 cursor-pointer text-2xl text-[34px] font-bold text-[#333]">
                   <IoClose onClick={() => handleDeleteImage(file)} />
                 </button>
               </div>

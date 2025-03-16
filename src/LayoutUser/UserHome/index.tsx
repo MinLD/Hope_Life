@@ -11,8 +11,6 @@ import CommentBox from "../../Components/ArticleItems/component/CommentBox";
 import { PostContext } from "../../Context/PostProvider";
 import MenuMobile from "../../Components/MenuMobile/index.tsx";
 import HeaderJamb from "../HeaderJamb/index.tsx";
-import useScrollHandling from "../../Hook/index.tsx";
-
 
 function UserHome() {
   const handleShowComnent = () => {
@@ -28,15 +26,14 @@ function UserHome() {
 
   if (!postcontext) return;
   const { PostProducts } = postcontext;
-  const { scrollPosition } = useScrollHandling();
 
   return (
     <MainHomePages>
-      <div className="">{scrollPosition > 0 && <HeaderJamb />}</div>
+      <HeaderJamb />
 
       <MyLayout>
         <SearchBox />
-        <div className="border-1-[#e1e1e1] h-auto w-full rounded-2xl border px-3 s:px-6 shadow-2xl lg:px-15 xl:px-20">
+        <div className="border-1-[#e1e1e1] s:px-6 h-auto w-full rounded-2xl border px-3 shadow-2xl lg:px-15 xl:px-20">
           <div className="py-5">
             <PostNews onClick={handleShowComnent} />
             {isShowComnent && (

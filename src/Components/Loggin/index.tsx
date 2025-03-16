@@ -15,7 +15,7 @@ import LoadingTextCommon from "../LoaddingCommon";
 function MyLogIn() {
   const [isloading, setLoading] = useState<boolean>(false);
   const menuContext = useContext(MenuContext);
-  if (!menuContext) return null;
+  if (!menuContext) return;
   const { isType, setIsType } = menuContext;
 
   const storeContext = useContext(StoreContext);
@@ -26,40 +26,56 @@ function MyLogIn() {
     initialValues: {
       email: "",
       password: "",
+      phone: "",
       passwordrl: "",
+      fullName: "",
     },
     validationSchema: Yup.object({
       email: Yup.string().email("Invalid Email").required("Email is Required"),
       password: Yup.string()
-        .min(6, "Password must be at least 6 characters")
+        .min(8, "Password must be at least 8 characters")
         .required("Password is Required"),
+
       ...(isType === "Register" && {
+        fullName: Yup.string().required("Fullname is Required"),
+        phone: Yup.string()
+          .max(10, "Phone must be at most 10 characters")
+          .required("Phone is Required"),
         passwordrl: Yup.string()
-          .min(6, "Password must be at least 6 characters")
+          .min(8, "Password must be at least 8 characters")
           .required("Password is Required"),
       }),
     }),
 
     onSubmit: async (values) => {
-      const { email: username, password } = values;
-      console.log("1");
+      console.log("on");
+      const { email, password, phone, fullName } = values;
+
       if (isType === "Login") {
-        console.log("2");
         setLoading(true);
-        await SignIn(username, password)
+
+        await SignIn(email, password)
           .then((res) => {
-            const { id, token, refreshToken } = res.data;
+            console.log(res.data.result);
+            const { token } = res.data.result;
             Cookies.set("token", token);
-            Cookies.set("refreshToken", refreshToken);
-            Cookies.set("id", id);
+            // Cookies.set("refreshToken", refreshToken);
+            // Cookies.set("id", id);
             toast.success("Login Success");
-            GetInfo(id).then((res) => setUserInfo?.(res.data));
             formik.resetForm();
+            GetInfo()
+              .then((res) => setUserInfo?.(res.data.result))
+              .catch((err) => console.log(err));
             navigate("/");
             setLoading(false);
           })
           .catch((err) => {
-            toast.error(err.response.data.message);
+            if (err.response.data.code === 409) {
+              toast.error("Sai mật khẩu!");
+              setLoading(false);
+              return;
+            } // Kiểm tra dữ liệu lỗi
+            toast.error(err.response?.data.message);
             setLoading(false);
           });
       }
@@ -69,21 +85,22 @@ function MyLogIn() {
           return;
         }
         setLoading(true);
-        await Register(username, password)
+        await Register(email, password, phone, fullName)
           .then((res) => {
-            toast.success(res.data.message);
+            console.log(res);
+            toast.success("Register Success");
 
             setIsType("Login");
             setLoading(false);
           })
           .catch((err) => {
-            toast.error(err.response.data.message);
+            toast.error(err.response?.data.message);
+
             setLoading(false);
           });
       }
     },
   });
-  console.log(isType);
 
   return (
     <div className="s:min-w-[400px] h-auto w-full max-w-full min-w-[300px] rounded-lg pt-5 pb-10">
@@ -92,12 +109,26 @@ function MyLogIn() {
       </h1>
       <form onSubmit={formik.handleSubmit}>
         <div className="flex flex-col gap-5 pb-10">
-          {/* {isType === "Register" && (
+          {isType === "Register" && (
             <>
-              <InputBox type="text" placeholder="Họ và tên" />
-              <InputBox type="text" placeholder="Số điện thoại" />
+              <InputBox
+                type="text"
+                placeholder="Họ và tên"
+                id={"fullName"}
+                Formik={formik}
+                lable="fullName *"
+                name="fullName"
+              />
+              <InputBox
+                type="number"
+                placeholder="Số điện thoại"
+                id={"phone"}
+                Formik={formik}
+                lable="phone *"
+                name="phone"
+              />
             </>
-          )} */}
+          )}
           <InputBox
             type="text"
             placeholder="Email"

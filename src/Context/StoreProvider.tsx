@@ -4,7 +4,7 @@ import { GetInfo } from "../Apis/AuthService";
 
 type UserInfoType = {
   id: number;
-  username: string;
+  fullName: string;
   email: string;
   role: string;
 };
@@ -35,10 +35,12 @@ const StoreProvider = ({ children }: StoreProviderProps) => {
     setUserInfo,
     handleLogout,
   };
-  const userId = Cookies.get("id");
+  const token = Cookies.get("token");
   useEffect(() => {
-    if (!userId) return;
-    GetInfo(userId).then((res) => setUserInfo?.(res.data));
+    if (!token) return;
+    GetInfo()
+      .then((res) => setUserInfo(res.data.result))
+      .catch((err) => console.log(err));
   }, []);
 
   return (

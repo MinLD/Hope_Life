@@ -1,15 +1,19 @@
 import { axiosClient } from "./ApiClient";
 
-const Register = async (username: string, password: string) => {
-  return await axiosClient.post("/register", { username, password });
+const Register = async (
+  email: string,
+  password: string,
+  phone: string,
+  fullName: string,
+) => {
+  return await axiosClient.post("/users", { email, password, phone, fullName });
 };
-const SignIn = async (username: string, password: string) => {
-  return await axiosClient.post("/login", { username, password });
+const SignIn = async (email: string, password: string) => {
+  return await axiosClient.post("/auth/token", { email, password });
 };
 
-const GetInfo = async (id: any) => {
-  const a = await axiosClient.get(`/user/info/${id}`);
-  return a.data;
+const GetInfo = async () => {
+  return await axiosClient.get(`/profile`);
 };
 
 export { SignIn, Register, GetInfo };

@@ -67,8 +67,7 @@ function HeaderMenuBottom() {
       handleLogout?.();
     }
   };
-  console.log(userInfo);
-  console.log(userInfo?.id + " " + userInfo?.username);
+ 
 
   return (
     <div className="flex h-[62px] w-full items-center justify-center bg-[#fff] shadow-2xl">
@@ -111,7 +110,7 @@ function HeaderMenuBottom() {
             </div>
             {token ? (
               <>
-                <div className="hidden h-[30px] w-[1px] items-center border-[1px] border-[#e1e1e1] lg:flex"></div>
+                <div className=" hidden h-[30px] w-[1px] items-center border-[1px] border-[#e1e1e1] lg:flex"></div>
                 <div className="flex h-[40px] w-[40px] items-center justify-center rounded-full bg-[#bef0d78b]">
                   <span className="z-30 text-[27px] text-[#00b14f]">
                     <IoIosNotifications />
@@ -136,7 +135,7 @@ function HeaderMenuBottom() {
 
                   {isShowUserMenu && (
                     <div
-                      className={`absolute top-10 flex right-0 h-screen w-[300px] s:w-[400px]  flex-col gap-4 bg-[#fff] p-5 shadow-2xl`}
+                      className={`pb-15 s:w-[400px] absolute top-10 right-0 flex h-screen w-[300px] flex-col gap-4 bg-[#fff] p-5 shadow-2xl`}
                     >
                       <div>
                         <div className="flex items-center gap-2">
@@ -148,7 +147,7 @@ function HeaderMenuBottom() {
                           </div>
                           <div className="flex flex-col">
                             <p className="text-[16px] font-medium text-[#00b14f]">
-                              {userInfo?.username}
+                              {userInfo?.fullName}
                             </p>
                             <p className="text-[14px]">
                               Mã ứng viên:{" "}
