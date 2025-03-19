@@ -1,24 +1,23 @@
 import { useContext } from "react";
 import MenuSibar from "../../ComponentsDashBoard/SibarMenu";
-import HeaderDashBoard from "../HeaderDashBoard";
 import { MenuContext } from "../../Context/MenuProvider";
-import dataMenuu, { MenuItem } from "../../ComponentsDashBoard/Contants/index";
+import HeaderDashBoard from "../../LayoutDashBoard/HeaderDashBoard";
+import MenuData from "../../Admin/Components/Contants/index.tsx";
 type Props = {
   children: React.ReactNode;
 };
-
-function HomePagesDashBoard({ children }: Props) {
+function HomePagesAdmin({ children }: Props) {
   const menuContext = useContext(MenuContext);
   if (!menuContext) return;
   const { isType } = menuContext;
   return (
     <div className="flex h-screen flex-col overflow-hidden">
-      <HeaderDashBoard MenuItem={dataMenuu.headerMenu as MenuItem[]} />
+      <HeaderDashBoard />
       <div className="flex flex-1 overflow-hidden">
         <MenuSibar
-          nameUser="Luan DO"
-          role="Employer"
-          dataMenu={dataMenuu.sidebarMenu as any}
+          nameUser=""
+          role="Admin"
+          dataMenu={MenuData.sidebarMenuAdmin as any}
         />
         <div className="flex flex-1 flex-col">
           <div className="flex h-[50px] w-full items-center border-l-1 border-[#e1e1e1] p-2 font-bold shadow-2xl">
@@ -33,4 +32,4 @@ function HomePagesDashBoard({ children }: Props) {
   );
 }
 
-export default HomePagesDashBoard;
+export default HomePagesAdmin;

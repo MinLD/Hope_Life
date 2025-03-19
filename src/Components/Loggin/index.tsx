@@ -31,18 +31,20 @@ function MyLogIn() {
       fullName: "",
     },
     validationSchema: Yup.object({
-      email: Yup.string().email("Invalid Email").required("Email is Required"),
-      password: Yup.string()
-        .min(8, "Password must be at least 8 characters")
-        .required("Password is Required"),
-
       ...(isType === "Register" && {
+        email: Yup.string()
+          .email("Invalid Email")
+          .required("Email is Required"),
+        password: Yup.string()
+          .min(8, "Password must be at least 8 characters")
+          .required("Password is Required"),
+
         fullName: Yup.string().required("Fullname is Required"),
         phone: Yup.string()
           .max(10, "Phone must be at most 10 characters")
           .required("Phone is Required"),
         passwordrl: Yup.string()
-          .min(8, "Password must be at least 8 characters")
+
           .required("Password is Required"),
       }),
     }),
@@ -63,9 +65,14 @@ function MyLogIn() {
             // Cookies.set("id", id);
             toast.success("Login Success");
             formik.resetForm();
-            GetInfo()
-              .then((res) => setUserInfo?.(res.data.result))
-              .catch((err) => console.log(err));
+            try {
+              GetInfo()
+                .then((res) => setUserInfo?.(res.data.result))
+                .catch((err) => console.log(err));
+            } catch (error) {
+              console.log(error);
+            }
+
             navigate("/");
             setLoading(false);
           })

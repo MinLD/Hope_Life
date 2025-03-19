@@ -5,17 +5,17 @@ import RecruiterForm from "./components/RegruiterFrom";
 import SliderCommon from "../SliderCommon";
 
 function PostJob() {
-  const data: { src: string; id: number }[] = [
+  const data: { url: string; id: number }[] = [
     {
-      src: "	https://tuyendung.topcv.vn/app/_nuxt/img/banner-01.d2c28c7.png",
+      url: "	https://tuyendung.topcv.vn/app/_nuxt/img/banner-01.d2c28c7.png",
       id: 1,
     },
     {
-      src: "	https://tuyendung.topcv.vn/app/_nuxt/img/banner-02.3506b83.png",
+      url: "	https://tuyendung.topcv.vn/app/_nuxt/img/banner-02.3506b83.png",
       id: 1,
     },
     {
-      src: "	https://tuyendung.topcv.vn/app/_nuxt/img/banner-03.6c4018d.png",
+      url: "	https://tuyendung.topcv.vn/app/_nuxt/img/banner-03.6c4018d.png",
       id: 1,
     },
   ];

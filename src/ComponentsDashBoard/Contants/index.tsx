@@ -1,9 +1,6 @@
 import {
   LucideIcon,
-
-  FileText,
   Users,
-
   ClipboardList,
   Settings,
   Bell,
@@ -16,13 +13,12 @@ import {
   ClipboardPenLine,
 } from "lucide-react";
 
-interface MenuItem {
-  id: string;
+type MenuItem = {
+  id?: string;
   title?: any;
   icon?: LucideIcon;
   badge?: string;
-  children?: MenuItem[];
-}
+};
 
 const sidebarMenu: MenuItem[] = [
   {
@@ -45,13 +41,6 @@ const sidebarMenu: MenuItem[] = [
     id: "cv-management",
     title: "Quản lý CV",
     icon: ClipboardList,
-    children: [
-      {
-        id: "recruitment-reports",
-        title: "Báo cáo tuyển dụng",
-        icon: FileText,
-      },
-    ],
   },
   {
     id: "buy-service",

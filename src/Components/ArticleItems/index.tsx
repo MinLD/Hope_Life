@@ -7,12 +7,15 @@ import CommentBox from "./component/CommentBox";
 import SliderCommon from "../SliderCommon";
 type layoutProps = {
   name?: string;
-  image?: { src?: string }[];
+  image?: { url?: string }[];
 
   label: string;
+  user?: {
+    fullName: string;
+  };
 };
 
-function ArticleItems({ image = [], label }: layoutProps) {
+function ArticleItems({ image = [], label, user }: layoutProps) {
   const [IsHeart, setHeart] = useState<boolean>(false);
   const [isShowComnent, setShowComnent] = useState<boolean>(false);
   const [selectedImage, setSelectedImage] = useState<any | null | []>(null);
@@ -46,7 +49,9 @@ function ArticleItems({ image = [], label }: layoutProps) {
           <div className="flex items-center gap-2">
             <div className="flex items-center gap-1">
               <FaUserCircle className="h-[25px] w-[25px]" />
-              <h1 className="text-sm font-medium">Luân ĐỖ</h1>
+              <h1 className="text-sm font-medium">
+                {user?.fullName || "Admin"}
+              </h1>
             </div>
             <div className="text-[14px] text-[#c5c5c5]">5h</div>
           </div>
@@ -77,15 +82,19 @@ function ArticleItems({ image = [], label }: layoutProps) {
             </div>
           ) : (
             <div className="flex-wrap gap-[8px]">
-              {image.map((item, index) => (
-                <img
-                  src={item.src}
-                  alt={`Hình ảnh ${index}`}
-                  className="h-auto w-[calc(100%/2-8px)] cursor-pointer rounded-[10px] object-cover"
-                  key={index}
-                  onClick={() => handleShowImage(image)}
-                />
-              ))}
+              {Array.isArray(image) && image.length > 0 ? (
+                image.map((item, index) => (
+                  <img
+                    src={item?.url?.replace("http://", "https://")}
+                    alt={`Hình ảnh ${index}`}
+                    className="h-auto w-[calc(100%/2-8px)] cursor-pointer rounded-[10px] object-cover"
+                    key={index}
+                    onClick={() => handleShowImage(image)}
+                  />
+                ))
+              ) : (
+                <p>Không có hình ảnh nào.</p>
+              )}
             </div>
           )}
         </div>

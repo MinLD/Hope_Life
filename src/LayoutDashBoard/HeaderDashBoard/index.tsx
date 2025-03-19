@@ -1,10 +1,21 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { CgMenuGridO, CgMenuRound } from "react-icons/cg";
 import { MenuContext } from "../../Context/MenuProvider";
 import { TbMenuDeep } from "react-icons/tb";
-import dataMenu from "../../ComponentsDashBoard/Contants/index";
 
-function HeaderDashBoard() {
+import { LucideIcon } from "lucide-react";
+import JobPostingForm from "../../ComponentsDashBoard/Components/JobPostingForm";
+
+type props = {
+  MenuItem?: {
+    id?: string;
+    title?: any;
+    icon?: LucideIcon;
+    badge?: string;
+  }[];
+};
+
+function HeaderDashBoard({ MenuItem = [] }: props) {
   const menuContext = useContext(MenuContext);
   if (!menuContext) return;
   const { setIsOpenSibar, isOpenSibar, setIsOpen, setIsType } = menuContext;
@@ -14,6 +25,13 @@ function HeaderDashBoard() {
   const handleShowMenuMobile = () => {
     setIsType("MenuDashBoard");
     setIsOpen(true);
+  };
+  const [isShow, setShow] = useState<boolean>(false);
+  const handleReturnComponents = (e?: any) => {
+    if (e === "Đăng tin") {
+      setShow(!isShow);
+      return <JobPostingForm />;
+    }
   };
   return (
     <div className="flex h-[65px] w-full items-center justify-between bg-[#212f3f] px-4 text-[#fff]">
@@ -43,8 +61,11 @@ function HeaderDashBoard() {
       </div>
 
       <div className="hidden items-center gap-2 text-white shadow-2xl md:flex">
-        {dataMenu.headerMenu.map((i, k) => (
+        {MenuItem.map((i, k) => (
           <div
+            onClick={() => {
+              handleReturnComponents(i.title);
+            }}
             key={k}
             className={`relative flex cursor-pointer items-center gap-2 rounded-full bg-gray-700 p-2 px-3 transition-all hover:bg-gray-600`}
           >
@@ -59,6 +80,11 @@ function HeaderDashBoard() {
             )}
           </div>
         ))}
+        {isShow && (
+          <div className="absolute top-15 right-40 h-auto w-[500px]">
+            <JobPostingForm />
+          </div>
+        )}
       </div>
     </div>
   );

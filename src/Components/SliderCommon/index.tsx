@@ -6,7 +6,7 @@ import "./css.css";
 import MarketIntroduction from "../MarketIntroduction";
 
 type LayoutProps = {
-  BoxImg: { src?: string; title?: string; id?: number; lable?: string }[];
+  BoxImg: { url?: string; title?: string; id?: number; lable?: string }[];
   slidesToShow: number;
   dots?: boolean;
   type?: string;
@@ -32,7 +32,7 @@ function SliderCommon({ BoxImg, slidesToShow, dots, type }: LayoutProps) {
         return (
           <MarketIntroduction
             id={item.id}
-            src={item.src}
+            src={item.url}
             title={item.title}
             lable={item.lable}
           />
@@ -41,7 +41,7 @@ function SliderCommon({ BoxImg, slidesToShow, dots, type }: LayoutProps) {
         return (
           <div className="flex flex-col items-center justify-center">
             <img
-              src={item.src}
+              src={item.url}
               alt=""
               className="h-[25vh] min-h-[20vh] w-[98%] object-cover"
             />
@@ -50,7 +50,7 @@ function SliderCommon({ BoxImg, slidesToShow, dots, type }: LayoutProps) {
       case "imagesZoom":
         return (
           <div className="flex flex-col items-center justify-center">
-            <img src={item.src} alt="" className="h-[70vh] w-[70%]" />
+            <img src={item.url} alt="" className="h-[70vh] w-[70%]" />
           </div>
         );
 
@@ -58,7 +58,7 @@ function SliderCommon({ BoxImg, slidesToShow, dots, type }: LayoutProps) {
         return (
           <div className="relative">
             <img
-              src={item.src}
+              src={item.url}
               alt=""
               className="mx-auto h-[100vh] w-full object-cover"
             />

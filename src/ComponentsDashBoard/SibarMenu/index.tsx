@@ -1,9 +1,21 @@
 import { useContext, useState } from "react";
 import { MenuContext } from "../../Context/MenuProvider";
-import dataMenu from "../Contants/index";
-import { FaRegUser } from "react-icons/fa";
 
-function MenuSibar() {
+import { FaRegUser } from "react-icons/fa";
+import { LucideIcon } from "lucide-react";
+
+type layoutProps = {
+  nameUser: string;
+  role: string;
+  dataMenu?: {
+    id?: string;
+    title?: any;
+    icon?: LucideIcon;
+    badge?: string;
+  }[];
+};
+
+function MenuSibar({ dataMenu = [], nameUser, role }: layoutProps) {
   const menuContext = useContext(MenuContext);
   if (!menuContext) return;
   const { isOpenSibar, setIsType } = menuContext;
@@ -12,6 +24,7 @@ function MenuSibar() {
     setClickMe(k);
     setIsType(i);
   };
+
   return (
     <div
       className={`flex h-auto flex-col gap-4 bg-[#fff] p-2 shadow-2xl transition-all duration-500 ease-in-out ${isOpenSibar ? "w-[300px]" : "w-[50px]"}`}
@@ -19,8 +32,8 @@ function MenuSibar() {
       <div className="flex items-center gap-2">
         <FaRegUser size={25} />
         <div className={`${isOpenSibar ? "" : "hidden"} text-sm font-medium`}>
-          <p>Đỗ Đặng Minh Luân</p>
-          <p className="text-[12px]">Employer</p>
+          <p>{nameUser}</p>
+          <p className="text-[12px]">{role}</p>
           <p className="text-[12px]">
             Tài khoản xác thực:<span className="text-[#16b741]"> Cấp 1/3</span>
           </p>
@@ -29,11 +42,11 @@ function MenuSibar() {
 
       <div className="flex flex-col gap-4">
         <div className="h-[1px] w-full bg-[#e1e1e1]"></div>
-        {dataMenu.sidebarMenu.map((i, k) => (
+        {dataMenu.map((i, k) => (
           <div
             key={k}
             className={`flex items-center gap-2 ${k === ClickMe && "text-[#00b14f]"} cursor-pointer`}
-            onClick={() => handleClickMe(k, i.id)}
+            onClick={() => handleClickMe(k, i.id || "")}
           >
             <div>{i.icon && <i.icon />}</div>
             <div className={`${isOpenSibar ? "" : "hidden"}`}>{i.title}</div>

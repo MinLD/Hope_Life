@@ -8,6 +8,7 @@ type layoutProps = {
   lable?: string;
   Formik?: any;
   name?: string;
+  value?: string;
 };
 function InputBox({ type, placeholder, id = "", Formik, name }: layoutProps) {
   const isErr = Formik?.touched[id] && Formik.errors[id];

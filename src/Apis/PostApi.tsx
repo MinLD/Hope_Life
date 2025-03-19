@@ -8,4 +8,5 @@ const Post = async (formData: FormData) => {
     },
   });
 };
+
 export default Post;

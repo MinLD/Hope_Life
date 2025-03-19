@@ -38,9 +38,13 @@ const StoreProvider = ({ children }: StoreProviderProps) => {
   const token = Cookies.get("token");
   useEffect(() => {
     if (!token) return;
-    GetInfo()
-      .then((res) => setUserInfo(res.data.result))
-      .catch((err) => console.log(err));
+    try {
+      GetInfo()
+        .then((res) => setUserInfo(res.data.result))
+        .catch((err) => console.log(err.response.data));
+    } catch (error) {
+      console.log(error);
+    }
   }, []);
 
   return (

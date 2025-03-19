@@ -1,5 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import ContractAgreement from "../../ContractAgreement";
+
 
 export default function FromUT() {
   const [position, setPosition] = useState("");
@@ -18,6 +20,17 @@ export default function FromUT() {
     alert("Form submitted successfully!");
   };
   const navigate = useNavigate();
+  const [isShow, setShow] = useState<boolean>(false);
+  const [isApproved, setIsApproved] = useState<boolean>(false);
+  useEffect(() => {
+    if (isApproved) {
+      setShow(false);
+      navigate("/app/dashboard");
+    }
+  }, [isApproved]);
+  const handleIsApproved = () => {
+    setShow(true);
+  };
   return (
     <div className="mx-auto max-w-3xl rounded-lg p-6 shadow-xl">
       <h2 className="mb-4 text-xl font-semibold">Nhu cầu tư vấn</h2>
@@ -90,10 +103,19 @@ export default function FromUT() {
         <button
           type="submit"
           className="w-full rounded-md bg-green-500 p-2 text-white hover:bg-green-600"
-          onClick={() => navigate("/app/dashboard")}
+          onClick={() => handleIsApproved()}
         >
           Hoàn thành →
         </button>
+
+        {isShow && (
+          <div>
+            <div className="fixed top-0 right-0 bottom-0 left-0 z-[999] h-full w-full bg-black opacity-50"></div>
+            <div className="bg-opacity-50 fixed top-0 right-0 bottom-0 left-0 z-[99999] flex items-center justify-center">
+              <ContractAgreement setIsApproved={setIsApproved} setClose={setShow}/>
+            </div>
+          </div>
+        )}
       </form>
     </div>
   );

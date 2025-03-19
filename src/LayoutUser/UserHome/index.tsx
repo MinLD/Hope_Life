@@ -1,18 +1,19 @@
 import PostNews from "../../Components/BannerUser/Component/PostNews";
 import SearchBox from "../../Components/SearchBox";
-
 import MyLayout from "../../Layout/MyLayOut";
-
 import MainHomePages from "../MainHomePages";
-
+import ApiAdmin from "../../Apis/ApiAdmin.tsx";
 import ArticleItems from "../../Components/ArticleItems";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import CommentBox from "../../Components/ArticleItems/component/CommentBox";
 import { PostContext } from "../../Context/PostProvider";
 import MenuMobile from "../../Components/MenuMobile/index.tsx";
 import HeaderJamb from "../HeaderJamb/index.tsx";
-
 function UserHome() {
+  const [isShowComnent, setShowComnent] = useState<boolean>(false);
+  const postcontext = useContext(PostContext);
+  if (!postcontext) return;
+  const { PostProducts, setPostProdcts } = postcontext;
   const handleShowComnent = () => {
     setShowComnent(!isShowComnent);
     if (isShowComnent) {
@@ -21,11 +22,19 @@ function UserHome() {
       document.body.classList.add("overflow-hidden");
     }
   };
-  const [isShowComnent, setShowComnent] = useState<boolean>(false);
-  const postcontext = useContext(PostContext);
-
-  if (!postcontext) return;
-  const { PostProducts } = postcontext;
+  const handleGetAllPost = () => {
+    ApiAdmin.GetAllPost()
+      .then((res) => {
+        console.log(res.data.result.data);
+        setPostProdcts(res.data.result.data);
+      })
+      .catch((err) => {
+        console.log(err.response.data);
+      });
+  };
+  useEffect(() => {
+    handleGetAllPost();
+  }, []);
 
   return (
     <MainHomePages>
@@ -48,7 +57,11 @@ function UserHome() {
 
           {PostProducts.map((i, k) => (
             <div key={k}>
-              <ArticleItems image={i.image || []} label={i.label || ""} />
+              <ArticleItems
+                user={i.user.profile || []}
+                image={i.images || []}
+                label={i.content || ""}
+              />
             </div>
           ))}
         </div>

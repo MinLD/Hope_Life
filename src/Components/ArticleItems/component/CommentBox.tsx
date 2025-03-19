@@ -7,8 +7,9 @@ import { PiImagesSquareThin } from "react-icons/pi";
 import AddImages from "./AddImages";
 import { PostContext } from "../../../Context/PostProvider";
 // import { form, title } from "framer-motion/m";
-import Post from "../../../Apis/PostApi";
+
 import { toast } from "react-toastify";
+import Post from "../../../Apis/PostApi";
 type Props = {
   onClick: () => void;
   isShowComnent: boolean;
@@ -33,7 +34,7 @@ function CommentBox({
   const handleAddPostNew = async () => {
     // Kiểm tra danh sách file
     if (!isFileImages.length) {
-      console.warn("No images selected!");
+      toast.warning("No images selected!");
       return;
     }
     const formData = new FormData();
@@ -43,12 +44,14 @@ function CommentBox({
     });
 
     formData.append("content", text);
+    formData.append("title:", "hi");
     Post(formData)
       .then((re) => {
-        console.log(re);
+        console.log(re.data.result);
         toast.success("Đăng bài viet thanh cong");
       })
       .catch((err) => {
+        console.log(err.response.data);
         toast.error(err.response.data.message);
       });
     setText(""); // Xóa input sau khi đăng

@@ -33,5 +33,9 @@ const Routerss: {
       () => import("../ComponentsHopeShop/DetailsProducts/index.tsx"),
     ),
   },
+  {
+    path: "/admin",
+    component: lazy(() => import("../Admin/Components/HomeAdm/index.tsx")),
+  },
 ];
 export default Routerss;
