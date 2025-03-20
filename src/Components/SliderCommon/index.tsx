@@ -14,8 +14,9 @@ type LayoutProps = {
 
 function SliderCommon({ BoxImg, slidesToShow, dots, type }: LayoutProps) {
   const settings = {
+    adaptiveHeight: true,
     arrows: false, // Ẩn mũi tên điều hướng
-    centerMode: true, // Căn giữa item
+    centerMode: false, // Căn giữa item
     centerPadding: "0px", // Tránh padding dư thừa
     dots: dots || false, // Đặt giá trị mặc định là false nếu không truyền
     infinite: true, // Lặp vô hạn
@@ -46,6 +47,14 @@ function SliderCommon({ BoxImg, slidesToShow, dots, type }: LayoutProps) {
               className="h-[25vh] min-h-[20vh] w-[98%] object-cover"
             />
           </div>
+        );
+      case "img":
+        return (
+          <img
+            src={item.url}
+            alt=""
+            className="mdd:min-h-[300px] h-auto w-full rounded-2xl object-cover"
+          />
         );
       case "imagesZoom":
         return (

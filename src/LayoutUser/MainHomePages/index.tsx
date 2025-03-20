@@ -6,11 +6,11 @@ type Props = {
 };
 function MainHomePages({ children }: Props) {
   return (
-    <div>
+    <div className="flex min-h-screen flex-col">
       <div className="fixed inset-0 z-[99] h-[0px]">
         <UserHeader />
       </div>
-      <div> {children}</div>
+      <div className="mt-25 flex-1"> {children}</div>
       <MyFooter />
     </div>
   );

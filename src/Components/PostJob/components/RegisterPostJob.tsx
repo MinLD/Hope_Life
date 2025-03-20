@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { FaPhoneAlt } from "react-icons/fa";
+
+import ContractAgreement from "../../ContractAgreement";
 
 function RegisterPostJob() {
   const [isOpen, setIsOpen] = useState(false);
@@ -27,35 +28,7 @@ function RegisterPostJob() {
           Quy định
           <span>{isOpen ? "▲" : "▼"}</span>
         </button>
-        {isOpen && (
-          <div
-            className={`space-y-2 p-4 text-gray-700 transition-all duration-500 ${isOpen ? "opacity-[100%]" : "opacity-[0%]"}`}
-          >
-            <p>
-              Để đảm bảo chất lượng dịch vụ,{" "}
-              <span className="font-bold text-red-500">
-                HOPE không cho phép một người dùng tạo nhiều tài khoản khác
-                nhau.
-              </span>
-            </p>
-            <p>
-              Nếu phát hiện vi phạm, HOPE sẽ ngừng cung cấp dịch vụ tới tất cả
-              các tài khoản trùng lặp hoặc chặn toàn bộ truy cập.
-            </p>
-            <p>
-              Sau khi đăng ký tài khoản, nhà tuyển dụng có thể được hỗ trợ hiển
-              thị tin tuyển dụng cơ bản, ngoại trừ một số vị trí nhất định.
-            </p>
-            <div className="mt-4 flex flex-col gap-2 text-green-600 md:flex-row md:justify-between">
-              <div className="flex items-center space-x-2">
-                <FaPhoneAlt /> <span>(84+) 0918607139</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <FaPhoneAlt /> <span>(84+) 0918607139</span>
-              </div>
-            </div>
-          </div>
-        )}
+        {isOpen && <ContractAgreement />}
       </div>
     </div>
   );

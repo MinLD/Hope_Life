@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 
 type layoutProps = {
   type: string;
@@ -13,7 +12,7 @@ type layoutProps = {
 function InputBox({ type, placeholder, id = "", Formik, name }: layoutProps) {
   const isErr = Formik?.touched[id] && Formik.errors[id];
   const messageErr = Formik?.errors[id];
-  const [isShow, setIsShow] = useState<string>("Password");
+  const [isShow] = useState<string>("Password");
   return (
     <div>
       <div className="relative">
@@ -26,7 +25,7 @@ function InputBox({ type, placeholder, id = "", Formik, name }: layoutProps) {
           value={Formik?.values[id] || ""}
           name={name}
         />
-        {type === "Password" && (
+        {/* {type === "Password" && (
           <div className="absolute top-1/2 right-3 -translate-y-[50%] transform">
             {isShow === "Password" ? (
               <span
@@ -44,7 +43,7 @@ function InputBox({ type, placeholder, id = "", Formik, name }: layoutProps) {
               </span>
             )}
           </div>
-        )}
+        )} */}
       </div>
       {isErr && <p className="text-red-500">*{messageErr}</p>}
     </div>

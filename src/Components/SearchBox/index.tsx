@@ -7,7 +7,7 @@ import { useState } from "react";
 function SearchBox() {
   const [isShowNati, setIsShowNati] = useState(true);
   return (
-    <div className="max-w-[100%] p-2 pt-35">
+    <div className="max-w-[100%] p-2 pt-10">
       <div className="relative max-w-[70%] sm:hidden">
         <input
           type="text"

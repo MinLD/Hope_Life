@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ContractAgreement from "../../ContractAgreement";
 
-
 export default function FromUT() {
   const [position, setPosition] = useState("");
   const [budget, setBudget] = useState(0);
@@ -21,7 +20,7 @@ export default function FromUT() {
   };
   const navigate = useNavigate();
   const [isShow, setShow] = useState<boolean>(false);
-  const [isApproved, setIsApproved] = useState<boolean>(false);
+  const [isApproved] = useState<boolean>(false);
   useEffect(() => {
     if (isApproved) {
       setShow(false);
@@ -112,7 +111,7 @@ export default function FromUT() {
           <div>
             <div className="fixed top-0 right-0 bottom-0 left-0 z-[999] h-full w-full bg-black opacity-50"></div>
             <div className="bg-opacity-50 fixed top-0 right-0 bottom-0 left-0 z-[99999] flex items-center justify-center">
-              <ContractAgreement setIsApproved={setIsApproved} setClose={setShow}/>
+              <ContractAgreement />
             </div>
           </div>
         )}

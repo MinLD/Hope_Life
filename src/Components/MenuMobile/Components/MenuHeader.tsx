@@ -34,6 +34,9 @@ function MenuHeader() {
     if (i === "/app/register") {
       navigate("/app/register");
     }
+    if (i === "Ứng tuyển") {
+      navigate("/post/job");
+    }
   };
   return (
     <div className="flex flex-col gap-3 p-5">

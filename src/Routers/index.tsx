@@ -34,6 +34,10 @@ const Routerss: {
     ),
   },
   {
+    path: "/post/job",
+    component: lazy(() => import("../Pages/HomePostJob/index.tsx")),
+  },
+  {
     path: "/admin",
     component: lazy(() => import("../Admin/Components/HomeAdm/index.tsx")),
   },

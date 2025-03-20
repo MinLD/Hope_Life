@@ -1,26 +1,16 @@
-import { useState } from "react";
-import { IoIosClose } from "react-icons/io";
-import { toast } from "react-toastify";
-
-type Props = {
-  setIsApproved: React.Dispatch<React.SetStateAction<boolean>>;
-  setClose: React.Dispatch<React.SetStateAction<boolean>>;
-};
-export default function ContractAgreement({ setIsApproved, setClose }: Props) {
-  const [agreed, setAgreed] = useState(false);
-
-  const handleAgreement = () => {
-    if (agreed) {
-      toast.success(
-        "Bạn đã chấp nhận hợp đồng. Hành vi vi phạm có thể dẫn đến hậu quả pháp lý nghiêm trọng.",
-      );
-      setIsApproved(true);
-    } else {
-      toast.warning(
-        "Bạn bắt buộc phải đồng ý với hợp đồng trước khi sử dụng dịch vụ.",
-      );
-    }
-  };
+export default function ContractAgreement() {
+  // const handleAgreement = () => {
+  //   if (agreed) {
+  //     toast.success(
+  //       "Bạn đã chấp nhận hợp đồng. Hành vi vi phạm có thể dẫn đến hậu quả pháp lý nghiêm trọng.",
+  //     );
+  //     setIsApproved(true);
+  //   } else {
+  //     toast.warning(
+  //       "Bạn bắt buộc phải đồng ý với hợp đồng trước khi sử dụng dịch vụ.",
+  //     );
+  //   }
+  // };
 
   return (
     <div className="s:max-w-lg relative h-auto w-full max-w-[80%] rounded-xl bg-white p-6 shadow-lg sm:max-w-lg">
@@ -51,32 +41,29 @@ export default function ContractAgreement({ setIsApproved, setClose }: Props) {
         </p>
       </div>
       <div className="mt-4 flex items-center">
-        <input
+        {/* <input
           type="checkbox"
           id="agree"
           checked={agreed}
           onChange={(e) => setAgreed(e.target.checked)}
           className="h-4 w-4 cursor-pointer"
-        />
-        <label
+        /> */}
+        {/* <label
           htmlFor="agree"
           className="ml-2 font-bold text-red-600 md:text-sm"
         >
           Tôi hiểu rõ và cam kết tuân thủ nghiêm ngặt hợp đồng này.
-        </label>
+        </label> */}
       </div>
-      <button
-        onClick={handleAgreement}
-        className="mt-4 w-full cursor-pointer rounded-lg bg-red-700 px-4 py-2 text-white hover:bg-red-800"
-      >
+      {/* <button className="mt-4 w-full cursor-pointer rounded-lg bg-red-700 px-4 py-2 text-white hover:bg-red-800">
         Xác Nhận và Tiếp Tục
-      </button>
-      <div
+      </button> */}
+      {/* <div
         className="absolute top-0 right-3 cursor-pointer"
         onClick={() => setClose(false)}
       >
         <IoIosClose size={40} />
-      </div>
+      </div> */}
     </div>
   );
 }

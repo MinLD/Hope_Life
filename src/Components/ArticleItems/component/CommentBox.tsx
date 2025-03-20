@@ -9,7 +9,7 @@ import { PostContext } from "../../../Context/PostProvider";
 // import { form, title } from "framer-motion/m";
 
 import { toast } from "react-toastify";
-import Post from "../../../Apis/PostApi";
+import apiPost from "../../../Apis/PostApi";
 type Props = {
   onClick: () => void;
   isShowComnent: boolean;
@@ -45,7 +45,8 @@ function CommentBox({
 
     formData.append("content", text);
     formData.append("title:", "hi");
-    Post(formData)
+    apiPost
+      .Post(formData)
       .then((re) => {
         console.log(re.data.result);
         toast.success("Đăng bài viet thanh cong");

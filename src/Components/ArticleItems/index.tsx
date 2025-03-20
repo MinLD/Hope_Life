@@ -55,8 +55,8 @@ function ArticleItems({ image = [], label, user }: layoutProps) {
             </div>
             <div className="text-[14px] text-[#c5c5c5]">5h</div>
           </div>
-          <div>
-            <svg
+
+          {/* <svg
               aria-label="More options"
               className="x1lliihq x1n2onr6 x5n08af"
               fill="currentColor"
@@ -69,32 +69,29 @@ function ArticleItems({ image = [], label, user }: layoutProps) {
               <circle cx="12" cy="12" r="1.5"></circle>
               <circle cx="6" cy="12" r="1.5"></circle>
               <circle cx="18" cy="12" r="1.5"></circle>
-            </svg>
-          </div>
+            </svg> */}
         </div>
 
         <TextBox text={text} />
 
-        <div className="h-auto w-full">
+        <div className="h-auto w-auto">
           {image.length >= 3 ? (
             <div onClick={() => handleShowImage(image)}>
               <SliderCommon slidesToShow={3} BoxImg={image} type="images" />
             </div>
           ) : (
             <div className="flex-wrap gap-[8px]">
-              {Array.isArray(image) && image.length > 0 ? (
-                image.map((item, index) => (
-                  <img
-                    src={item?.url?.replace("http://", "https://")}
-                    alt={`Hình ảnh ${index}`}
-                    className="h-auto w-[calc(100%/2-8px)] cursor-pointer rounded-[10px] object-cover"
-                    key={index}
-                    onClick={() => handleShowImage(image)}
-                  />
-                ))
-              ) : (
-                <p>Không có hình ảnh nào.</p>
-              )}
+              {Array.isArray(image) && image.length > 0
+                ? image.map((item, index) => (
+                    <img
+                      src={item?.url?.replace("http://", "https://")}
+                      alt={`Hình ảnh ${index}`}
+                      className="h-auto w-[calc(100%/2-8px)] cursor-pointer rounded-[10px] object-cover"
+                      key={index}
+                      onClick={() => handleShowImage(image)}
+                    />
+                  ))
+                : ""}
             </div>
           )}
         </div>
@@ -102,10 +99,7 @@ function ArticleItems({ image = [], label, user }: layoutProps) {
           <div
             className={`flex items-center gap-2 rounded-2xl p-2 hover:bg-[#e1e1e1] ${IsHeart && "text-red-600"}`}
           >
-            <div
-              className="text-3xl hover:cursor-pointer"
-              onClick={handleHeart}
-            >
+            <div className="text-xl hover:cursor-pointer" onClick={handleHeart}>
               <CiHeart />
             </div>
             <p>1.4K</p>
@@ -113,7 +107,7 @@ function ArticleItems({ image = [], label, user }: layoutProps) {
           <div className="flex items-center gap-2 rounded-2xl p-2 hover:bg-[#e1e1e1]">
             <div
               onClick={handleShowComnent}
-              className="text-3xl hover:cursor-pointer"
+              className="text-xl hover:cursor-pointer"
             >
               <FaRegComment />
             </div>
@@ -152,7 +146,7 @@ function ArticleItems({ image = [], label, user }: layoutProps) {
               ) : (
                 <div className="flex items-center justify-center">
                   <img
-                    src={selectedImage[0].src}
+                    src={selectedImage[0].url}
                     alt=""
                     className="s:h-[70vh] h-[80vw] w-[90%]"
                   />

@@ -67,7 +67,11 @@ function HeaderMenuBottom() {
       handleLogout?.();
     }
   };
- 
+  const handleReturnComponent = (id: any) => {
+    if (id === 0) {
+      navigate("/post/job");
+    }
+  };
 
   return (
     <div className="flex h-[62px] w-full items-center justify-center bg-[#fff] shadow-2xl">
@@ -85,7 +89,7 @@ function HeaderMenuBottom() {
 
             <div className="hidden gap-5 lg:flex">
               {data.map((item, k) => (
-                <div key={k}>
+                <div key={k} onClick={() => handleReturnComponent(k)}>
                   <h1 className="text-[16px] font-medium">{item.name}</h1>
                 </div>
               ))}
@@ -110,7 +114,7 @@ function HeaderMenuBottom() {
             </div>
             {token ? (
               <>
-                <div className=" hidden h-[30px] w-[1px] items-center border-[1px] border-[#e1e1e1] lg:flex"></div>
+                <div className="hidden h-[30px] w-[1px] items-center border-[1px] border-[#e1e1e1] lg:flex"></div>
                 <div className="flex h-[40px] w-[40px] items-center justify-center rounded-full bg-[#bef0d78b]">
                   <span className="z-30 text-[27px] text-[#00b14f]">
                     <IoIosNotifications />
@@ -135,7 +139,7 @@ function HeaderMenuBottom() {
 
                   {isShowUserMenu && (
                     <div
-                      className={`pb-15 s:w-[400px] absolute top-10 right-0 flex h-screen w-[300px] flex-col gap-4 bg-[#fff] p-5 shadow-2xl`}
+                      className={`s:w-[400px] absolute top-10 right-0 flex h-screen w-[300px] flex-col gap-4 bg-[#fff] p-5 pb-15 shadow-2xl`}
                     >
                       <div>
                         <div className="flex items-center gap-2">

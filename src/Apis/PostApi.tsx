@@ -9,4 +9,10 @@ const Post = async (formData: FormData) => {
   });
 };
 
-export default Post;
+//Post Công Ty
+const Company = async (data: any) => {
+  return await axiosClient.post("/company", JSON.stringify({ email: data }), {
+    headers: { "Content-Type": "application/json" },
+  });
+};
+export default { Post, Company };
