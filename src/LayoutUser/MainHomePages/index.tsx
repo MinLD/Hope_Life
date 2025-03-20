@@ -1,5 +1,6 @@
 import UserHeader from "../MyHeaderUser";
 import MyFooter from "../../Layout/Footer";
+import MenuMobile from "../../Components/MenuMobile";
 
 type Props = {
   children: React.ReactNode;
@@ -12,6 +13,7 @@ function MainHomePages({ children }: Props) {
       </div>
       <div className="mt-25 flex-1"> {children}</div>
       <MyFooter />
+      <MenuMobile />
     </div>
   );
 }

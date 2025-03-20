@@ -25,7 +25,7 @@ function HeaderJamb() {
   };
   return (
     <div
-      className={`fixed bottom-0 z-[9] flex h-[40px] w-full items-center justify-center gap-10 bg-[#fff] pl-1 shadow-2xl transition-all duration-500 md:top-[0] md:h-[100vh] md:w-auto md:flex-col md:bg-[#fff] md:shadow-none`}
+      className={`fixed bottom-0 z-[9] flex h-[40px] w-full items-center justify-center gap-10 bg-[#fff] pl-1 shadow-2xl transition-all duration-500 md:top-[0] md:h-[100vh] md:w-auto md:flex-col md:bg-transparent md:shadow-none`}
     >
       <div className="flex items-center justify-between gap-10 md:flex-col">
         {icons.map((item, k) => {

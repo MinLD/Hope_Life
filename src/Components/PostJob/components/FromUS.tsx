@@ -30,7 +30,7 @@ function FromUS() {
   });
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    console.log(name);
+
     setFormData((prevFormData) => ({
       ...prevFormData,
       [name]: value,
@@ -74,11 +74,10 @@ function FromUS() {
     },
   ];
   const handleCreateCity = () => {
-    let name: string = "hehhehe";
-    console.log(formData);
-    ApiPost.Company(name)
+    ApiPost.Company()
       .then((res) => {
-        console.log(res.data.result);
+        console.log("h");
+        console.log(res);
       })
       .catch((err) => {
         console.log(err.response.data);

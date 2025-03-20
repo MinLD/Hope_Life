@@ -13,7 +13,7 @@ export default function ContractAgreement() {
   // };
 
   return (
-    <div className="s:max-w-lg relative h-auto w-full max-w-[80%] rounded-xl bg-white p-6 shadow-lg sm:max-w-lg">
+    <div className="s:max-w-lg relative h-auto w-full rounded-xl bg-white p-6 shadow-lg">
       <h2 className="mb-4 font-semibold text-red-600 md:text-2xl">
         HỢP ĐỒNG RÀNG BUỘC PHÁP LÝ
       </h2>

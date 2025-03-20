@@ -58,7 +58,6 @@ function MyLogIn() {
 
         await SignIn(email, password)
           .then((res) => {
-            console.log(res.data.result);
             const { token } = res.data.result;
             Cookies.set("token", token);
             // Cookies.set("refreshToken", refreshToken);
@@ -67,7 +66,10 @@ function MyLogIn() {
             formik.resetForm();
             try {
               GetInfo()
-                .then((res) => setUserInfo?.(res.data.result))
+                .then((res) => {
+                  setUserInfo?.(res.data.result);
+                  console.log(res.data.result);
+                })
                 .catch((err) => console.log(err));
             } catch (error) {
               console.log(error);
