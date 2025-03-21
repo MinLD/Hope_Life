@@ -41,6 +41,9 @@ const GetAllPostJobNoneActive = async () => {
 const ActivePostJob = async (id: any) => {
   return await axiosClient.patch(`/company/${id}`);
 };
+const GetAllPostShopJobNoneActive = async () => {
+  return await axiosClient.get(`/sellerProfile/nonactive`);
+};
 
 export default {
   getAllUser,
@@ -51,4 +54,5 @@ export default {
   ActivePost,
   GetAllPostJobNoneActive,
   ActivePostJob,
+  GetAllPostShopJobNoneActive,
 };

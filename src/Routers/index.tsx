@@ -41,5 +41,9 @@ const Routerss: {
     path: "/admin",
     component: lazy(() => import("../Admin/Components/HomeAdm/index.tsx")),
   },
+  {
+    path: "/shop/register/jobshop",
+    component: lazy(() => import("../ComponentsHopeShop/PostJob/index.tsx")),
+  },
 ];
 export default Routerss;

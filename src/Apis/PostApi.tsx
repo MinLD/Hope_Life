@@ -16,4 +16,9 @@ const Company = async () => {
 
   return await axiosClient.post("/company", { name, email });
 };
-export default { Post, Company };
+
+//Post Cửa hàng
+const HopeShopJob = async (body: any) => {
+  return await axiosClient.post("/sellerProfile", body);
+};
+export default { Post, Company, HopeShopJob };

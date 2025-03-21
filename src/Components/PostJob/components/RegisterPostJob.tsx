@@ -1,18 +1,22 @@
 import { useState } from "react";
 
 import ContractAgreement from "../../ContractAgreement";
-
-function RegisterPostJob() {
+type prop = {
+  title?: string;
+  name?: string;
+};
+function RegisterPostJob({ title = "Nhà tuyển dụng", name }: prop) {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <div className="mx-auto max-w-3xl pb-5">
       <div className="flex items-center space-x-2">
         <span className="text-3xl font-bold text-gray-900">H O</span>
         <span className="text-3xl font-bold text-green-500">P E</span>
+        <span className="text-3xl font-bold text-green-950">{name}</span>
       </div>
 
       <h1 className="mt-4 text-2xl font-bold text-green-600">
-        Đăng ký tài khoản Nhà tuyển dụng
+        Đăng ký tài khoản {title}
       </h1>
       <p className="mt-2 text-gray-600">
         Cùng tạo dựng lợi thế cho doanh nghiệp bằng trải nghiệm công nghệ tuyển

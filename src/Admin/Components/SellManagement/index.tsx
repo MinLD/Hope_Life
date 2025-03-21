@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { FaEdit, FaTrash, FaPlus } from "react-icons/fa";
 import ApiAdmin from "../../../Apis/ApiAdmin";
 import MyButton from "../../../Components/Button";
-import { toast } from "react-toastify";
+
 
 // Định nghĩa kiểu dữ liệu cho user
 interface User {
@@ -27,27 +27,27 @@ interface User {
 }
 
 const SellsManagement = () => {
-  const [users, setUsers] = useState<User[]>([]);
+  // const [users, setUsers] = useState<User[]>([]);
   const [isProfile, setProfile] = useState<User["profile"] | null>(null);
 
-  const handleReturnProfile = (profile: User["profile"]) => {
-    if (!profile) {
-      toast.error("Thông tin chưa được cập nhật!!");
-      return;
-    }
-    setProfile(profile);
-  };
+  // const handleReturnProfile = (profile: User["profile"]) => {
+  //   if (!profile) {
+  //     toast.error("Thông tin chưa được cập nhật!!");
+  //     return;
+  //   }
+  //   setProfile(profile);
+  // };
 
-  const handleGetAllUser = () => {
-    ApiAdmin.getAllUser()
+  const handleGetAllShopJob = () => {
+    ApiAdmin.GetAllPostShopJobNoneActive()
       .then((res) => {
-        setUsers(res.data.result);
+        console.log(res.data.result);
       })
-      .catch((err) => console.log(err.response.data));
+      .catch((err) => console.log(err));
   };
 
   useEffect(() => {
-    handleGetAllUser();
+    handleGetAllShopJob();
   }, []);
 
   return (
@@ -74,7 +74,7 @@ const SellsManagement = () => {
           </tr>
         </thead>
         <tbody>
-          {users.map((user) => (
+          {/* {users.map((user) => (
             <tr
               key={user.id}
               className="cursor-pointer border-t hover:bg-gray-100"
@@ -93,7 +93,7 @@ const SellsManagement = () => {
                 </span>
               </td>
             </tr>
-          ))}
+          ))} */}
         </tbody>
       </table>
 
