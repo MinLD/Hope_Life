@@ -17,4 +17,5 @@ body {
   --breakpoint-mdd: 850px;
   --breakpoint-s: 550px;
   --breakpoint-mddd: 940px;
+  --breakpoint-lgg: 1100px;
 }

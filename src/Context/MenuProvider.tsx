@@ -23,7 +23,9 @@ interface LayoutProps {
 
 // 📌 Tạo Provider bọc ứng dụng
 export const MenuProvider = ({ children }: LayoutProps) => {
-  const [isType, setIsType] = useState<string>("Login");
+  const [isType, setIsType] = useState<string>(
+    localStorage.getItem("isType") ?? "Login",
+  );
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isOpenSibar, setIsOpenSibar] = useState<boolean>(false);
   const [isWindowSize, setIsWindowSize] = useState<{
@@ -41,6 +43,10 @@ export const MenuProvider = ({ children }: LayoutProps) => {
       window.removeEventListener("resize", handleReturnToSizeWindows);
     };
   }, []);
+
+  useEffect(() => {
+    localStorage.setItem("isType", isType);
+  }, [isType]);
 
   return (
     <MenuContext.Provider

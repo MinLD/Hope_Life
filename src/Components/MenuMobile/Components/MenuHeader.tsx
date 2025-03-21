@@ -11,12 +11,11 @@ function MenuHeader() {
     name: string;
     id: number;
   }[] = [
-    { name: "Trang Chủ", id: 1 },
+   
     { name: "Giới thiệu", id: 1 },
-    { name: "Liên hệ", id: 2 },
-    { name: "Ứng tuyển", id: 2 },
-    { name: "Giúp đỡ", id: 2 },
-    { name: "Khó khăn", id: 2 },
+    { name: "Tuyển dụng", id: 2 },
+    { name: "Bài đăng", id: 2 },
+    { name: "Cửa hàng", id: 2 },
   ];
   const navigate = useNavigate();
   const menuContext = useContext(MenuContext);
@@ -27,15 +26,21 @@ function MenuHeader() {
       navigate("/Gioi-Thieu");
       setIsOpen(false);
     }
-    if (i === "Trang Chủ") {
+    if (i === "Cửa hàng") {
+      navigate("/app/hopeshop");
+      setIsOpen(false);
+    }
+    if (i === "Bài đăng") {
       navigate("/");
       setIsOpen(false);
     }
     if (i === "/app/register") {
       navigate("/app/register");
+      setIsOpen(false);
     }
-    if (i === "Ứng tuyển") {
+    if (i === "Tuyển dụng") {
       navigate("/post/job");
+      setIsOpen(false);
     }
   };
   return (

@@ -1,5 +1,6 @@
 import {
   BriefcaseBusiness,
+  LogOut,
   LucideIcon,
   Newspaper,
   Store,
@@ -36,6 +37,12 @@ const sidebarMenuAdmin: MenuItem[] = [
     id: "manage-sells",
     title: "Quản lý bán hàng",
     icon: Store,
+    badge: "0",
+  },
+  {
+    id: "Logout",
+    title: "Đăng xuất",
+    icon: LogOut,
     badge: "0",
   },
 ];

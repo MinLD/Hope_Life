@@ -10,6 +10,8 @@ import MyHomePages from "../../Layout/HomePages";
 import MyLayout from "../../Layout/MyLayOut";
 import MenuMobile from "../../Components/MenuMobile/index.tsx";
 
+import AboutUsShop from "../../Components/AboutUsShop/index.tsx";
+import HopeJobListing from "../../Components/HopeJobListing/index.tsx";
 function Home() {
   const menuContext = useContext(MenuContext);
   if (!menuContext) {
@@ -58,23 +60,13 @@ function Home() {
           <Banner />
         </div>
         <MyLayout>
-          {/* <div className="flex flex-col pt-20 pb-20 md:flex-row">
-            <div className="h-auto w-full rounded-xl shadow-2xl md:w-1/2">
-              <MyLogIn />
-            </div>
-            <div className="h-auto md:w-1/2">
-          
-            </div>
-          </div> */}
           <AgencySection />
           <GettingStarted />
 
-          {/* <SliderCommon
-            slidesToShow={1}
-            BoxImg={data}
-            dots={true}
-            type="MarketIntroduction"
-          /> */}
+          <AboutUsShop />
+          <div className="mt-30">
+            <HopeJobListing />
+          </div>
         </MyLayout>
         <MenuMobile />
       </MyHomePages>

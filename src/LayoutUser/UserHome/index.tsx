@@ -8,7 +8,7 @@ import { useContext, useEffect, useState } from "react";
 import CommentBox from "../../Components/ArticleItems/component/CommentBox";
 import { PostContext } from "../../Context/PostProvider";
 import MenuMobile from "../../Components/MenuMobile/index.tsx";
-import HeaderJamb from "../HeaderJamb/index.tsx";
+
 function UserHome() {
   const [isShowComnent, setShowComnent] = useState<boolean>(false);
   const postcontext = useContext(PostContext);
@@ -38,7 +38,7 @@ function UserHome() {
 
   return (
     <MainHomePages>
-      <HeaderJamb />
+      {/* <HeaderJamb /> */}
 
       <MyLayout>
         <SearchBox />

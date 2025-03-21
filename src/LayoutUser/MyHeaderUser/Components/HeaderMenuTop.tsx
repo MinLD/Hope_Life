@@ -9,14 +9,16 @@ import { AiOutlineMenu } from "react-icons/ai";
 import { MenuContext } from "../../../Context/MenuProvider";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
+
 function HeaderMenuTop() {
   const data: {
     id: number;
     name: string;
   }[] = [
-    { id: 1, name: "Giới Thiệu" },
-    { id: 1, name: "Câu chuyện" },
-    { id: 1, name: "Liên hệ" },
+    { id: 3, name: "Giới Thiệu" },
+    { name: "Tuyển dụng", id: 1 },
+    { name: "Bài đăng", id: 2 },
+    { id: 3, name: "Cửa hàng" },
   ];
   const icons: { name: any; id: number }[] = [
     { name: <FaFacebookSquare />, id: 1 },
@@ -26,6 +28,7 @@ function HeaderMenuTop() {
   const navigate = useNavigate();
   const token = Cookies.get("token");
   const [isShowMenuSub, setIsShowMenuSub] = useState<boolean>(false);
+  const [hover, setHover] = useState<any>(false);
   const menuContext = useContext(MenuContext);
   if (!menuContext) return;
   const { setIsOpen, setIsType } = menuContext;
@@ -42,11 +45,11 @@ function HeaderMenuTop() {
   //     document.body.classList.remove("overflow-hidden");
   //   }
   // }, [isOpen]); // Theo dõi thay đổi của `isOpen`
-  const handleReturnComponents = (name: string) => {
-    if (name === "Giới Thiệu") {
-      navigate("/Gioi-Thieu");
-    }
-  };
+  // const handleReturnComponents = (name: string) => {
+  //   if (name === "Giới Thiệu") {
+  //     navigate("/Gioi-Thieu");
+  //   }
+  // };
 
   const handleReturnToLoggin = (id: number) => {
     if (id === 1) {
@@ -58,7 +61,24 @@ function HeaderMenuTop() {
       navigate("/Loggin");
     }
   };
+  const handleReturnComponent = (id: any) => {
+    if (id === 1) {
+      navigate("/post/job");
+    }
+    if (id === 2) {
+      navigate("/");
+    }
+    if (id === 0) {
+      navigate("/Gioi-Thieu");
+    }
+    if (id === 3) {
+      navigate("/app/hopeshop");
+    }
+  };
 
+  // const handleReuturnPostJob = () => {
+  //   navigate("/app/register");
+  // };
   return (
     <div className="flex h-[50px] w-full items-center justify-center bg-[#013035]">
       <MyLayout>
@@ -93,16 +113,27 @@ function HeaderMenuTop() {
             </div>
 
             {/* menu */}
-            <div className="mx-auto hidden items-center gap-3 md:flex">
-              {data.map((item) => (
-                <div
-                  key={item.id}
-                  onClick={() => handleReturnComponents(item.name)}
-                  className="cursor-pointer text-sm font-medium hover:text-green-500"
-                >
-                  <h1 className="text-[16px]">{item.name}</h1>
-                </div>
-              ))}
+            <div className="lgg:hidden">
+              <div
+                className="hidden gap-2 sm:flex"
+                onMouseLeave={() => setHover("")}
+              >
+                {data.map((item, k) => (
+                  <div
+                    key={k}
+                    onClick={() => handleReturnComponent(k)}
+                    className="relative cursor-pointer"
+                    onMouseEnter={() => setHover(k)}
+                  >
+                    <h1 className="text-[16px] font-medium">{item.name}</h1>
+                    <div
+                      className={`absolute bottom-0 left-0 h-[3px] transform rounded-4xl bg-[#00b14f] transition-all duration-450 ${
+                        hover === k ? "w-full scale-x-50" : "w-0 scale-x-0"
+                      }`}
+                    ></div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
 
@@ -198,7 +229,7 @@ function HeaderMenuTop() {
               </>
             )}
             {/* ShowMenu mobile */}
-            <div className="text-2xl lg:hidden" onClick={handleDeleteScross}>
+            <div className="text-2xl sm:hidden" onClick={handleDeleteScross}>
               <AiOutlineMenu />
             </div>
           </div>

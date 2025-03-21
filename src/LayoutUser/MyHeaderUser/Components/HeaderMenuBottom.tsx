@@ -31,9 +31,10 @@ import { StoreContext } from "../../../Context/StoreProvider";
 function HeaderMenuBottom() {
   const [isShowUserMenu, setShowUserMenu] = useState<boolean>(false);
   const data: { name: string; id: number }[] = [
-    { name: "Ứng tuyển", id: 1 },
-    { name: "Giúp đỡ", id: 1 },
-    { name: "Khó khăn", id: 1 },
+    { id: 3, name: "Giới Thiệu" },
+    { name: "Tuyển dụng", id: 1 },
+    { name: "Bài đăng", id: 2 },
+    { id: 3, name: "Cửa hàng" },
   ];
   const MenuUser: { name: string; id: number; icon: any }[] = [
     { id: 1, name: "CV của tôi", icon: <FileText /> },
@@ -67,9 +68,19 @@ function HeaderMenuBottom() {
       handleLogout?.();
     }
   };
+  const [hover, setHover] = useState<any>(false);
   const handleReturnComponent = (id: any) => {
-    if (id === 0) {
+    if (id === 1) {
       navigate("/post/job");
+    }
+    if (id === 2) {
+      navigate("/");
+    }
+    if (id === 0) {
+      navigate("/Gioi-Thieu");
+    }
+    if (id === 3) {
+      navigate("/app/hopeshop");
     }
   };
 
@@ -77,7 +88,7 @@ function HeaderMenuBottom() {
     <div className="flex h-[62px] w-full items-center justify-center bg-[#fff] shadow-2xl">
       <MyLayout>
         <div className="flex items-center justify-between sm:gap-0">
-          <div className="flex items-center justify-center gap-6 lg:gap-15 xl:gap-20">
+          <div className="flex items-center justify-center gap-6">
             <div className="flex items-center space-x-2">
               <span className="s:text-3xl text-2xl font-bold text-gray-900">
                 H O
@@ -87,10 +98,23 @@ function HeaderMenuBottom() {
               </span>
             </div>
 
-            <div className="hidden gap-5 lg:flex">
+            <div
+              className="hidden gap-2 lgg:flex"
+              onMouseLeave={() => setHover("")}
+            >
               {data.map((item, k) => (
-                <div key={k} onClick={() => handleReturnComponent(k)}>
+                <div
+                  key={k}
+                  onClick={() => handleReturnComponent(k)}
+                  className="relative cursor-pointer"
+                  onMouseEnter={() => setHover(k)}
+                >
                   <h1 className="text-[16px] font-medium">{item.name}</h1>
+                  <div
+                    className={`absolute bottom-0 left-0 h-[3px] transform rounded-4xl bg-[#00b14f] transition-all duration-450 ${
+                      hover === k ? "w-full scale-x-50" : "w-0 scale-x-0"
+                    }`}
+                  ></div>
                 </div>
               ))}
             </div>
@@ -98,9 +122,9 @@ function HeaderMenuBottom() {
 
           <div
             onMouseLeave={() => setShowUserMenu(false)}
-            className="flex items-center gap-4"
+            className=" flex items-center gap-4"
           >
-            <div className="s:flex hidden flex-col gap-1">
+            <div className=" hidden s:flex flex-col gap-1">
               <p className="text-[11px] text-[#c5c5c5]">
                 Bạn là nhà tuyển dụng?
               </p>
@@ -168,7 +192,7 @@ function HeaderMenuBottom() {
                         {MenuUser.map((item, k) => (
                           <div
                             key={k}
-                            className="flex h-[60px] w-full items-center rounded-md bg-[#e1e1e1] pt-3 pb-3 pl-3"
+                            className="flex h-[60px] w-full cursor-pointer items-center rounded-md bg-[#e1e1e1] pt-3 pb-3 pl-3"
                             onClick={() => handleClickMenuUser(item.id)}
                           >
                             <span className="text-[20px] text-[#00b14f]">

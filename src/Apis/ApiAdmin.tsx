@@ -27,7 +27,19 @@ const UpdateUsers = async (
 };
 //tuyển dụng
 const GetAllPostJobNoneActive = async () => {
-  return await axiosClient.get(`/company/non-active/page=${1}&size=${3}`);
+  let currentPage: number = 0;
+  let pageSize: number = 5;
+  return await axiosClient.get(`/company/non-active`, {
+    params: {
+      currentPage,
+      pageSize,
+      totalPages: 5,
+    },
+  });
+};
+
+const ActivePostJob = async (id: any) => {
+  return await axiosClient.patch(`/company/${id}`);
 };
 
 export default {
@@ -38,4 +50,5 @@ export default {
   GetAllPostNoneActive,
   ActivePost,
   GetAllPostJobNoneActive,
+  ActivePostJob,
 };
