@@ -18,9 +18,6 @@ type Company = {
   phoneNumber: string | null;
   logo: string | null;
   taxCode: string | null;
-  createdAt: string;
-  updatedAt: string | null;
-  active: boolean;
 };
 const RecruiterManagement = () => {
   const [company, setCompany] = useState<Company[]>([]);

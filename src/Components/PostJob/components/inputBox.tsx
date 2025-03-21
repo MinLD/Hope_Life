@@ -10,7 +10,7 @@ function InputBoxPost({
   handleChange,
   type,
   placeholder,
-  formData,
+  
   name,
 }: layoutProps) {
   return (
@@ -21,8 +21,7 @@ function InputBoxPost({
         name={name}
         placeholder={placeholder}
         className="w-full p-2 outline-none"
-        value={name ? formData[name] || "" : ""}
-        onChange={(e) => handleChange(e)}
+        onChange={handleChange}
       />
     </div>
   );

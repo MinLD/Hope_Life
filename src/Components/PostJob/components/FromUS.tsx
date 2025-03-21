@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 
 import InputBoxPost from "./inputBox";
 import ApiPost from "../../../Apis/PostApi";
+import { toast } from "react-toastify";
 
 type formDataType = {
   name: string;
@@ -14,8 +15,7 @@ type formDataType = {
   address: string;
   size: string;
   taxCode: string;
-  createAt: Date;
-  type?: string;
+  logo: File | null;
 };
 type formDataTypeShop = {
   phone: string;
@@ -27,6 +27,7 @@ type propsType = {
   type?: string;
 };
 function FromUS({ type }: propsType) {
+  const [isFile, setFile] = useState<File | null>();
   const [formData, setFormData] = useState<formDataType>({
     name: "",
     description: "",
@@ -36,7 +37,7 @@ function FromUS({ type }: propsType) {
     address: "",
     size: "",
     taxCode: "",
-    createAt: new Date(),
+    logo: null,
   });
   const [formDataShop, setFormDataShop] = useState<formDataTypeShop>({
     phone: "",
@@ -45,8 +46,8 @@ function FromUS({ type }: propsType) {
     storeDescription: "",
   });
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-
+    const { name, value, files } = e.target;
+    setFile(files?.[0]);
     setFormData((prevFormData) => ({
       ...prevFormData,
       [name]: value,
@@ -69,6 +70,11 @@ function FromUS({ type }: propsType) {
       placeholder: "Mô tả công ty",
     },
     {
+      type: "file",
+      name: "logo",
+      placeholder: "Logo công ty",
+    },
+    {
       type: "text",
       name: "industry",
       placeholder: "Ngành nghề chính",
@@ -82,6 +88,11 @@ function FromUS({ type }: propsType) {
       type: "email",
       name: "email",
       placeholder: "email",
+    },
+    {
+      type: "text",
+      name: "address",
+      placeholder: "Địa chỉ",
     },
     {
       type: "text",
@@ -125,20 +136,30 @@ function FromUS({ type }: propsType) {
     }));
   };
   const handleCreateCity = () => {
-    ApiPost.Company()
+    const formdata = new FormData();
+    formdata.append("name", JSON.stringify(formData.name));
+    formdata.append("email", JSON.stringify(formData.email));
+    formdata.append("address", JSON.stringify(formData.address));
+    formdata.append("description", JSON.stringify(formData.description));
+    formdata.append("industry", JSON.stringify(formData.industry));
+    formdata.append("phoneNumber", JSON.stringify(formData.phoneNumber));
+    formdata.append("taxCode", JSON.stringify(formData.taxCode));
+    formdata.append("companyImage", isFile!);
+    ApiPost.Company(formdata)
       .then((res) => {
-        console.log("h");
-        console.log(res);
+        console.log(res.data.result);
+        toast.success("Tạo thành công");
       })
       .catch((err) => {
-        console.log(err.response.data);
+        console.log(err);
       });
   };
   const handleCreateShopJob = () => {
-    console.log(formDataShop);
+
     ApiPost.HopeShopJob(formDataShop)
       .then((res) => {
         console.log(res.data.result);
+        toast.success("Tạo thành công");
       })
       .catch((err) => {
         console.log(err);
@@ -172,7 +193,9 @@ function FromUS({ type }: propsType) {
                 name={i.name}
                 formData={formData}
                 placeholder={i.placeholder}
-                handleChange={handleChange}
+                handleChange={
+                  i.type === "file" ? (e: any) => handleChange(e) : handleChange
+                }
               />
             </div>
           ))}

@@ -1,7 +1,7 @@
 import axios from "axios";
 import Cookies from "js-cookie";
 export const axiosClient = axios.create({
-  baseURL: "https://hopevn.site/",
+  baseURL: "https://hopevn.site/api",
   timeout: 10000,
   headers: {
     "Content-Type": "application/json",
