@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import QRCode from "react-qr-code";
 
 interface Donor {
@@ -38,9 +38,22 @@ const DonationCard: React.FC<DonationProps> = ({
   isOpen,
   onClose,
 }) => {
+  const [refundInfo, setRefundInfo] = useState({
+    name: "",
+    amount: "",
+    reason: "",
+  });
+  const [isRefundOpen, setIsRefundOpen] = useState(false);
+
+  const handleRefundSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log("Yêu cầu hoàn tiền:", refundInfo);
+    setIsRefundOpen(false);
+  };
+
   const totalDonated = donors.reduce((sum, donor) => sum + donor.amount, 0);
   useEffect(() => {
-    if (isOpen) {
+    if (isOpen || isRefundOpen) {
       document.body.style.overflow = "hidden"; // Ngăn cuộn khi mở popup
     } else {
       document.body.style.overflow = "auto"; // Cho phép cuộn khi đóng popup
@@ -49,7 +62,7 @@ const DonationCard: React.FC<DonationProps> = ({
     return () => {
       document.body.style.overflow = "auto"; // Reset khi component unmount
     };
-  }, [isOpen]);
+  }, [isOpen, isRefundOpen]);
 
   return (
     <>
@@ -127,6 +140,75 @@ const DonationCard: React.FC<DonationProps> = ({
                   ))}
                 </ul>
               </div>
+              <button
+                onClick={() => setIsRefundOpen(true)}
+                className="mt-4 w-full rounded-lg bg-red-500 px-4 py-2 text-white"
+              >
+                Yêu cầu hoàn tiền
+              </button>
+            </motion.div>
+          </div>
+        </div>
+      )}
+      {isRefundOpen && (
+        <div>
+          <div
+            className="bg-opacity-50 fixed inset-0 z-[9999999] flex items-center justify-center bg-black opacity-70"
+            onClick={onClose}
+          ></div>
+          <div className="bg-opacity-50 fixed inset-0 z-[9999999] flex items-center justify-center">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ type: "spring", stiffness: 100 }}
+              className="w-96 rounded-lg bg-white p-6 shadow-2xl"
+            >
+              <h2 className="mb-4 text-center text-2xl font-bold">
+                Yêu cầu hoàn tiền
+              </h2>
+              <form onSubmit={handleRefundSubmit}>
+                <input
+                  type="text"
+                  placeholder="Tên của bạn"
+                  className="mb-2 w-full rounded border p-2"
+                  required
+                  value={refundInfo.name}
+                  onChange={(e) =>
+                    setRefundInfo({ ...refundInfo, name: e.target.value })
+                  }
+                />
+                <input
+                  type="number"
+                  placeholder="Số tiền muốn hoàn"
+                  className="mb-2 w-full rounded border p-2"
+                  required
+                  value={refundInfo.amount}
+                  onChange={(e) =>
+                    setRefundInfo({ ...refundInfo, amount: e.target.value })
+                  }
+                />
+                <textarea
+                  placeholder="Lý do hoàn tiền"
+                  className="mb-2 w-full rounded border p-2"
+                  required
+                  value={refundInfo.reason}
+                  onChange={(e) =>
+                    setRefundInfo({ ...refundInfo, reason: e.target.value })
+                  }
+                />
+                <button
+                  type="submit"
+                  className="w-full rounded bg-blue-600 py-2 text-white"
+                >
+                  Gửi yêu cầu
+                </button>
+              </form>
+              <button
+                onClick={() => setIsRefundOpen(false)}
+                className="mt-4 block w-full text-center text-red-500"
+              >
+                Hủy bỏ
+              </button>
             </motion.div>
           </div>
         </div>

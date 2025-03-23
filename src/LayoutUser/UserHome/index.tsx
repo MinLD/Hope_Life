@@ -80,7 +80,7 @@ function UserHome() {
         </div>
 
         <div className="">
-          <DonationCard isOpen={isOpen} onClose={() => setIsOpen(false)} />
+          <DonationCard  isOpen={isOpen} onClose={() => setIsOpen(false)} />
         </div>
       </MyLayout>
       <MenuMobile />
