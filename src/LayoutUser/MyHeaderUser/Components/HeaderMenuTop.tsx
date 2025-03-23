@@ -66,10 +66,10 @@ function HeaderMenuTop() {
       navigate("/post/job");
     }
     if (id === 2) {
-      navigate("/");
+      navigate("/post");
     }
     if (id === 0) {
-      navigate("/Gioi-Thieu");
+      navigate("/");
     }
     if (id === 3) {
       navigate("/app/hopeshop");

@@ -26,7 +26,7 @@ function MyFooter() {
         <div className="flex flex-col justify-center gap-10 pt-10 pb-20 md:flex-row xl:gap-40">
           {/* left */}
           <div className="flex flex-col gap-5">
-            <div>
+            <div onClick={() => window.scrollTo(0, 0)}>
               <span className="text-3xl font-bold text-[#fff]">H O</span>
               <span className="text-3xl font-bold text-[#16b741]"> P E</span>
             </div>

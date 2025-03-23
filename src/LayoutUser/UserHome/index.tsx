@@ -40,7 +40,7 @@ function UserHome() {
     // console.log(isRole && isRole[0].name);
     // console.log(userInfo);
   }, []);
- 
+ console.log(PostProducts);
   return (
     <MainHomePages>
       {/* <HeaderJamb /> */}

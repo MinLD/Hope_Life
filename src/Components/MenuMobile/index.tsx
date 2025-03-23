@@ -4,6 +4,7 @@ import { MenuContext } from "../../Context/MenuProvider";
 
 import MenuHeader from "./Components/MenuHeader";
 import MenuDashBoard from "./Components/MenuDashBoard";
+import { useNavigate } from "react-router-dom";
 
 function MenuMobile() {
   //   ${isOpen ? "left-0 opacity-100" : "left-[-2500px] opacity-0"}
@@ -18,7 +19,7 @@ function MenuMobile() {
   //   { name: "Giúp đỡ", id: 2 },
   //   { name: "Khó khăn", id: 2 },
   // ];
-
+const navigate = useNavigate();
   const menuContext = useContext(MenuContext);
   if (!menuContext) return;
   const { setIsOpen, isOpen, isType } = menuContext;
@@ -44,7 +45,10 @@ function MenuMobile() {
       <div
         className={`s:w-[50vw] fixed top-0 right-0 z-9999 h-screen w-[80vw] bg-[#fff] transition-all duration-600 ${isOpen ? "left-0 opacity-100" : "left-[-2500px] opacity-0"}`}
       >
-        <div className="flex w-full justify-between bg-[#fff] p-2 px-7 pb-3">
+        <div className="flex w-full justify-between bg-[#fff] p-2 px-7 pb-3" onClick={()=> {
+          navigate("/");
+          window.location.reload();
+        }}>
           <div className="flex space-x-2 pl-3">
             <span className="text-3xl font-bold text-gray-900">H</span>
             <span className="text-3xl font-bold text-gray-900">O</span>

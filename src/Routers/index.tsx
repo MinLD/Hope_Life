@@ -5,12 +5,12 @@ const Routerss: {
   allowedRoles: string[];
 }[] = [
   {
-    path: "/Gioi-Thieu",
+    path: "/",
     component: lazy(() => import("../Pages/Home/index.tsx")),
     allowedRoles: ["USER", "NOROLES"], // Chỉ cho phép User hoặc chưa đăng nhập
   },
   {
-    path: "/",
+    path: "/post",
     component: lazy(() => import("../LayoutUser/UserHome/index.tsx")),
     allowedRoles: ["USER", "NOROLES"], // Chỉ cho phép User hoặc chưa đăng nhập
   },

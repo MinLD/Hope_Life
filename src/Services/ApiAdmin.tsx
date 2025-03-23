@@ -1,7 +1,9 @@
 import { axiosClient } from "./ApiClient";
 //post
 const GetAllPost = async () => {
-  return await axiosClient.get("/post/getAll");
+  return await axiosClient.get("/post/getAll", {
+    params: { page: 1, size: 100 },
+  });
 };
 const GetAllPostNoneActive = async () => {
   return await axiosClient.get(`/post/non-active`);

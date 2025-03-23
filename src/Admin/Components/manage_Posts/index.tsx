@@ -63,7 +63,7 @@ const ManagePosts = () => {
     setLoading(true);
     await ApiAdmin.GetAllPostNoneActive()
       .then((res) => {
-        console.log(res.data.result.data);
+        console.log(res.data.result);
         setPosts(res.data.result.data);
         setLoading(false);
       })

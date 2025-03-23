@@ -74,14 +74,15 @@ function HeaderMenuBottom() {
       navigate("/post/job");
     }
     if (id === 2) {
-      navigate("/");
+      navigate("/post");
     }
     if (id === 0) {
-      navigate("/Gioi-Thieu");
+      navigate("/");
     }
     if (id === 3) {
       navigate("/app/hopeshop");
     }
+    window.scrollTo(0, 0);
   };
 
   return (
@@ -89,7 +90,13 @@ function HeaderMenuBottom() {
       <MyLayout>
         <div className="flex items-center justify-between sm:gap-0">
           <div className="flex items-center justify-center gap-6">
-            <div className="flex items-center space-x-2">
+            <div
+              className="flex items-center space-x-2 cursor-pointer"
+              onClick={() => {
+                navigate("/");
+                window.scrollTo(0, 0);
+              }}
+            >
               <span className="s:text-3xl text-2xl font-bold text-gray-900">
                 H O
               </span>

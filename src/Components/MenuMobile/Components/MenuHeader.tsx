@@ -23,7 +23,7 @@ function MenuHeader() {
   const { setIsOpen } = menuContext;
   const handleRenderComponents = (i: string) => {
     if (i === "Giới thiệu") {
-      navigate("/Gioi-Thieu");
+      navigate("/");
       setIsOpen(false);
     }
     if (i === "Cửa hàng") {
@@ -31,7 +31,7 @@ function MenuHeader() {
       setIsOpen(false);
     }
     if (i === "Bài đăng") {
-      navigate("/");
+      navigate("/post");
       setIsOpen(false);
     }
     if (i === "/app/register") {
@@ -42,6 +42,7 @@ function MenuHeader() {
       navigate("/post/job");
       setIsOpen(false);
     }
+    window.scrollTo(0, 0);
   };
   return (
     <div className="flex flex-col gap-3 p-5">
