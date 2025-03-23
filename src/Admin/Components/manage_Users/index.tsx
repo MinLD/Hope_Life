@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { FaEdit, FaTrash, FaPlus } from "react-icons/fa";
-import ApiAdmin from "../../../Apis/ApiAdmin";
+import ApiAdmin from "../../../Services/ApiAdmin";
 import MyButton from "../../../Components/Button";
 import { toast } from "react-toastify";
 import LoadingTextCommon from "../../../Components/LoaddingCommon";
 
-import { Register } from "../../../Apis/AuthService";
+import { Register } from "../../../Services/AuthService";
 
 // Định nghĩa kiểu dữ liệu cho user
 interface User {

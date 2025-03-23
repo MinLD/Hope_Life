@@ -8,11 +8,14 @@ import ToastProvider from "./Context/ToastProvider";
 
 import StoreProvider from "./Context/StoreProvider";
 import LoadingTextCommon from "./Components/LoaddingCommon";
+import ProtectedRoute from "./Routers/components/ProtectedRoute";
+import HomeAdm from "./Admin/Components/HomeAdm";
+import AppDashBoard from "./Pages/AppDashBoard";
+import Logginbox from "./Pages/LogginComponent";
 
 function App() {
   return (
     <>
-      {" "}
       <ToastProvider>
         <StoreProvider>
           <PostProvider>
@@ -26,9 +29,40 @@ function App() {
                       <Route
                         key={item.path}
                         path={item.path}
-                        element={<item.component />}
+                        element={
+                          <ProtectedRoute allowedRoles={item.allowedRoles}>
+                            <item.component />
+                          </ProtectedRoute>
+                        }
                       />
                     ))}
+                    {/* {
+                        path: "/Loggin",
+                        component: lazy(() => import("../Pages/LogginComponent/index.tsx")),
+                        allowedRoles: ["USER", "NOROLES"], // Chỉ cho phép User hoặc chưa đăng nhập
+                      }, */}
+                    <Route path="/Loggin" element={<Logginbox />} />
+
+                    <Route
+                      path="/admin"
+                      element={
+                        <ProtectedRoute allowedRoles={["ADMIN"]}>
+                          <>
+                            <HomeAdm />
+                          </>
+                        </ProtectedRoute>
+                      }
+                    />
+                    <Route
+                      path="/dashboard"
+                      element={
+                        <ProtectedRoute allowedRoles={["EMPLOYER"]}>
+                          <>
+                            <AppDashBoard />
+                          </>
+                        </ProtectedRoute>
+                      }
+                    />
                   </Routes>
                 </Suspense>
               </MenuProvider>

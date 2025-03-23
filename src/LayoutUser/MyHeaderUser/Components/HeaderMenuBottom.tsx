@@ -99,7 +99,7 @@ function HeaderMenuBottom() {
             </div>
 
             <div
-              className="hidden gap-2 lgg:flex"
+              className="lgg:flex hidden gap-2"
               onMouseLeave={() => setHover("")}
             >
               {data.map((item, k) => (
@@ -122,9 +122,9 @@ function HeaderMenuBottom() {
 
           <div
             onMouseLeave={() => setShowUserMenu(false)}
-            className=" flex items-center gap-4"
+            className="flex items-center gap-4"
           >
-            <div className=" hidden s:flex flex-col gap-1">
+            <div className="s:flex hidden flex-col gap-1">
               <p className="text-[11px] text-[#c5c5c5]">
                 Bạn là nhà tuyển dụng?
               </p>
@@ -175,7 +175,7 @@ function HeaderMenuBottom() {
                           </div>
                           <div className="flex flex-col">
                             <p className="text-[16px] font-medium text-[#00b14f]">
-                              {userInfo?.fullName}
+                              {userInfo?.profile.fullName}
                             </p>
                             <p className="text-[14px]">
                               Mã ứng viên:{" "}

@@ -5,17 +5,16 @@ import { IoIosClose } from "react-icons/io";
 import TextBox from "./component/textBox";
 import CommentBox from "./component/CommentBox";
 import SliderCommon from "../SliderCommon";
-type layoutProps = {
-  name?: string;
-  image?: { url?: string }[];
-
-  label: string;
-  user?: {
-    fullName: string;
+interface Post {
+  images: { url: string }[];
+  content: string;
+  user: {
+    profile: {
+      fullName: string;
+    };
   };
-};
-
-function ArticleItems({ image = [], label, user }: layoutProps) {
+}
+function ArticleItems({ images, content, user }: Post) {
   const [IsHeart, setHeart] = useState<boolean>(false);
   const [isShowComnent, setShowComnent] = useState<boolean>(false);
   const [selectedImage, setSelectedImage] = useState<any | null | []>(null);
@@ -30,7 +29,8 @@ function ArticleItems({ image = [], label, user }: layoutProps) {
       document.body.classList.add("overflow-hidden");
     }
   };
-  const text: string = label;
+  const text: string =
+    content.length > 300 ? content.slice(0, 300) + "..." : content;
   const handleShowImage = (src: any) => {
     setSelectedImage(src);
 
@@ -50,7 +50,7 @@ function ArticleItems({ image = [], label, user }: layoutProps) {
             <div className="flex items-center gap-1">
               <FaUserCircle className="h-[25px] w-[25px]" />
               <h1 className="text-sm font-medium">
-                {user?.fullName || "Admin"}
+                {user?.profile?.fullName || "Ẩn danh"}
               </h1>
             </div>
             <div className="text-[14px] text-[#c5c5c5]">5h</div>
@@ -75,20 +75,20 @@ function ArticleItems({ image = [], label, user }: layoutProps) {
         <TextBox text={text} />
 
         <div className="h-auto w-auto">
-          {image.length >= 3 ? (
-            <div onClick={() => handleShowImage(image)}>
-              <SliderCommon slidesToShow={3} BoxImg={image} type="images" />
+          {images.length >= 3 ? (
+            <div onClick={() => handleShowImage(images)}>
+              <SliderCommon slidesToShow={3} BoxImg={images} type="images" />
             </div>
           ) : (
             <div className="flex-wrap gap-[8px]">
-              {Array.isArray(image) && image.length > 0
-                ? image.map((item, index) => (
+              {Array.isArray(images) && images.length > 0
+                ? images.map((item, index) => (
                     <img
                       src={item?.url?.replace("http://", "https://")}
                       alt={`Hình ảnh ${index}`}
                       className="h-auto w-[calc(100%/2-8px)] cursor-pointer rounded-[10px] object-cover"
                       key={index}
-                      onClick={() => handleShowImage(image)}
+                      onClick={() => handleShowImage(images)}
                     />
                   ))
                 : ""}

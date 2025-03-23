@@ -5,12 +5,13 @@ import {
   Settings,
   Bell,
   ShoppingCart,
-  User,
+  
   Search,
   PenLine,
   LayoutList,
   Spline,
   ClipboardPenLine,
+  LogOut,
 } from "lucide-react";
 
 type MenuItem = {
@@ -18,6 +19,7 @@ type MenuItem = {
   title?: any;
   icon?: LucideIcon;
   badge?: string;
+  children?: MenuItem[];
 };
 
 const sidebarMenu: MenuItem[] = [
@@ -85,9 +87,9 @@ const headerMenu: MenuItem[] = [
     badge: "0",
   },
   {
-    id: "profile",
-    title: "Thông tin",
-    icon: User,
+    id: "Logout",
+    title: "Đăng xuất",
+    icon: LogOut,
   },
 ];
 

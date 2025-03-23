@@ -16,15 +16,16 @@ export const JobCard: React.FC<JobProps> = ({
   salary,
   location,
 }) => {
+
   return (
     <div className="relative flex cursor-pointer items-center gap-3 rounded-lg p-4 shadow-md transition hover:border hover:border-[#00b14f] hover:shadow-lg">
       <div className="flex flex-col gap-2">
         <div className="flex gap-2">
-          <div className="rounded-xl border border-[#e1e1e1]">
+          <div className="rounded-full border border-[#e1e1e1]">
             <img
               src={logo}
-              alt="Company Logo"
-              className="h-20 w-20 self-start rounded-xl object-contain"
+              alt="Chưa cập nhật"
+              className="h-20 w-20 object-cover rounded-full"
             />
           </div>
           <div className="flex flex-1 flex-col">

@@ -28,7 +28,7 @@ const HopeJobListing = () => {
           </div>
           <p className="mt-2 text-gray-600">
             Email hỗ trợ ứng viên:{" "}
-            <span className="font-semibold text-green-600">hotro@hope.vn</span>
+            <span className="font-semibold text-green-600">hopevn.site@gmail.com</span>
           </p>
         </div>
       </div>

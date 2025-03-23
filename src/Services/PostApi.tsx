@@ -23,10 +23,22 @@ const Company = async (formdata: FormData) => {
     },
   });
 };
+const JobPosting = async (body: any) => {
+  return await axiosClient.post("/job", body);
+};
+
+const getAllPost = async () => {
+  return await axiosClient.get("/post/getAll", {
+    params: {
+      page: 1,
+      size: 50,
+    },
+  });
+};
 
 //Post Cửa hàng
 const HopeShopJob = async (body: any) => {
   console.log(body);
   return await axiosClient.post("/sellerProfile", body);
 };
-export default { Post, Company, HopeShopJob };
+export default { Post, Company, HopeShopJob, JobPosting, getAllPost };

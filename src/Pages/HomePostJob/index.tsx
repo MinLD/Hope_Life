@@ -1,13 +1,13 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { JobCard } from "../../Components/JobCart";
 import DetailsJob from "../../Components/JobCart/Component/DetailsJob";
 import MenuPostJob from "../../Components/MenuPostJob";
 import BannerPostJob from "../../Components/SliderPostJob";
 import MyLayout from "../../Layout/MyLayOut";
 import MainHomePages from "../../LayoutUser/MainHomePages";
-import HeaderJamb from "../../LayoutUser/HeaderJamb";
-import HopeJobListing from "../../Components/HopeJobListing";
 
+import HopeJobListing from "../../Components/HopeJobListing";
+import api from "../../Services/PostApi";
 function HomePostJob() {
   const [hoveredJob, setHoveredJob] = useState<number | null>(null);
 
@@ -77,10 +77,17 @@ function HomePostJob() {
       title: "Chuyên Viên IT - Lập Trình Web",
     },
   ];
-
+  const GetAllPostJob = () => {
+    api
+      .getAllPost()
+      .then((res) => console.log(res.data.result.data))
+      .catch((err) => console.log(err));
+  };
+  useEffect(() => {
+    GetAllPostJob();
+  }, []);
   return (
     <MainHomePages>
-      <HeaderJamb />
       <BannerPostJob />
       <MenuPostJob />
       <MyLayout>

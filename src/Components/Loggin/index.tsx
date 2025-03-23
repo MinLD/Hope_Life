@@ -2,9 +2,9 @@ import { FaFacebookF } from "react-icons/fa";
 import * as Yup from "yup";
 import InputBox from "./Component/inputBox";
 import MyButton from "../Button";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useFormik } from "formik";
-import { GetInfo, Register, SignIn } from "../../Apis/AuthService";
+import { GetInfo, Register, SignIn } from "../../Services/AuthService";
 import Cookies from "js-cookie";
 import { toast } from "react-toastify";
 import { StoreContext } from "../../Context/StoreProvider";
@@ -21,7 +21,7 @@ function MyLogIn() {
   const storeContext = useContext(StoreContext);
   const navigate = useNavigate();
   if (!storeContext) return null;
-  const { setUserInfo } = storeContext;
+  const { setUserInfo, isRole, setRole } = storeContext;
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -50,7 +50,6 @@ function MyLogIn() {
     }),
 
     onSubmit: async (values) => {
-      console.log("on");
       const { email, password, phone, fullName } = values;
 
       if (isType === "Login") {
@@ -60,22 +59,16 @@ function MyLogIn() {
           .then((res) => {
             const { token } = res.data.result;
             Cookies.set("token", token);
-            // Cookies.set("refreshToken", refreshToken);
-            // Cookies.set("id", id);
+
             toast.success("Login Success");
             formik.resetForm();
-            try {
-              GetInfo()
-                .then((res) => {
-                  setUserInfo?.(res.data.result);
-                  console.log(res.data.result);
-                })
-                .catch((err) => console.log(err));
-            } catch (error) {
-              console.log(error);
-            }
+            GetInfo()
+              .then((res) => {
+                setUserInfo?.(res.data.result);
+                setRole?.(res.data.result.roles);
+              })
+              .catch((err) => console.log(err));
 
-            navigate("/");
             setLoading(false);
           })
           .catch((err) => {
@@ -110,6 +103,18 @@ function MyLogIn() {
       }
     },
   });
+
+  useEffect(() => {
+    if (!isRole || isRole.length === 0 || !isRole[0]?.name) return;
+    console.log("User Roles Updated:", isRole);
+    if (isRole[0]?.name === "ADMIN") {
+      navigate("/admin");
+    } else if (isRole[0]?.name === "USER") {
+      navigate("/");
+    } else if (isRole[0]?.name === "EMPLOYER") {
+      navigate("/dashboard");
+    }
+  }, [isRole, navigate]);
 
   return (
     <div className="s:min-w-[400px] h-auto w-full max-w-full min-w-[300px] rounded-lg pt-5 pb-10">

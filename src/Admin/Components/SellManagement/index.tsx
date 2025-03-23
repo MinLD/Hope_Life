@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import {  FaPlus } from "react-icons/fa";
-import ApiAdmin from "../../../Apis/ApiAdmin";
+import { FaPlus } from "react-icons/fa";
+import ApiAdmin from "../../../Services/ApiAdmin";
 import MyButton from "../../../Components/Button";
 import CartItem from "../../../ComponentsHopeShop/CartShopJobItem";
 import { toast } from "react-toastify/unstyled";
@@ -8,7 +8,6 @@ import { toast } from "react-toastify/unstyled";
 // Định nghĩa kiểu dữ liệu cho user
 interface User {
   email: string;
-
   phone: string;
   storeDescription: string;
   storeName: string;
@@ -32,6 +31,17 @@ const SellsManagement = () => {
       .then((res) => {
         console.log(res.data.result);
         toast.success("Kiểm duyệt thành công!");
+        handleGetAllShopJob();
+      })
+      .catch((err) => console.log(err));
+  };
+  const handleDActiveShopJob = (id: any) => {
+    console.log(id);
+    ApiAdmin.DeactiveShopJob(id)
+      .then((res) => {
+        console.log(res.data.result);
+        toast.error("Hủy kiểm duyệt thành công!");
+        handleGetAllShopJob();
       })
       .catch((err) => console.log(err));
   };
@@ -69,7 +79,7 @@ const SellsManagement = () => {
               <div onClick={() => handleActiveShopJob(i.id)}>
                 <MyButton content="Duyệt" type="button" isColor="bg-[#333]" />
               </div>
-              <div>
+              <div onClick={() => handleDActiveShopJob(i.id)}>
                 <MyButton content="Xoá" type="button" isColor="bg-[#333]" />
               </div>
             </div>

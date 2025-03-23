@@ -74,7 +74,7 @@ function MyFooter() {
                       fill="white"
                     ></path>
                   </svg>
-                  <p>info.Hope@gmail.com</p>
+                  <p>hopevn.site@gmail.com</p>
                 </div>
               </div>
               <div className="flex gap-2">

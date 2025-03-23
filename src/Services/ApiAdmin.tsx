@@ -1,8 +1,5 @@
 import { axiosClient } from "./ApiClient";
-//user
-const getAllUser = async () => {
-  return await axiosClient.get("/users");
-};
+//post
 const GetAllPost = async () => {
   return await axiosClient.get("/post/getAll");
 };
@@ -12,8 +9,15 @@ const GetAllPostNoneActive = async () => {
 const ActivePost = async (id: any) => {
   return await axiosClient.patch(`/post/${id}`);
 };
+const DeletePost = async (id: any) => {
+  return await axiosClient.delete(`/post/${id}`);
+};
 
 //user
+
+const getAllUser = async () => {
+  return await axiosClient.get("/users");
+};
 const DeleteUser = async (id: any) => {
   return await axiosClient.delete(`/users/${id}`);
 };
@@ -25,21 +29,23 @@ const UpdateUsers = async (
 ) => {
   return await axiosClient.put("/users", { email, password, phone, fullName });
 };
+
 //tuyển dụng
-const GetAllPostJobNoneActive = async () => {
-  let currentPage: number = 0;
-  let pageSize: number = 5;
+const GetAllPostJobNoneActive = async (pages: number, size: number) => {
+  console.log(pages);
   return await axiosClient.get(`/company/non-active`, {
     params: {
-      currentPage,
-      pageSize,
-      totalPages: 5,
+      pages: pages,
+      size: size,
     },
   });
 };
 
 const ActivePostJob = async (id: any) => {
   return await axiosClient.patch(`/company/${id}`);
+};
+const DeactivePostJob = async (id: any) => {
+  return await axiosClient.delete(`/company/${id}`);
 };
 //Shop
 const GetAllPostShopJobNoneActive = async () => {
@@ -48,7 +54,9 @@ const GetAllPostShopJobNoneActive = async () => {
 const ActiveShopJob = async (id: any) => {
   return await axiosClient.patch(`/sellerProfile/${id}/activate`);
 };
-
+const DeactiveShopJob = async (id: any) => {
+  return await axiosClient.delete(`/${id}`);
+};
 export default {
   getAllUser,
   GetAllPost,
@@ -60,4 +68,7 @@ export default {
   ActivePostJob,
   GetAllPostShopJobNoneActive,
   ActiveShopJob,
+  DeactiveShopJob,
+  DeletePost,
+  DeactivePostJob,
 };

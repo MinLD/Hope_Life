@@ -1,105 +1,116 @@
 import { useState } from "react";
-
+import api from "../../../Services/PostApi";
 export default function JobPostingForm() {
+  const formatDate = (date: string) => {
+    const [day, month, year] = date.split("-");
+    return `${year}-${month}-${day}`; // Chuyển thành yyyy-MM-dd
+  };
   const [formData, setFormData] = useState({
-    companyName: "",
-    jobTitle: "",
-    jobDescription: "",
+    title: "",
+    description: "",
     requirements: "",
-    salary: "",
+    responsibilities: "",
+    benefits: "",
+    suitableForDisability: "",
     location: "",
-    applicationMethod: "",
+    jobType: "",
+    salaryMin: "",
+    salaryMax: "",
+    applicationDeadline: formatDate("28-02-2025"),
   });
 
-  const handleChange = (e: any) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: any) => {
-    e.preventDefault();
-    alert("Tin tuyển dụng đã được gửi thành công!");
-    console.log("Job Posting Data:", formData);
+  const inputFields = [
+    {
+      type: "text",
+      name: "title",
+      placeholder: "Tiêu đề tin tuyển dụng",
+      isInput: true,
+    },
+    {
+      type: "text",
+      name: "salaryMin",
+      placeholder: "Lương tối thiểu",
+      isInput: true,
+    },
+    {
+      type: "text",
+      name: "salaryMax",
+      placeholder: "Lương tối đa",
+      isInput: true,
+    },
+    {
+      type: "text",
+      name: "applicationDeadline",
+      placeholder: "Thời hạn tuyển dụng",
+      isInput: true,
+    },
+  ];
+
+  const textAreaFields = [
+    { name: "description", placeholder: "Mô tả tin tuyển dụng" },
+    { name: "requirements", placeholder: "Yêu cầu của việc làm" },
+    { name: "responsibilities", placeholder: "Trách nhiệm" },
+    { name: "benefits", placeholder: "Phúc lợi" },
+    {
+      name: "suitableForDisability",
+      placeholder: "Phù hợp cho người khuyết tật nào",
+    },
+    { name: "location", placeholder: "Địa chỉ" },
+    { name: "jobType", placeholder: "Loại công việc" },
+  ];
+
+  const handleSubmit = () => {
+    api
+      .JobPosting(formData)
+      .then((res) => console.log(res.data.result))
+      .catch((err) => console.log(err));
   };
 
   return (
-    <div className="z-[9999] mx-auto max-w-2xl rounded-lg p-6 text-[#4a3f62] shadow-lg bg-[#ffff]">
+    <div className="z-[9999] mx-auto max-w-2xl rounded-lg bg-white p-6 text-gray-800 shadow-lg">
       <h2 className="mb-4 text-2xl font-bold">Đăng Tin Tuyển Dụng</h2>
 
-      <form onSubmit={handleSubmit} className="overflow-y-auto max-h-[400px]">
-        <label className="mb-2 block font-semibold">Tên Công Ty</label>
-        <input
-          type="text"
-          name="companyName"
-          value={formData.companyName}
-          onChange={handleChange}
-          className="mb-4 w-full rounded border p-2"
-          required
-        />
+      <div className="max-h-[600px] overflow-y-auto">
+        {/* Input bình thường */}
+        {inputFields.map((item, index) => (
+          <input
+            key={index}
+            type={item.type}
+            name={item.name}
+            placeholder={item.placeholder}
+            className="mb-4 w-full rounded border border-gray-300 px-4 py-2"
+            onChange={handleChange}
+            value={formData[item.name as keyof typeof formData]}
+          />
+        ))}
 
-        <label className="mb-2 block font-semibold">Vị Trí Tuyển Dụng</label>
-        <input
-          type="text"
-          name="jobTitle"
-          value={formData.jobTitle}
-          onChange={handleChange}
-          className="mb-4 w-full rounded border p-2"
-          required
-        />
-
-        <label className="mb-2 block font-semibold">Mô Tả Công Việc</label>
-        <textarea
-          name="jobDescription"
-          value={formData.jobDescription}
-          onChange={handleChange}
-          className="mb-4 w-full rounded border p-2"
-          required
-        ></textarea>
-
-        <label className="mb-2 block font-semibold">Yêu Cầu</label>
-        <textarea
-          name="requirements"
-          value={formData.requirements}
-          onChange={handleChange}
-          className="mb-4 w-full rounded border p-2"
-          required
-        ></textarea>
-
-        <label className="mb-2 block font-semibold">Mức Lương</label>
-        <input
-          type="text"
-          name="salary"
-          value={formData.salary}
-          onChange={handleChange}
-          className="mb-4 w-full rounded border p-2"
-        />
-
-        <label className="mb-2 block font-semibold">Địa Điểm Làm Việc</label>
-        <input
-          type="text"
-          name="location"
-          value={formData.location}
-          onChange={handleChange}
-          className="mb-4 w-full rounded border p-2"
-          required
-        />
-
-        <label className="mb-2 block font-semibold">Cách Ứng Tuyển</label>
-        <input
-          type="text"
-          name="applicationMethod"
-          value={formData.applicationMethod}
-          onChange={handleChange}
-          className="mb-4 w-full rounded border p-2"
-          required
-        />
+        {/* Textarea lớn */}
+        {textAreaFields.map((item, index) => (
+          <textarea
+            key={index}
+            name={item.name}
+            placeholder={item.placeholder}
+            rows={4}
+            className="mb-4 w-full rounded border border-gray-300 px-4 py-2"
+            onChange={handleChange}
+            value={formData[item.name as keyof typeof formData]}
+          />
+        ))}
 
         <button
           type="submit"
           className="w-full rounded bg-blue-600 py-2 text-white hover:bg-blue-700"
+          onClick={handleSubmit}
         >
           Đăng Tin
         </button>
-      </form>
+      </div>
     </div>
   );
 }

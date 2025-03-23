@@ -9,7 +9,8 @@ import { PostContext } from "../../../Context/PostProvider";
 // import { form, title } from "framer-motion/m";
 
 import { toast } from "react-toastify";
-import apiPost from "../../../Apis/PostApi";
+import apiPost from "../../../Services/PostApi";
+import { StoreContext } from "../../../Context/StoreProvider";
 type Props = {
   onClick: () => void;
   isShowComnent: boolean;
@@ -25,6 +26,11 @@ function CommentBox({
   const [text, setText] = useState("");
   const [isFileImages, setIsFileImages] = useState<File[]>([]);
   const postcontext = useContext(PostContext);
+  const storeContext = useContext(StoreContext);
+  if (!storeContext) {
+    return null;
+  }
+  const { userInfo } = storeContext;
   const [isShowAddImage, setShowAddImage] = useState(false);
   if (!postcontext) {
     return null;
@@ -90,7 +96,7 @@ function CommentBox({
         <div className="mt-4 flex items-center gap-2">
           <FaUserCircle className="text-4xl text-gray-400" />
           <div>
-            <p className="font-semibold">dodangminhluan</p>
+            <p className="font-semibold">{userInfo?.profile.fullName}</p>
             <p className="text-sm text-gray-400">What's new?</p>
           </div>
         </div>

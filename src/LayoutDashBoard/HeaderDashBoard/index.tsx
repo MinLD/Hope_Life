@@ -5,6 +5,7 @@ import { TbMenuDeep } from "react-icons/tb";
 
 import { LucideIcon } from "lucide-react";
 import JobPostingForm from "../../ComponentsDashBoard/Components/JobPostingForm";
+import { StoreContext } from "../../Context/StoreProvider";
 
 type props = {
   MenuItem?: {
@@ -16,6 +17,9 @@ type props = {
 };
 
 function HeaderDashBoard({ MenuItem = [] }: props) {
+  const storeContext = useContext(StoreContext);
+  if (!storeContext || !storeContext.handleLogout) return;
+  const { handleLogout } = storeContext;
   const menuContext = useContext(MenuContext);
   if (!menuContext) return;
   const { setIsOpenSibar, isOpenSibar, setIsOpen, setIsType } = menuContext;
@@ -31,6 +35,9 @@ function HeaderDashBoard({ MenuItem = [] }: props) {
     if (e === "Đăng tin") {
       setShow(!isShow);
       return <JobPostingForm />;
+    }
+    if (e === "Đăng xuất") {
+      handleLogout();
     }
   };
   return (
