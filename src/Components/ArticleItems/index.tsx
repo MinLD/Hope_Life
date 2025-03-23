@@ -72,7 +72,10 @@ function ArticleItems({ images, content, user }: Post) {
             </svg> */}
         </div>
 
-        <TextBox text={text} />
+        <pre>
+          {" "}
+          <TextBox text={text} />
+        </pre>
 
         <div className="h-auto w-auto">
           {images.length >= 3 ? (

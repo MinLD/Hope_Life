@@ -98,7 +98,6 @@ const RecruiterManagement = () => {
                     company={i.name || ""}
                     logo={i.logo?.url}
                     location={i.address || ""}
-                    locationsCount=""
                     salary={i.industry || ""}
                     title={i.description || ""}
                   />

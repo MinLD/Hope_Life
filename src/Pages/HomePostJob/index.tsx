@@ -8,84 +8,80 @@ import MainHomePages from "../../LayoutUser/MainHomePages";
 
 import HopeJobListing from "../../Components/HopeJobListing";
 import api from "../../Services/PostApi";
+
+interface Company {
+  id: number;
+  name: string;
+  description: string;
+  industry: string;
+  email: string;
+  address: string;
+  size: string | null;
+  phoneNumber: string;
+  logo: { url: string };
+  taxCode: string | null;
+  website: string | null;
+}
+
+interface Profile {
+  id: number;
+  fullName: string;
+  gender: string;
+  phone: string;
+  country: string;
+  city: string;
+  address: string;
+  bio: string;
+  disabilityType: string;
+  disabilityDescription: string;
+  dob: string | null;
+  profilePicture: string | null;
+  company: Company;
+}
+
+interface Employer {
+  id: string;
+  email: string;
+  phone: string;
+  accepted: boolean;
+  otp: string | null;
+  otpExpiryDate: string | null;
+  profile: Profile;
+}
+
+interface JobPost {
+  id: number;
+  title: string;
+  description: string;
+  requirements: string;
+  responsibilities: string;
+  benefits: string;
+  suitableForDisability: string;
+  salaryMin: number;
+  salaryMax: number;
+  location: string;
+  jobType: string | null;
+  applicationDeadline: string;
+  employer: Employer;
+}
+export type { JobPost, Company, Profile, Employer };
 function HomePostJob() {
+  const [isAllPost, setAllPost] = useState<JobPost[]>([]);
   const [hoveredJob, setHoveredJob] = useState<number | null>(null);
 
-  const jobList = [
-    {
-      id: 1,
-      company: "Kỹ Sư Thiết Kế Hệ Thống Phòng Cháy Chữa Cháy",
-      location: "Bình Dương",
-      locationsCount: "1000",
-      logo: "https://cdn-new.topcv.vn/unsafe/200x/https://static.topcv.vn/company_logos/67d3f1a82ce141741943208.jpg",
-      salary: "2000-3000$",
-      title:
-        "Kỹ Sư Thiết Kế Hệ Thống Phòng Cháy Chữa Cháy- Thu Nhập Từ 10 Triệu Trở Lên- Tại Bắc Ninh",
-    },
-    {
-      id: 2,
-      company: "Kỹ Sư Điện - Cơ Khí",
-      location: "Hà Nội",
-      locationsCount: "500",
-      logo: "https://cdn-new.topcv.vn/unsafe/200x/https://static.topcv.vn/company_logos/67d3f1a82ce141741943208.jpg",
-      salary: "1500-2500$",
-      title: "Kỹ Sư Điện - Cơ Khí Lương Cao Tại Hà Nội",
-    },
-    {
-      id: 3,
-      company: "Chuyên Viên IT - Lập Trình Web",
-      location: "TP.HCM",
-      locationsCount: "300",
-      logo: "https://cdn-new.topcv.vn/unsafe/200x/https://static.topcv.vn/company_logos/67d3f1a82ce141741943208.jpg",
-      salary: "1000-2000$",
-      title: "Chuyên Viên IT - Lập Trình Web",
-    },
-    {
-      id: 4,
-      company: "Chuyên Viên IT - Lập Trình Web",
-      location: "TP.HCM",
-      locationsCount: "300",
-      logo: "https://cdn-new.topcv.vn/unsafe/200x/https://static.topcv.vn/company_logos/67d3f1a82ce141741943208.jpg",
-      salary: "1000-2000$",
-      title: "Chuyên Viên IT - Lập Trình Web",
-    },
-    {
-      id: 5,
-      company: "Chuyên Viên IT - Lập Trình Web",
-      location: "TP.HCM",
-      locationsCount: "300",
-      logo: "https://cdn-new.topcv.vn/unsafe/200x/https://static.topcv.vn/company_logos/67d3f1a82ce141741943208.jpg",
-      salary: "1000-2000$",
-      title: "Chuyên Viên IT - Lập Trình Web",
-    },
-    {
-      id: 6,
-      company: "Chuyên Viên IT - Lập Trình Web",
-      location: "TP.HCM",
-      locationsCount: "300",
-      logo: "https://cdn-new.topcv.vn/unsafe/200x/https://static.topcv.vn/company_logos/67d3f1a82ce141741943208.jpg",
-      salary: "1000-2000$",
-      title: "Chuyên Viên IT - Lập Trình Web",
-    },
-    {
-      id: 7,
-      company: "Chuyên Viên IT - Lập Trình Web",
-      location: "TP.HCM",
-      locationsCount: "300",
-      logo: "https://cdn-new.topcv.vn/unsafe/200x/https://static.topcv.vn/company_logos/67d3f1a82ce141741943208.jpg",
-      salary: "1000-2000$",
-      title: "Chuyên Viên IT - Lập Trình Web",
-    },
-  ];
   const GetAllPostJob = () => {
     api
       .getAllPost()
-      .then((res) => console.log(res.data.result.data))
+      .then((res) => {
+        console.log(res.data.result);
+        setAllPost(res.data.result.data);
+      })
       .catch((err) => console.log(err));
   };
   useEffect(() => {
     GetAllPostJob();
   }, []);
+  // console.log(isAllPost[0].title);
   return (
     <MainHomePages>
       <BannerPostJob />
@@ -95,24 +91,34 @@ function HomePostJob() {
           className="flex w-full flex-wrap gap-[10px]"
           onMouseLeave={() => setHoveredJob(null)}
         >
-          {jobList.map((job) => (
+          {isAllPost.map((i, k) => (
             <div
-              key={job.id}
+              key={k}
               className="relative w-[calc(100%/1-10px)] md:w-[calc(100%/2-10px)] xl:w-[calc(100%/3-10px)]"
-              onMouseEnter={() => setHoveredJob(job.id)}
+              onMouseEnter={() => setHoveredJob(k)}
               onMouseLeave={() => setHoveredJob(null)}
             >
               <JobCard
-                company={job.company}
-                location={job.location}
-                locationsCount={job.locationsCount}
-                logo={job.logo}
-                salary={job.salary}
-                title={job.title}
+                company={i?.employer?.profile?.company?.name}
+                location={i.location}
+                logo={i?.employer?.profile?.company?.logo?.url}
+                salary={i.salaryMin + "-" + i.salaryMax}
+                title={i.title}
               />
-              {hoveredJob === job.id && (
+              {hoveredJob === k && (
                 <div className="absolute top-0 right-0 z-10">
-                  <DetailsJob />
+                  <DetailsJob
+                    requirements={i.requirements}
+                    jobType={i.jobType}
+                    company={i?.employer?.profile?.company?.name}
+                    location={i.location}
+                    logo={i?.employer?.profile?.company?.logo?.url}
+                    salary={i.salaryMin + "-" + i.salaryMax}
+                    title={i.title}
+                    description={i.description}
+                    benefits={i.benefits}
+                    suitableForDisability={i.suitableForDisability}
+                  />
                 </div>
               )}
             </div>

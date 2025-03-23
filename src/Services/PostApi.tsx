@@ -28,10 +28,10 @@ const JobPosting = async (body: any) => {
 };
 
 const getAllPost = async () => {
-  return await axiosClient.get("/post/getAll", {
+  return await axiosClient.get("/job/getAll", {
     params: {
       page: 1,
-      size: 50,
+      size: 10,
     },
   });
 };

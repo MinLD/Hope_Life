@@ -68,7 +68,7 @@ export default function JobPostingForm() {
   const handleSubmit = () => {
     api
       .JobPosting(formData)
-      .then((res) => console.log(res.data.result))
+      .then((res) => console.log(res))
       .catch((err) => console.log(err));
   };
 

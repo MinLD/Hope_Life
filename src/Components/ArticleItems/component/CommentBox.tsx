@@ -38,11 +38,6 @@ function CommentBox({
   // const { PostProducts, setPostProdcts } = postcontext;
 
   const handleAddPostNew = async () => {
-    // Kiểm tra danh sách file
-    if (!isFileImages.length) {
-      toast.warning("No images selected!");
-      return;
-    }
     const formData = new FormData();
 
     isFileImages.forEach((file) => {

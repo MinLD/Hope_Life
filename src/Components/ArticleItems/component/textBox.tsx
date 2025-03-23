@@ -37,7 +37,7 @@ function TextBox({ text, maxLines = 3 }: Props) {
     <div className="relative">
       <p
         ref={textRef}
-        className="overflow-hidden break-words text-ellipsis whitespace-pre-wrap transition-all duration-300"
+        className="overflow-hidden break-words text-ellipsis whitespace-pre-wrap transition-all duration-300 text-[#333]"
         style={{
           wordBreak: "break-word", // Cho phép cắt từ dài
           overflowWrap: "break-word", // Đảm bảo xuống dòng nếu cần
