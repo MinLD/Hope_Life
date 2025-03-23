@@ -9,6 +9,8 @@ import CommentBox from "../../Components/ArticleItems/component/CommentBox";
 import { PostContext } from "../../Context/PostProvider";
 import MenuMobile from "../../Components/MenuMobile/index.tsx";
 import { StoreContext } from "../../Context/StoreProvider.tsx";
+import DonationCard from "../../Components/DonationCard/index.tsx";
+import MyButton from "../../Components/Button/index.tsx";
 
 function UserHome() {
   const [isShowComnent, setShowComnent] = useState<boolean>(false);
@@ -40,7 +42,9 @@ function UserHome() {
     // console.log(isRole && isRole[0].name);
     // console.log(userInfo);
   }, []);
- console.log(PostProducts);
+  console.log(PostProducts);
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <MainHomePages>
       {/* <HeaderJamb /> */}
@@ -60,10 +64,23 @@ function UserHome() {
             )}
           </div>
           <div>
-            {PostProducts.map((item: any) => {
-              return <ArticleItems key={item.id} {...item} />;
-            })}
+            {PostProducts.map((item: any) => (
+              <>
+                <ArticleItems key={item.id} {...item} />
+                <div onClick={() => setIsOpen(true)} className="max-w-[100px]">
+                  <MyButton
+                    content={"Giúp đỡ họ"}
+                    type="button"
+                    isColor="bg-[#333]"
+                  />
+                </div>
+              </>
+            ))}
           </div>
+        </div>
+
+        <div className="">
+          <DonationCard isOpen={isOpen} onClose={() => setIsOpen(false)} />
         </div>
       </MyLayout>
       <MenuMobile />
