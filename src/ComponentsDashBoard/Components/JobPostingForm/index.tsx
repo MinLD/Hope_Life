@@ -1,5 +1,7 @@
 import { useState } from "react";
 import api from "../../../Services/PostApi";
+import { toast } from "react-toastify";
+import LoadingTextCommon from "../../../Components/LoaddingCommon";
 export default function JobPostingForm() {
   const formatDate = (date: string) => {
     const [day, month, year] = date.split("-");
@@ -64,12 +66,25 @@ export default function JobPostingForm() {
     { name: "location", placeholder: "Địa chỉ" },
     { name: "jobType", placeholder: "Loại công việc" },
   ];
-
+  const [isLoadding, setLoading] = useState(false);
   const handleSubmit = () => {
+    setLoading(true);
     api
       .JobPosting(formData)
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));
+      .then((res) => {
+        console.log(res);
+        toast.success("Tạo tin tuyển dụng thanh cong!");
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+        toast.error("Tạo tin tuyển dụng that bai!");
+        toast.error(err.response.data.message);
+        console.log(err.response.data.message);
+        toast.error("Size Ảnh có thể quá to!");
+        toast.error("tường thông tin bạn nhập có thể quá dài!");
+        setLoading(false);
+      });
   };
 
   return (
@@ -108,7 +123,7 @@ export default function JobPostingForm() {
           className="w-full rounded bg-blue-600 py-2 text-white hover:bg-blue-700"
           onClick={handleSubmit}
         >
-          Đăng Tin
+          {isLoadding && <LoadingTextCommon />} Đăng Tin
         </button>
       </div>
     </div>
