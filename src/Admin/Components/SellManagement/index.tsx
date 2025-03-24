@@ -39,11 +39,13 @@ const SellsManagement = () => {
     console.log(id);
     ApiAdmin.DeactiveShopJob(id)
       .then((res) => {
-        console.log(res.data.result);
         toast.error("Hủy kiểm duyệt thành công!");
+        console.log(res.data.result);
         handleGetAllShopJob();
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   useEffect(() => {

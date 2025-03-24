@@ -57,7 +57,7 @@ const ActiveShopJob = async (id: any) => {
   return await axiosClient.patch(`/sellerProfile/${id}/activate`);
 };
 const DeactiveShopJob = async (id: any) => {
-  return await axiosClient.delete(`/${id}`);
+  return await axiosClient.delete(`/sellerProfile/${id}`);
 };
 export default {
   getAllUser,

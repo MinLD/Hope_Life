@@ -5,6 +5,7 @@ import { IoIosClose } from "react-icons/io";
 import TextBox from "./component/textBox";
 import CommentBox from "./component/CommentBox";
 import SliderCommon from "../SliderCommon";
+import MyButton from "../Button";
 interface Post {
   images: { url: string }[];
   content: string;
@@ -13,8 +14,10 @@ interface Post {
       fullName: string;
     };
   };
+
+  setOpen: () => void | any;
 }
-function ArticleItems({ images, content, user }: Post) {
+function ArticleItems({ images, content, user, setOpen }: Post) {
   const [IsHeart, setHeart] = useState<boolean>(false);
   const [isShowComnent, setShowComnent] = useState<boolean>(false);
   const [selectedImage, setSelectedImage] = useState<any | null | []>(null);
@@ -44,7 +47,7 @@ function ArticleItems({ images, content, user }: Post) {
 
   return (
     <div>
-      <div className="flex flex-col gap-5 pb-10">
+      <div className="flex flex-col gap-2 pb-10">
         <div className="flex justify-between">
           <div className="flex items-center gap-2">
             <div className="flex items-center gap-1">
@@ -55,24 +58,9 @@ function ArticleItems({ images, content, user }: Post) {
             </div>
             <div className="text-[14px] text-[#c5c5c5]">5h</div>
           </div>
-
-          {/* <svg
-              aria-label="More options"
-              className="x1lliihq x1n2onr6 x5n08af"
-              fill="currentColor"
-              height="24"
-              role="img"
-              viewBox="0 0 24 24"
-              width="24"
-            >
-              <title>More options</title>
-              <circle cx="12" cy="12" r="1.5"></circle>
-              <circle cx="6" cy="12" r="1.5"></circle>
-              <circle cx="18" cy="12" r="1.5"></circle>
-            </svg> */}
         </div>
 
-        <pre>
+        <pre className="mt-[-20px]">
           {" "}
           <TextBox text={text} />
         </pre>
@@ -117,6 +105,10 @@ function ArticleItems({ images, content, user }: Post) {
             <p>300</p>
           </div>
         </div>
+        <div onClick={() => setOpen()} className="max-w-[100px]">
+          <MyButton content={"Giúp đỡ họ"} type="button" isColor="bg-[#333]" />
+        </div>
+
         <div className="h-[1px] w-full bg-[#e1e1e1]"></div>
         {isShowComnent && (
           <CommentBox

@@ -105,7 +105,7 @@ function Banner() {
           <div className="flex flex-col items-center">
             <Users className="text-blue-500" size={25} />
             <p className="s:text-[10px] text-[8px] font-semibold text-gray-700 sm:text-[12px]">
-              Hỗ trợ trẻ em mồ côi
+              Hỗ trợ người tìm việc
             </p>
           </div>
           <div className="flex flex-col items-center">

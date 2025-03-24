@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 import MyLayout from "../../../Layout/MyLayOut";
 import { FaRegUser } from "react-icons/fa";
 import Cookies from "js-cookie";
+import logo from "../../../assets/logoanhiu1.png";
 import {
   Bell,
   Briefcase,
@@ -90,20 +91,15 @@ function HeaderMenuBottom() {
       <MyLayout>
         <div className="flex items-center justify-between sm:gap-0">
           <div className="flex items-center justify-center gap-6">
-            <div
-              className="flex items-center space-x-2 cursor-pointer"
+    
+            <span
               onClick={() => {
                 navigate("/");
                 window.scrollTo(0, 0);
               }}
             >
-              <span className="s:text-3xl text-2xl font-bold text-gray-900">
-                H O
-              </span>
-              <span className="s:text-3xl text-2xl font-bold text-green-500">
-                P E
-              </span>
-            </div>
+              <img src={logo} className="h-[55px] w-[50px] cursor-pointer" />
+            </span>
 
             <div
               className="lgg:flex hidden gap-2"

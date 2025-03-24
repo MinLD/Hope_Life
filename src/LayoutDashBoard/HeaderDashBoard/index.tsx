@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext} from "react";
 import { CgMenuGridO, CgMenuRound } from "react-icons/cg";
 import { MenuContext } from "../../Context/MenuProvider";
 import { TbMenuDeep } from "react-icons/tb";
@@ -6,7 +6,7 @@ import { TbMenuDeep } from "react-icons/tb";
 import { LucideIcon } from "lucide-react";
 import JobPostingForm from "../../ComponentsDashBoard/Components/JobPostingForm";
 import { StoreContext } from "../../Context/StoreProvider";
-
+import logo from "../../assets/logoanhiu1.png"
 type props = {
   MenuItem?: {
     id?: string;
@@ -22,6 +22,7 @@ function HeaderDashBoard({ MenuItem = [] }: props) {
   const { handleLogout } = storeContext;
   const menuContext = useContext(MenuContext);
   if (!menuContext) return;
+  const { setIsOpenMenu, isOpenMenu } = menuContext;
   const { setIsOpenSibar, isOpenSibar, setIsOpen, setIsType } = menuContext;
   const handlOpenSibar = () => {
     setIsOpenSibar(!isOpenSibar);
@@ -30,10 +31,10 @@ function HeaderDashBoard({ MenuItem = [] }: props) {
     setIsType("MenuDashBoard");
     setIsOpen(true);
   };
-  const [isShow, setShow] = useState<boolean>(false);
+
   const handleReturnComponents = (e?: any) => {
     if (e === "Đăng tin") {
-      setShow(!isShow);
+      setIsOpenMenu(!isOpenMenu);
       return <JobPostingForm />;
     }
     if (e === "Đăng xuất") {
@@ -54,14 +55,9 @@ function HeaderDashBoard({ MenuItem = [] }: props) {
             </>
           )}
         </div>
-        <div className="flex items-center space-x-2">
-          <span className="s:text-3xl text-xl font-bold text-amber-50">
-            H O
-          </span>
-          <span className="s:text-3xl text-xl font-bold text-green-500">
-            P E
-          </span>
-        </div>
+     <div>
+      <img src={logo} alt="" className="w-[50px] h-[55px]" />
+     </div>
       </div>
       <div onClick={handleShowMenuMobile} className="md:hidden">
         <CgMenuRound size={30} />
@@ -87,7 +83,7 @@ function HeaderDashBoard({ MenuItem = [] }: props) {
             )}
           </div>
         ))}
-        {isShow && (
+        {isOpenMenu && (
           <div className="absolute top-15 right-40 h-auto w-[500px]">
             <JobPostingForm />
           </div>

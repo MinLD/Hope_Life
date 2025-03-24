@@ -62,12 +62,22 @@ function MyLogIn() {
 
             toast.success("Login Success");
             formik.resetForm();
-            GetInfo()
-              .then((res) => {
-                setUserInfo?.(res.data.result);
-                setRole?.(res.data.result.roles);
-              })
-              .catch((err) => console.log(err));
+            // GetInfo()
+            //   .then((res) => {
+            //     setUserInfo?.(res.data.result);
+            //     setRole?.(res.data.result.roles);
+            //   })
+            //   .catch((err) => console.log(err));
+            try {
+              GetInfo()
+                .then((res) => {
+                  setUserInfo?.(res.data.result);
+                  setRole?.(res.data.result.roles);
+                })
+                .catch((err) => console.log(err));
+            } catch (error) {
+              console.log(error);
+            }
 
             setLoading(false);
           })
@@ -109,7 +119,7 @@ function MyLogIn() {
     console.log("User Roles Updated:", isRole);
     if (isRole[0]?.name === "ADMIN") {
       navigate("/admin");
-    } else if (isRole[0]?.name === "USER") {
+    } else if (isRole[0]?.name === "USER" || isRole[0]?.name === "SELLER") {
       navigate("/");
     } else if (isRole[0]?.name === "EMPLOYER") {
       navigate("/dashboard");

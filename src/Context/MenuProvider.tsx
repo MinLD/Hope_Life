@@ -10,6 +10,8 @@ interface MenuContextType {
   setIsWindowSize: (value: { width: number; height: number }) => void;
   isOpenSibar: boolean;
   setIsOpenSibar: (value: boolean) => void;
+  isOpenMenu: boolean;
+  setIsOpenMenu: (value: boolean) => void;
 }
 
 // 📌 Tạo Context với giá trị mặc định (ban đầu là `undefined` để tránh lỗi TypeScript)
@@ -26,6 +28,7 @@ export const MenuProvider = ({ children }: LayoutProps) => {
   const [isType, setIsType] = useState<string>(
     localStorage.getItem("isType") ?? "Login",
   );
+  const [isOpenMenu, setIsOpenMenu] = useState<boolean>(false);
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isOpenSibar, setIsOpenSibar] = useState<boolean>(false);
   const [isWindowSize, setIsWindowSize] = useState<{
@@ -59,6 +62,8 @@ export const MenuProvider = ({ children }: LayoutProps) => {
         setIsWindowSize,
         isOpenSibar,
         setIsOpenSibar,
+        isOpenMenu,
+        setIsOpenMenu,
       }}
     >
       {children}

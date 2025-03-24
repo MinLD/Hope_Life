@@ -10,7 +10,7 @@ import { PostContext } from "../../Context/PostProvider";
 import MenuMobile from "../../Components/MenuMobile/index.tsx";
 import { StoreContext } from "../../Context/StoreProvider.tsx";
 import DonationCard from "../../Components/DonationCard/index.tsx";
-import MyButton from "../../Components/Button/index.tsx";
+
 
 function UserHome() {
   const [isShowComnent, setShowComnent] = useState<boolean>(false);
@@ -66,21 +66,18 @@ function UserHome() {
           <div>
             {PostProducts.map((item: any) => (
               <>
-                <ArticleItems key={item.id} {...item} />
-                <div onClick={() => setIsOpen(true)} className="max-w-[100px]">
-                  <MyButton
-                    content={"Giúp đỡ họ"}
-                    type="button"
-                    isColor="bg-[#333]"
-                  />
-                </div>
+                <ArticleItems
+                  key={item.id}
+                  {...item}
+                  setOpen={() => setIsOpen(true)}
+                />
               </>
             ))}
           </div>
         </div>
 
         <div className="">
-          <DonationCard  isOpen={isOpen} onClose={() => setIsOpen(false)} />
+          <DonationCard isOpen={isOpen} onClose={() => setIsOpen(false)} />
         </div>
       </MyLayout>
       <MenuMobile />

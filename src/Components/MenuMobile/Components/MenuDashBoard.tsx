@@ -2,12 +2,21 @@ import { useContext, useState } from "react";
 import dataMenu from "../../../ComponentsDashBoard/Contants/index";
 import { IoIosArrowDown, IoIosArrowForward } from "react-icons/io";
 import { StoreContext } from "../../../Context/StoreProvider";
+import { MenuContext } from "../../../Context/MenuProvider";
 function MenuDashBoard() {
   const [isShowMenu] = useState<number | null>(null);
   const storeContext = useContext(StoreContext);
   if (!storeContext) return;
   const { handleLogout } = storeContext;
+  const menuContext = useContext(MenuContext);
+  if (!menuContext) return;
+  const {  setIsOpenMenu, setIsOpen } = menuContext;
+
   const handleRenderComponents = (i: string) => {
+    if (i === "Đăng tin") {
+      setIsOpenMenu(true);
+      setIsOpen(false);
+    }
     if (i === "Đăng xuất") {
       handleLogout?.();
     }

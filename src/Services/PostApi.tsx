@@ -41,4 +41,22 @@ const HopeShopJob = async (body: any) => {
   console.log(body);
   return await axiosClient.post("/sellerProfile", body);
 };
-export default { Post, Company, HopeShopJob, JobPosting, getAllPost };
+const PostProductHopeShops = async (body: any) => {
+  for (let [key, value] of body.entries()) {
+    console.log(`${key}:`, value);
+  }
+
+  return await axiosClient.post("/product", body);
+};
+const GetAllProduct = async () => {
+  return await axiosClient.get("/product/getAll");
+};
+export default {
+  Post,
+  Company,
+  HopeShopJob,
+  JobPosting,
+  getAllPost,
+  PostProductHopeShops,
+  GetAllProduct,
+};

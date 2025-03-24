@@ -67,18 +67,33 @@ const StoreProvider = ({ children }: StoreProviderProps) => {
 
       return;
     }
-    GetInfo()
-      .then((res) => {
-        console.log(res.data.result);
-        const roles =
-          res.data.result.roles.length > 0
-            ? res.data.result.roles
-            : [{ name: "NOROLES" }];
-        setUserInfo?.(res.data.result);
-        setRole?.(roles);
-    
-      })
-      .catch((err) => console.log(err));
+    // GetInfo()
+    //   .then((res) => {
+    //     console.log(res.data.result);
+    //     const roles =
+    //       res.data.result.roles.length > 0
+    //         ? res.data.result.roles
+    //         : [{ name: "NOROLES" }];
+    //     setUserInfo?.(res.data.result);
+    //     setRole?.(roles);
+
+    //   })
+    //   .catch((err) => console.log(err));
+    try {
+      GetInfo()
+        .then((res) => {
+          console.log(res.data.result);
+          const roles =
+            res.data.result.roles.length > 0
+              ? res.data.result.roles
+              : [{ name: "NOROLES" }];
+          setUserInfo?.(res.data.result);
+          setRole?.(roles);
+        })
+        .catch((err) => console.log(err));
+    } catch (error) {
+      console.log(error);
+    }
   }, []);
 
   return (

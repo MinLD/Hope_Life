@@ -7,6 +7,7 @@ import ArticleItems from "../../../Components/ArticleItems";
 
 import LoadingTextCommon from "../../../Components/LoaddingCommon";
 
+
 interface UserProfile {
   address: string;
   bio: string;
@@ -118,6 +119,7 @@ const ManagePosts = () => {
                 images={i.images}
                 content={i.content}
                 user={i.user}
+                setOpen={() => {}}
               />
               <div className="absolute bottom-0 left-0 flex gap-2">
                 <div onClick={() => handleActivePost(i.id)}>

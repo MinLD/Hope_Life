@@ -1,5 +1,6 @@
+import { useNavigate } from "react-router-dom";
 import MyLayout from "../MyLayOut";
-
+import logo from "../../assets/logoanhiu1.png";
 function MyFooter() {
   const Data: { title: string; label: string }[] = [
     {
@@ -19,17 +20,21 @@ function MyFooter() {
       title: "Chính sách bảo mật",
     },
   ];
-
+  const navigate = useNavigate();
   return (
     <div className="h-auto w-full bg-[#1F2937] text-[#ffffff]">
       <MyLayout>
         <div className="flex flex-col justify-center gap-10 pt-10 pb-20 md:flex-row xl:gap-40">
           {/* left */}
           <div className="flex flex-col gap-5">
-            <div onClick={() => window.scrollTo(0, 0)}>
-              <span className="text-3xl font-bold text-[#fff]">H O</span>
-              <span className="text-3xl font-bold text-[#16b741]"> P E</span>
-            </div>
+            <span
+              onClick={() => {
+                navigate("/");
+                window.scrollTo(0, 0);
+              }}
+            >
+              <img src={logo} className="h-[85px] w-[80px] cursor-pointer" />
+            </span>
 
             <div className="flex flex-col gap-4">
               <div>

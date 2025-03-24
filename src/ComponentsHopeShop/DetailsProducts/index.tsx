@@ -10,12 +10,12 @@ function DetailProducts() {
   const [quantity, setQuantity] = useState(1);
   const [isShow, setIsShow] = useState(false);
   const colors = [
-    "https://via.placeholder.com/50/fff",
-    "https://via.placeholder.com/50/eee",
-    "https://via.placeholder.com/50/pink",
-    "https://via.placeholder.com/50/red",
-    "https://via.placeholder.com/50/black",
-    "https://via.placeholder.com/50/blue",
+    "https://thecrafthouse.vn/cdn/shop/files/co_vua_3_fdd3fd2748264a49aff7cde5b6163109.jpg?v=1738702106&width=800",
+    "https://thecrafthouse.vn/cdn/shop/files/co_vua_2_705162962f4b4bd5bfe1b17368fb8bf7.jpg?v=1738702106&width=800",
+    "https://thecrafthouse.vn/cdn/shop/files/696752715_5875570497106654312_o_db2771ba7e0541b2aab211422f723579_large_9dc9666662ab44eb9f07969fe4624de1.jpg?v=1738702106&width=400",
+    "https://thecrafthouse.vn/cdn/shop/files/800086138_8714373522407495303_o_9c9ac5cf2fe54fb3ba10a0e4e59b3695_large_413a8bff09cd439f8caf18c9e645890b.jpg?v=1738702106&width=400",
+    "https://thecrafthouse.vn/cdn/shop/files/MM_GoA_Luxury_1_min.jpg?v=1741836643&width=800",
+    "https://thecrafthouse.vn/cdn/shop/files/MM_GoA_Luxury_2_min.jpg?v=1741836643&width=800",
   ];
   return (
     <HomePagesHopeShop>
@@ -24,7 +24,7 @@ function DetailProducts() {
           {/* Ảnh sản phẩm */}
           <div className="relative w-full">
             <img
-              src="https://p16-oec-va.ibyteimg.com/tos-maliva-i-o3syd03w52-us/7e0aa90e60b64ddbaa5559b5a4486149~tplv-o3syd03w52-resize-jpeg:800:800.jpeg?dr=15584&from=1826719393&idc=maliva&ps=933b5bde&shcp=e1be8f53&shp=6ce186a1&t=555f072d" // Thay ảnh thật vào đây
+              src="https://thecrafthouse.vn/cdn/shop/files/Maztermind-web02.jpg?v=1738702106&width=800" // Thay ảnh thật vào đây
               alt="Đầm nữ babydoll"
               className="w-full rounded-lg object-cover"
             />
@@ -35,8 +35,8 @@ function DetailProducts() {
 
           {/* Giá sản phẩm */}
           <div className="mt-3 flex items-center gap-2">
-            <p className="text-xl font-bold text-red-500">87.500đ</p>
-            <p className="text-md text-gray-500 line-through">125.000đ</p>
+            <p className="text-xl font-bold text-red-500">4.506.000₫</p>
+            <p className="text-md text-gray-500 line-through">6.506.000₫</p>
             <span className="rounded bg-red-100 px-2 py-1 text-xs text-red-600">
               -30%
             </span>
@@ -48,9 +48,24 @@ function DetailProducts() {
           </span>
 
           {/* Mô tả sản phẩm */}
-          <p className="mt-2 line-clamp-2 text-lg text-gray-700">
-            BARE_ Đầm ngắn nữ kiểu babydoll trễ vai tay bồng xòe thắt nơ 2 lớp
-            cao cấp chất voan tơ - D03 Voi Women Dress Kem
+          <p className="mt-2 text-lg text-gray-700">
+            *Mô tả: Cờ vua là một trò chơi không hề xa lạ với tất cả chúng ta và
+            chúng tôi đã biến hóa bộ cơ vua thông thường lên 1 phiên bản vô cùng
+            cao cấp và mới lạ. Điểm nhấn của quân cờ là vật liệu composite phối
+            trộn giữa resin và concrete. Vật liệu này thỏa mãn yêu cầu thẩm mỹ
+            nhờ bề mặt nhám của xi măng, đồng thời thừa hưởng khả năng chịu va
+            đập cao, kháng nước của resin. Đế quân cờ bằng đồng cứng cáp giúp
+            trung hòa đường nét uyển chuyển của phần thân, góp phần tạo nên nét
+            sang trọng cho tổng thể. Hộp cờ làm bằng gỗ walnut đặc trưng bởi sắc
+            nâu tự nhiên và vân gỗ tinh tế. Nắp hộp tạo ấn tượng thị giác mạnh
+            mẽ với 64 ô vuông làm từ da trắng đen được ghép hoàn toàn thủ công,
+            bao quanh là viền đồng. Không dừng ở chức năng trang trí, chi tiết
+            này biến nắp hộp thành một bàn cờ linh động, gọn gàng cho nhiều
+            không gian và thuận tiện cho di chuyển. Thiết kế cờ vua chính là sự
+            nâng cấp chất lượng sản phẩm bằng cách khai thác tối đa vẻ đẹp vật
+            liệu, đồng thời củng cố công năng, tính tiện dụng của bộ cờ truyền
+            thống. Đây là bộ trò chơi thích hợp để làm quà tặng cho bản thân,
+            gia đình, và bạn bè trong những dịp tụ họp, quây quần gặp mặt.
           </p>
 
           {/* Thông tin bán hàng */}
@@ -150,6 +165,11 @@ function DetailProducts() {
           {/* Mô tả sản phẩm */}
           <div className="mt-4">
             <h3 className="text-md font-semibold">Mô tả sản phẩm</h3>
+            <p>
+              Chất liệu: bê tông nhựa, gỗ walnut, da thật Thành phần: 1 hộp bàn
+              cờ, 16 quân cờ trắng, 16 quân cờ đen Kích thước: 28x28x5.4cm Trọng
+              lượng: 2.1kg
+            </p>
           </div>
         </div>
 
@@ -160,7 +180,7 @@ function DetailProducts() {
               <div className="flex items-center justify-between border-b pb-2">
                 <div className="flex items-center gap-2">
                   <img
-                    src="https://via.placeholder.com/50"
+                    src="https://thecrafthouse.vn/cdn/shop/files/co_vua_co_tay_28b8d056cab64f4f9038cbccd8e76a2f.jpg?v=1738702106&width=800"
                     alt="Product"
                     className="h-12 w-12 rounded"
                   />
