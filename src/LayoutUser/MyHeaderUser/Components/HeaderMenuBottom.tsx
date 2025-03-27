@@ -98,7 +98,7 @@ function HeaderMenuBottom() {
                 window.scrollTo(0, 0);
               }}
             >
-              <img src={logo} className="h-[55px] w-[50px] cursor-pointer" />
+              <img src={logo} className="h-[58px] w-[50px] cursor-pointer" />
             </span>
 
             <div

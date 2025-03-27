@@ -35,11 +35,11 @@ export const JobCard: React.FC<JobProps> = ({
     <div className="relative flex cursor-pointer items-center gap-3 rounded-lg p-4 shadow-md transition hover:border hover:border-[#00b14f] hover:shadow-lg">
       <div className="flex flex-col gap-2">
         <div className="flex gap-2">
-          <div className="rounded-full border border-[#e1e1e1]">
+          <div className="rounded-lg border border-[#e1e1e1]">
             <img
               src={logo}
               alt="Chưa cập nhật"
-              className="h-20 w-20 rounded-full object-cover"
+              className="h-15 w-15 rounded-lg "
             />
           </div>
           <div className="flex flex-1 flex-col">
@@ -51,8 +51,8 @@ export const JobCard: React.FC<JobProps> = ({
         </div>
         <div className="mt-2 flex justify-between">
           <div className="flex gap-2">
-            <span className="rounded-md bg-green-200 px-3 py-1 text-sm font-semibold text-green-700">
-              {salary}
+            <span className="rounded-md bg-green-200 px-3 py-1 text-sm font-semibold text-green-700 line-clamp-1">
+              ${salary}
             </span>
             <span className="rounded-md bg-gray-200 px-3 py-1 text-sm text-gray-700 line-clamp-1 max-w-[100px]">
               {location}

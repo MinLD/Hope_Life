@@ -18,7 +18,9 @@ const DeletePost = async (id: any) => {
 //user
 
 const getAllUser = async () => {
-  return await axiosClient.get("/users");
+  return await axiosClient.get("/users", {
+    params: { page: 1, size: 4 },
+  });
 };
 const DeleteUser = async (id: any) => {
   return await axiosClient.delete(`/users/${id}`);
@@ -27,7 +29,7 @@ const UpdateUsers = async (
   email: string,
   password: string,
   phone: string,
-  fullName: string,
+  fullName: string
 ) => {
   return await axiosClient.put("/users", { email, password, phone, fullName });
 };

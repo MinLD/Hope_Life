@@ -33,7 +33,7 @@ function MyFooter() {
                 window.scrollTo(0, 0);
               }}
             >
-              <img src={logo} className="h-[85px] w-[80px] cursor-pointer" />
+              <img src={logo} className="h-[95px] w-[80px] cursor-pointer" />
             </span>
 
             <div className="flex flex-col gap-4">
@@ -105,9 +105,9 @@ function MyFooter() {
           {/* right */}
           <div className="flex flex-col gap-10 lg:max-w-full lg:flex-row xl:gap-2">
             <div className="flex flex-col gap-4 xl:flex-2">
-              <h1 className="h-[28px] w-full text-[20px] font-medium">
+              <h2 className="h-[28px] w-full text-[20px] font-medium">
                 ĐỊA CHỈ VĂN PHÒNG
-              </h1>
+              </h2>
               <div className="flex h-auto flex-col xl:flex-row xl:flex-wrap xl:gap-[10px]">
                 {Data.map((i, k) => (
                   <div
@@ -144,9 +144,9 @@ function MyFooter() {
               </div>
             </div>
             <div className="flex flex-col gap-4 xl:flex-1">
-              <h1 className="h-[28px] w-[255px] text-[20px] font-medium">
+              <h2 className="h-[28px] w-[255px] text-[20px] font-medium">
                 LIÊN KẾT
-              </h1>
+              </h2>
               <div className="flex h-[148px] w-full flex-col gap-7 lg:gap-4">
                 <div className="w-full md:flex md:gap-10 lg:flex-col lg:gap-4">
                   {Data1.map((i, k) => (

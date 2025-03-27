@@ -27,13 +27,8 @@ const JobPosting = async (body: any) => {
   return await axiosClient.post("/job", body);
 };
 
-const getAllPost = async () => {
-  return await axiosClient.get("/job/getAll", {
-    params: {
-      page: 1,
-      size: 10,
-    },
-  });
+const getAllPost = async (page: number) => {
+  return await axiosClient.get(`job/getAll?page=${page}&size=12`);
 };
 
 //Post Cửa hàng
