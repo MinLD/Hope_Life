@@ -38,16 +38,16 @@ function CartProduct({
             onClick={() => navigate(`/hopeshop/${"1"}`)}
             src={images[0].url}
             alt=""
-            className="h-[65%] w-full rounded-lg object-cover transition-transform duration-300 ease-in-out scale-70 hover:scale-105"
+            className="cursor-pointer h-[65%] w-full rounded-lg object-cover transition-transform duration-300 ease-in-out scale-80 hover:scale-105"
           />
 
           <div
             className={`cursor-pointer border-2 border-[#272727] hover:bg-transparent hover:text-[#272727] flex items-center justify-center absolute bg-[#272727] w-[100px] h-[40px] rounded-s transition-all duration-800 ease-in-out right-3 text-[#fff] font-medium ${
-              isShow ? "bottom-5 opacity-100" : "bottom-[-50px] opacity-0"
+              isShow ? "bottom-2 opacity-100" : "bottom-[-50px] opacity-0"
             }`}
             onClick={() => setShowBuyNow(key)}
           >
-            +Quickadd
+            QuickAdd
           </div>
         </div>
 

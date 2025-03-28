@@ -8,7 +8,7 @@ type Product = {
   designs: string[];
 };
 type prop = {
-  close: () => void;
+  close?: () => void | "";
 };
 function BuyNowShop({ close }: prop) {
   const product: Product = {
@@ -41,12 +41,16 @@ function BuyNowShop({ close }: prop) {
               <p className="text-red-500 text-lg font-bold">{product.price}</p>
             </div>
           </div>
-          <button
-            className="text-gray-500 hover:text-black text-xl cursor-pointer"
-            onClick={close}
-          >
-            <IoIosClose size={30}/>
-          </button>
+          {close && (
+            <>
+              <button
+                className="text-gray-500 hover:text-black text-xl cursor-pointer"
+                onClick={close}
+              >
+                <IoIosClose size={30} />
+              </button>
+            </>
+          )}
         </div>
 
         {/* Chọn thiết kế */}

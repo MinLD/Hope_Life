@@ -2,7 +2,7 @@
 
 function BannerHopeShop() {
   return (
-    <div className="relative w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px]">
+    <div className="relative w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px] mt-20">
       {/* Ảnh nền */}
       <img
         src="https://thecrafthouse.vn/cdn/shop/files/craftsmanship-2-3200x1600.jpg?v=1737199914&width=2000"
