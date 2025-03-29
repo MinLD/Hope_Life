@@ -5,6 +5,8 @@ import { MdKeyboardDoubleArrowRight } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import logo from "../../assets/logo2anhiu.png";
 import HeaderShopChild from "../../ComponentsHopeShop/HeaderShopChild";
+import { useContext } from "react";
+import { SideBarContext } from "../../Context/SideBarProvider";
 function HeaderHopeShop() {
   //   const data: { string: string; id: number }[] = [
   //     { string: "string", id: 1 },
@@ -15,6 +17,9 @@ function HeaderHopeShop() {
   const handleReuturnShopJob = () => {
     navigate("/shop/register/jobshop");
   };
+  const sideBarContext = useContext(SideBarContext);
+  if (!sideBarContext) return null;
+  const { setIsOpenSideBar } = sideBarContext;
   return (
     <div>
       <div>
@@ -52,8 +57,14 @@ function HeaderHopeShop() {
               </div>
             </div>
 
-            <div className="space-x-4">
+            <div
+              className="space-x-4 cursor-pointer relative"
+              onClick={() => setIsOpenSideBar(true)}
+            >
               <TiShoppingCart size={28} className="text-gray-800" />
+              <div className="top-[-6px] absolute text-[10px] right-[2px] text-white bg-[#272727] w-[15px] h-[15px] rounded-full flex items-center justify-center">
+                5
+              </div>
             </div>
           </div>
         </MyLayout>

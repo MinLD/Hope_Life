@@ -1,6 +1,8 @@
-import { useState } from "react";
-import { IoIosClose } from "react-icons/io";
-
+import { useContext, useState } from "react";
+import { IoIosAdd, IoIosClose } from "react-icons/io";
+import { TfiLayoutLineSolid } from "react-icons/tfi";
+import { SideBarContext } from "../../Context/SideBarProvider";
+import SideBar from "../SlideBar";
 type Product = {
   name: string;
   price: string;
@@ -11,6 +13,9 @@ type prop = {
   close?: () => void | "";
 };
 function BuyNowShop({ close }: prop) {
+  const sideBarContext = useContext(SideBarContext);
+  if (!sideBarContext) return null;
+  const { setIsOpenSideBar } = sideBarContext;
   const product: Product = {
     name: "Bộ Sưu Tập Lót Ly Gạch Hoa Cổ Điển",
     price: "295.000₫",
@@ -70,17 +75,35 @@ function BuyNowShop({ close }: prop) {
             ))}
           </div>
         </div>
-
+        <div>
+          <p className="text-gray-700 mt-4 mb-2">Quantity:</p>
+        </div>
+        <div className="flex gap-2 p-2 border-[#e1e1e1] border-2 justify-between items-center max-w-[150px]">
+          <div>
+            <IoIosAdd size={30} />
+          </div>
+          <div>1</div>
+          <div>
+            <TfiLayoutLineSolid size={20} />
+          </div>
+        </div>
         {/* Nút hành động */}
         <div className="flex gap-2 mt-5">
-          <button className="flex-1 bg-yellow-400 text-white font-semibold py-2 rounded-lg">
+          <button
+            className="flex-1 bg-yellow-400 text-white font-semibold   p-4 rounded-lg cursor-pointer hover:text-yellow-500 hover:bg-transparent hover:border hover:border-yellow-500"
+            onClick={() => {
+              setIsOpenSideBar(true);
+              close && close();
+            }}
+          >
             Add to cart
           </button>
-          <button className="flex-1 bg-black text-white font-semibold py-2 rounded-lg">
+          <button className="flex-1 bg-black text-white font-semibold  rounded-lg p-4 cursor-pointer hover:text-black hover:bg-transparent hover:border hover:border-black">
             Buy it now
           </button>
         </div>
       </div>
+      <SideBar />
     </>
   );
 }

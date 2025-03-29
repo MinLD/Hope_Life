@@ -7,6 +7,8 @@ import HomePagesHopeShop from "../../LayoutHopeShop/HomePagesHopeShop";
 import BannerHopeShop from "../../ComponentsHopeShop/BannerHopeShop";
 
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import SideBar from "../../ComponentsHopeShop/SlideBar";
+
 const sortOptions = [
   "Featured",
   "Best selling",
@@ -108,7 +110,7 @@ function HomeShop() {
   // console.log(formData);
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState(sortOptions[1]); // Mặc định: Best selling
-  const [isElementTotal, ] = useState<number>(0);
+  const [isElementTotal] = useState<number>(0);
   const [isPage, setPage] = useState<number>(1);
   const handleSelect = (option: string) => {
     setSelectedOption(option);
@@ -273,6 +275,7 @@ function HomeShop() {
             </div>
           </MyLayout>
         </div>
+        <SideBar />
       </HomePagesHopeShop>
     </>
   );
