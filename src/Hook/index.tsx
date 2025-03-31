@@ -4,7 +4,7 @@ const useScrollHandling = () => {
   const [scrollDriction, setScrollDriction] = useState<string>("");
   const previousScrollPosition = useRef<number>(0);
   const [scrollPosition, setScrollposition] = useState<number>(0);
-
+// console.log(scrollPosition);
   const scrollTracking = () => {
     const currenScrollPosition = window.pageYOffset;
 
