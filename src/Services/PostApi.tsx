@@ -41,10 +41,17 @@ const PostProductHopeShops = async (body: any) => {
     console.log(`${key}:`, value);
   }
 
-  return await axiosClient.post("/product", body);
+  return await axiosClient.post("/product", body, {
+    headers: {
+      "Content-Type": "multipart/form-data", // Không cần thiết, nhưng có thể giữ lại nếu Axios chưa tự đặt đúng
+    },
+  });
 };
-const GetAllProduct = async () => {
-  return await axiosClient.get("/product/getAll");
+const GetAllProduct = async (page: number) => {
+  return await axiosClient.get(`/product/getAll?page=${page}&size=12`);
+};
+const DeleteProduct = async (id: any) => {
+  return await axiosClient.delete(`/product/${id}`);
 };
 export default {
   Post,
@@ -54,4 +61,5 @@ export default {
   getAllPost,
   PostProductHopeShops,
   GetAllProduct,
+  DeleteProduct,
 };

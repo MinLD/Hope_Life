@@ -32,7 +32,7 @@ function CartSlider({ title, data }: Props) {
   return (
     <div>
       <h1 className="text-xl font-bold">{title}</h1>
-      <div className="mt-4 grid grid-cols-2 gap-4 px-3 pb-3 sm:grid-cols-3 md:grid-cols-3">
+      <div className="mt-4 grid grid-cols-1  gap-4 px-3 pb-3 s:grid-cols-2 sm:grid-cols-3 md:grid-cols-3">
         {data.map((item, index) => (
           <>
             <div key={index}>

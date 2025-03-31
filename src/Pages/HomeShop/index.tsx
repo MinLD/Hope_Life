@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import CartSlider from "../../ComponentsHopeShop/CartSlider";
 
@@ -8,7 +8,7 @@ import BannerHopeShop from "../../ComponentsHopeShop/BannerHopeShop";
 
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import SideBar from "../../ComponentsHopeShop/SlideBar";
-
+import api from "../../Services/PostApi";
 const sortOptions = [
   "Featured",
   "Best selling",
@@ -95,19 +95,18 @@ function HomeShop() {
     },
   ]);
   // const [isOpen, setIsOpen] = useState(false);
-  // const handleGetAllProduct = () => {
-  //   api
-  //     .GetAllProduct()
-  //     .then((res) => {
-  //       console.log(res.data.result);
-  //       setFormData(res.data.result.data);
-  //     })
-  //     .catch((err) => console.log(err));
-  // };
-  // useEffect(() => {
-  //   handleGetAllProduct();
-  // }, []);
-  // console.log(formData);
+  const handleGetAllProduct = () => {
+    api
+      .GetAllProduct(1)
+      .then((res) => {
+        console.log(res.data.result);
+      })
+      .catch((err) => console.log(err));
+  };
+  useEffect(() => {
+    handleGetAllProduct();
+  }, [handleGetAllProduct]);
+
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState(sortOptions[1]); // Mặc định: Best selling
   const [isElementTotal] = useState<number>(0);
@@ -244,7 +243,9 @@ function HomeShop() {
                 <br />
                 <br />
                 Mỗi sáng tạo của{" "}
-                <span className="font-semibold text-green-600">Hope</span> đều
+                <span className="font-semibold text-green-600">
+                HopeVn<span className="text-[16px] text-red-600">Shop</span>
+              </span>{" "} đều
                 được chế tác tỉ mỉ với kỹ thuật độc đáo bởi những nghệ nhân tài
                 hoa. Chúng tôi tuyển chọn những nguyên liệu thượng hạng, chăm
                 chút từng chi tiết nhỏ nhất, từ đường nét, góc cạnh đến lớp hoàn
@@ -268,9 +269,12 @@ function HomeShop() {
                 Lấy cảm hứng từ di sản văn hóa và tinh hoa nghề thủ công truyền
                 thống của Việt Nam, chúng tôi tận tâm thiết kế tinh xảo, tuyển
                 chọn nguyên liệu thượng hạng và chế tác những sản phẩm trường
-                tồn cùng thời gian. Mong muốn của The Craft House là mỗi sáng
-                tạo sẽ trở thành một phần di sản quý giá, được trân trọng và gìn
-                giữ trong tổ ấm của bạn.
+                tồn cùng thời gian. Mong muốn của{" "}
+                <span className="font-semibold text-green-600">
+                  HopeVn<span className="text-[16px] text-red-600">Shop</span>
+                </span>{" "}
+                là mỗi sáng tạo sẽ trở thành một phần di sản quý giá, được trân
+                trọng và gìn giữ trong tổ ấm của bạn.
               </p>
             </div>
           </MyLayout>

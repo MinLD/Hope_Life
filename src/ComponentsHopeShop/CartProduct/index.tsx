@@ -35,10 +35,13 @@ function CartProduct({
           onMouseEnter={() => setIsShow(true)}
         >
           <img
-            onClick={() => navigate(`/hopeshop/${"1"}`)}
+            onClick={() => {
+              navigate(`/hopeshop/${"1"}`);
+              window.scrollTo(0, 0);
+            }}
             src={images[0].url}
             alt=""
-            className="cursor-pointer h-[65%] w-full rounded-lg object-cover transition-transform duration-300 ease-in-out scale-80 hover:scale-105"
+            className="cursor-pointer h-[65%] w-full rounded-lg object-cover transition-transform duration-300 ease-in-out s:scale-80 hover:s:scale-105"
           />
 
           <div

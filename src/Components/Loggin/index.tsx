@@ -119,10 +119,12 @@ function MyLogIn() {
     console.log("User Roles Updated:", isRole);
     if (isRole[0]?.name === "ADMIN") {
       navigate("/admin");
-    } else if (isRole[0]?.name === "USER" || isRole[0]?.name === "SELLER") {
+    } else if (isRole[0]?.name === "USER" ) {
       navigate("/");
     } else if (isRole[0]?.name === "EMPLOYER") {
       navigate("/dashboard");
+    } else if (isRole[0]?.name === "SELLER") {
+      navigate("/app/hopeshop/admin");
     }
   }, [isRole, navigate]);
 
