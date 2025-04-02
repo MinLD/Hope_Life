@@ -1,14 +1,20 @@
-import { useState } from "react";
-import { CiHeart } from "react-icons/ci";
-import { FaRegComment, FaUserCircle } from "react-icons/fa";
+import { useContext, useState } from "react";
+
+import { FaUserCircle } from "react-icons/fa";
 import { IoIosClose } from "react-icons/io";
 import TextBox from "./component/textBox";
-import CommentBox from "./component/CommentBox";
+
 import SliderCommon from "../SliderCommon";
-import MyButton from "../Button";
+import { PostContext } from "../../Context/PostProvider";
+import DonationPostVolun from "../DonatePostVolun";
+
 interface Post {
+  id: any;
+  title?: string;
+  location?: string;
   images: { url: string }[];
   content: string;
+  fund?: any;
   user: {
     profile: {
       fullName: string;
@@ -17,23 +23,36 @@ interface Post {
 
   setOpen: () => void | any;
 }
-function ArticleItems({ images, content, user, setOpen }: Post) {
-  const [IsHeart, setHeart] = useState<boolean>(false);
-  const [isShowComnent, setShowComnent] = useState<boolean>(false);
+function ArticleItems({
+  id,
+  fund,
+  images,
+  content,
+  user,
+ 
+  title,
+  location,
+}: Post) {
+  const postcontext = useContext(PostContext);
+  if (!postcontext) return;
+  const { isTypePost } = postcontext;
+  // const [IsHeart, setHeart] = useState<boolean>(false);
+  // const [isShowComnent, setShowComnent] = useState<boolean>(false);
   const [selectedImage, setSelectedImage] = useState<any | null | []>(null);
-  const handleHeart = () => {
-    setHeart(!IsHeart);
-  };
-  const handleShowComnent = () => {
-    setShowComnent(!isShowComnent);
-    if (isShowComnent) {
-      document.body.classList.remove("overflow-hidden");
-    } else if (isShowComnent === false) {
-      document.body.classList.add("overflow-hidden");
-    }
-  };
+  const [isShowDonate, setShowDonate] = useState<boolean>(false);
+  // const handleHeart = () => {
+  //   setHeart(!IsHeart);
+  // };
+  // const handleShowComnent = () => {
+  //   setShowComnent(!isShowComnent);
+  //   if (isShowComnent) {
+  //     document.body.classList.remove("overflow-hidden");
+  //   } else if (isShowComnent === false) {
+  //     document.body.classList.add("overflow-hidden");
+  //   }
+  // };
   const text: string =
-    content.length > 300 ? content.slice(0, 300) + "..." : content;
+    content?.length > 300 ? content.slice(0, 300) + "..." : content;
   const handleShowImage = (src: any) => {
     setSelectedImage(src);
 
@@ -52,14 +71,17 @@ function ArticleItems({ images, content, user, setOpen }: Post) {
           <div className="flex items-center gap-2">
             <div className="flex items-center gap-1">
               <FaUserCircle className="h-[25px] w-[25px]" />
-              <h1 className="text-sm font-medium">
+              <h1 className="text-lg  font-medium">
                 {user?.profile?.fullName || "Ẩn danh"}
               </h1>
             </div>
             <div className="text-[14px] text-[#c5c5c5]">5h</div>
           </div>
         </div>
-
+        <h3 className="font-medium uppercase text-xl">{title && title}</h3>
+        <h4 className="text-[#272727] text-s">
+          {location && `Địa điểm: ${location}`}
+        </h4>
         <pre className="mt-[-20px]">
           {" "}
           <TextBox text={text} />
@@ -71,22 +93,23 @@ function ArticleItems({ images, content, user, setOpen }: Post) {
               <SliderCommon slidesToShow={3} BoxImg={images} type="images" />
             </div>
           ) : (
-            <div className="flex-wrap gap-[8px]">
+            <div className="flex-wrap gap-[10px] flex">
               {Array.isArray(images) && images.length > 0
                 ? images.map((item, index) => (
-                    <img
-                      src={item?.url?.replace("http://", "https://")}
-                      alt={`Hình ảnh ${index}`}
-                      className="h-auto w-[calc(100%/2-8px)] cursor-pointer rounded-[10px] object-cover"
-                      key={index}
-                      onClick={() => handleShowImage(images)}
-                    />
+                    <div className="w-[calc(50%-10px)]" key={index}>
+                      <img
+                        src={item?.url?.replace("http://", "https://")}
+                        alt={`Hình ảnh ${index}`}
+                        className="h-auto w-full cursor-pointer rounded-[10px] object-cover"
+                        onClick={() => handleShowImage(images)}
+                      />
+                    </div>
                   ))
                 : ""}
             </div>
           )}
         </div>
-        <div className="flex items-center gap-4 text-xl">
+        {/* <div className="flex items-center gap-4 text-xl">
           <div
             className={`flex items-center gap-2 rounded-2xl p-2 hover:bg-[#e1e1e1] ${IsHeart && "text-red-600"}`}
           >
@@ -104,19 +127,9 @@ function ArticleItems({ images, content, user, setOpen }: Post) {
             </div>
             <p>300</p>
           </div>
-        </div>
-        <div onClick={() => setOpen()} className="max-w-[100px]">
-          <MyButton content={"Giúp đỡ họ"} type="button" isColor="bg-[#333]" />
-        </div>
+        </div> */}
 
         <div className="h-[1px] w-full bg-[#e1e1e1]"></div>
-        {isShowComnent && (
-          <CommentBox
-            onClick={handleShowComnent}
-            isShowComnent={isShowComnent}
-            setShowComnent={setShowComnent}
-          />
-        )}
       </div>
       {/* Hiển thị ảnh đã chọn */}
       {selectedImage && (
@@ -150,6 +163,23 @@ function ArticleItems({ images, content, user, setOpen }: Post) {
             </div>
           </div>
         </div>
+      )}
+      {(isTypePost === "postVolunn" || isTypePost === "paybackpost") && (
+        <>
+          <button
+            onClick={() => setShowDonate(!isShowDonate)}
+            className="mb-10 px-6 py-3 bg-blue-600 text-white rounded-2xl shadow-md hover:bg-blue-700 transition"
+          >
+            {isTypePost === "postVolunn" ? "Đóng góp" : "Xem Danh sách người quyên góp"}
+          </button>
+          {isShowDonate && (
+            <DonationPostVolun
+              id={id}
+              onClose={() => setShowDonate(false)}
+              fund={fund}
+            />
+          )}
+        </>
       )}
     </div>
   );

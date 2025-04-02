@@ -12,21 +12,26 @@ import { toast } from "react-toastify";
 import apiPost from "../../../Services/PostApi";
 import { StoreContext } from "../../../Context/StoreProvider";
 type Props = {
-  onClick: () => void;
-  isShowComnent: boolean;
-  setShowComnent?: (value: boolean) => void;
-  handleShowComnent?: () => void;
+  isShowComment: boolean;
+  setShowComment: (value: boolean) => void;
+  isWhatPost: string;
+  setIsWhatPost: (value: string) => void;
 };
 function CommentBox({
-  onClick,
-  isShowComnent,
-  setShowComnent,
-  handleShowComnent,
+  isShowComment,
+  setShowComment,
+  isWhatPost,
+  setIsWhatPost,
 }: Props) {
   const [text, setText] = useState("");
+  const [title, setTitle] = useState("");
+  const [location, setLocation] = useState("");
+  const [stk, setStk] = useState("");
+  const [bankname, setBankname] = useState("");
   const [isFileImages, setIsFileImages] = useState<File[]>([]);
   const postcontext = useContext(PostContext);
   const storeContext = useContext(StoreContext);
+
   if (!storeContext) {
     return null;
   }
@@ -40,54 +45,76 @@ function CommentBox({
   const handleAddPostNew = async () => {
     const formData = new FormData();
 
-    isFileImages.forEach((file) => {
-      formData.append("images", file);
-    });
-
     formData.append("content", text);
-    formData.append("title:", "hi");
-    apiPost
-      .Post(formData)
-      .then((re) => {
-        console.log(re.data.result);
-        toast.success("Đăng bài viet thanh cong");
-      })
-      .catch((err) => {
-        console.log(err.response.data);
-        toast.error(err.response.data.message);
+    formData.append("title", title);
+    if (isWhatPost === "post") {
+      isFileImages.forEach((file) => {
+        formData.append("images", file);
       });
+      apiPost
+        .Post(formData)
+        .then((re) => {
+          console.log(re.data.result);
+          toast.success("Đăng bài viết thành công");
+        })
+        .catch((err) => {
+          console.log(err.response.data);
+          toast.error(err.response.data.message);
+        });
+    } else if (isWhatPost === "postVolunn") {
+      isFileImages.forEach((file) => {
+        formData.append("files", file);
+      });
+      formData.append("stk", stk);
+      formData.append("bankName", bankname);
+      formData.append("location", location);
+      apiPost
+        .postVolunn(formData)
+        .then((re) => {
+          console.log(re.data.result);
+          toast.success("Đăng bài viet thành công");
+        })
+        .catch((err) => {
+          console.log(err);
+          toast.error(err.response.data.message);
+        });
+    }
     setText(""); // Xóa input sau khi đăng
     setIsFileImages([]); // Xóa hình ảnh sau khi đăng
-    setShowComnent && setShowComnent(false);
-    handleShowComnent && handleShowComnent();
+    setShowComment && setShowComment(false);
+    setIsWhatPost("");
   };
-
+  console.log(isWhatPost);
   return (
     <div className="relative">
       {/* Lớp phủ màn hình (overlay) */}
 
-      <div
-        className="bg-opacity-50 fixed inset-0 z-[1000] bg-black opacity-[60%]"
-        onClick={onClick}
-      ></div>
+      <div className="bg-opacity-50 fixed inset-0 z-[1000] bg-black opacity-[60%]"></div>
 
       {/* Popup Login/Register */}
       <div
         className={`fixed z-[1001] h-auto w-[95%] overflow-y-auto bg-[#fff] p-4 shadow-2xl transition-all duration-500 md:w-[50%] lg:w-[40%] ${
-          isShowComnent
+          isShowComment
             ? "top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] scale-100 rounded-2xl opacity-100 shadow-2xl"
             : "pointer-events-none top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] scale-1 opacity-0"
         }`}
       >
         <div className="flex items-center justify-between border-b border-[#e1e1e1] pb-4">
-          <div onClick={onClick}>Cancel</div>
+          <div
+            onClick={() => {
+              setShowComment && setShowComment(false);
+              setIsWhatPost("");
+            }}
+          >
+            Cancel
+          </div>
           <h2 className="font-semibold">New Post</h2>
           <div className="flex gap-2 text-2xl">
             <IoSaveOutline className="text-xl text-gray-600" />
             <CiCircleMore />
           </div>
         </div>
-
+        {/* ---- */}
         <div className="mt-4 flex items-center gap-2">
           <FaUserCircle className="text-4xl text-gray-400" />
           <div>
@@ -95,7 +122,42 @@ function CommentBox({
             <p className="text-sm text-gray-400">What's new?</p>
           </div>
         </div>
-
+        {isWhatPost === "postVolunn" && (
+          <>
+            <div className="">
+              <input
+                onChange={(e) => setTitle(e.target.value)}
+                type="text"
+                placeholder="Title :"
+                className="max-h-[100px] min-h-[40px] w-full resize-none overflow-y-auto border-none outline-none focus:ring-0"
+              />
+            </div>
+            <div>
+              <input
+                onChange={(e) => setLocation(e.target.value)}
+                type="text"
+                placeholder="Địa điểm :"
+                className="max-h-[100px] min-h-[40px] w-full resize-none overflow-y-auto border-none outline-none focus:ring-0"
+              />
+            </div>
+            <div>
+              <input
+                onChange={(e) => setStk(e.target.value)}
+                type="text"
+                placeholder="Số tài khoản :"
+                className=" max-h-[100px] min-h-[40px] w-full resize-none overflow-y-auto border-none outline-none focus:ring-0"
+              />
+            </div>
+            <div>
+              <input
+                onChange={(e) => setBankname(e.target.value)}
+                type="text"
+                placeholder="Tên ngân hàng :"
+                className="max-h-[100px] min-h-[40px] w-full resize-none overflow-y-auto border-none outline-none focus:ring-0"
+              />
+            </div>
+          </>
+        )}
         {/* Input Box */}
         <div className="mt-4">
           <textarea
@@ -112,7 +174,7 @@ function CommentBox({
           />
         </div>
 
-        <div className="flex flex-col gap-10">
+        <div className="flex flex-col gap-10 overflow-y-scroll max-h-[200px]">
           {isShowAddImage && (
             <div className="flex h-auto w-full flex-wrap gap-[10px]">
               <div className="w-[salce(100%/1-10px)]">
@@ -123,27 +185,27 @@ function CommentBox({
               </div>
             </div>
           )}
-          {/* Icons */}
-          <div className="flex items-center justify-between">
-            <div className="flex gap-3 text-gray-500">
-              <PiImagesSquareThin
-                className="cursor-pointer text-2xl"
-                onClick={() => setShowAddImage(true)}
-              />
-              <HiOutlineGif className="cursor-pointer text-2xl" />
-            </div>
-            <button
-              className={`rounded-lg px-4 text-center text-xl font-bold ${
-                text.trim()
-                  ? "bg-blue-500 text-white"
-                  : "bg-gray-300 text-gray-500"
-              }`}
-              disabled={!text.trim()}
-              onClick={handleAddPostNew}
-            >
-              POST
-            </button>
+        </div>
+        {/* Icons */}
+        <div className="flex items-center justify-between mt-5">
+          <div className="flex gap-3 text-gray-500">
+            <PiImagesSquareThin
+              className="cursor-pointer text-2xl"
+              onClick={() => setShowAddImage(true)}
+            />
+            <HiOutlineGif className="cursor-pointer text-2xl" />
           </div>
+          <button
+            className={`rounded-lg px-4 text-center text-xl font-bold ${
+              text.trim()
+                ? "bg-blue-500 text-white"
+                : "bg-gray-300 text-gray-500"
+            }`}
+            disabled={!text.trim()}
+            onClick={handleAddPostNew}
+          >
+            POST
+          </button>
         </div>
       </div>
     </div>

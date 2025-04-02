@@ -22,5 +22,4 @@ function BannerHopeShop() {
     </div>
   );
 }
-
 export default BannerHopeShop;

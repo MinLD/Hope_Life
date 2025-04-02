@@ -3,6 +3,7 @@ import { IoIosAdd, IoIosClose } from "react-icons/io";
 import { TfiLayoutLineSolid } from "react-icons/tfi";
 import { SideBarContext } from "../../Context/SideBarProvider";
 import SideBar from "../SlideBar";
+import { useNavigate } from "react-router-dom";
 type Product = {
   name: string;
   price: string;
@@ -13,6 +14,7 @@ type prop = {
   close?: () => void | "";
 };
 function BuyNowShop({ close }: prop) {
+  const navigate = useNavigate();
   const sideBarContext = useContext(SideBarContext);
   if (!sideBarContext) return null;
   const { setIsOpenSideBar } = sideBarContext;
@@ -98,7 +100,13 @@ function BuyNowShop({ close }: prop) {
           >
             Add to cart
           </button>
-          <button className="flex-1 bg-black text-white font-semibold  rounded-lg p-4 cursor-pointer hover:text-black hover:bg-transparent hover:border hover:border-black">
+          <button
+            onClick={() => {
+              navigate("/checkout");
+              close && close();
+            }}
+            className="flex-1 bg-black text-white font-semibold  rounded-lg p-4 cursor-pointer hover:text-black hover:bg-transparent hover:border hover:border-black"
+          >
             Buy it now
           </button>
         </div>

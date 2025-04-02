@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import MyLayout from "../MyLayOut";
-import logo from "../../assets/logoanhiu1.png";
+import logo from "../../../public/logoanhiu1.png";
 function MyFooter() {
   const Data: { title: string; label: string }[] = [
     {

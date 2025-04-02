@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import MenuProvider from "./Context/MenuProvider";
 
-import { Suspense } from "react";
+import { Suspense, useEffect } from "react";
 import Routerss from "./Routers";
 import PostProvider from "./Context/PostProvider";
 import ToastProvider from "./Context/ToastProvider";
@@ -15,6 +15,12 @@ import Logginbox from "./Pages/LogginComponent";
 import SideBarProvider from "./Context/SideBarProvider";
 
 function App() {
+  useEffect(() => {
+    const favicon = document.querySelector("link[rel='icon']");
+    if (favicon) {
+      favicon.setAttribute("href", "/logoanhiu1.png");
+    }
+  }, []);
   return (
     <>
       <ToastProvider>

@@ -3,7 +3,11 @@ import { IoIosArrowDown, IoIosArrowForward } from "react-icons/io";
 
 import { useNavigate } from "react-router-dom";
 import { MenuContext } from "../../../Context/MenuProvider";
+import { PostContext } from "../../../Context/PostProvider";
 function MenuHeader() {
+  const postContext = useContext(PostContext);
+  if (!postContext) return;
+  const { setTypePost } = postContext;
   const [isShowMenu] = useState<number | null>(null);
 
   //   ${isOpen ? "left-0 opacity-100" : "left-[-2500px] opacity-0"}
@@ -11,10 +15,10 @@ function MenuHeader() {
     name: string;
     id: number;
   }[] = [
-   
     { name: "Giới thiệu", id: 1 },
     { name: "Tuyển dụng", id: 2 },
-    { name: "Bài đăng", id: 2 },
+    { name: "Bài đăng sẻ chia", id: 2 },
+    { name: "Bài đăng hoàn vốn", id: 2 },
     { name: "Cửa hàng", id: 2 },
   ];
   const navigate = useNavigate();
@@ -25,18 +29,29 @@ function MenuHeader() {
     if (i === "Giới thiệu") {
       navigate("/");
       setIsOpen(false);
+      window.scrollTo(0, 0);
     }
     if (i === "Cửa hàng") {
       navigate("/app/hopeshop");
       setIsOpen(false);
+      window.scrollTo(0, 0);
     }
-    if (i === "Bài đăng") {
+    if (i === "Bài đăng sẻ chia") {
+      setTypePost("post");
       navigate("/post");
       setIsOpen(false);
+      window.scrollTo(0, 0);
+    }
+    if (i === "Bài đăng hoàn vốn") {
+      setTypePost("postVolunn");
+      navigate("/post");
+      setIsOpen(false);
+      window.scrollTo(0, 0);
     }
     if (i === "/app/register") {
       navigate("/app/register");
       setIsOpen(false);
+      window.scrollTo(0, 0);
     }
     if (i === "Tuyển dụng") {
       navigate("/post/job");

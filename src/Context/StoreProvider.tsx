@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useEffect, useState } from "react";
+import React, { createContext, ReactNode, useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import { GetInfo } from "../Services/AuthService";
 
@@ -11,6 +11,7 @@ type UserInfoType = {
   id: string;
   email: string;
   phone: string | null;
+  fund: number;
 
   profile: {
     fullName: string;
@@ -35,9 +36,11 @@ type StoreContextType = {
   handleLogout?: () => void;
   isRole?: UserInfoType["roles"];
   setRole?: (roles: UserInfoType["roles"]) => void;
+  IdUser: string;
+  setIdUser: React.Dispatch<React.SetStateAction<any>>;
 };
 export const StoreContext = createContext<StoreContextType | undefined>(
-  undefined,
+  undefined
 );
 type StoreProviderProps = {
   children: ReactNode;
@@ -45,6 +48,7 @@ type StoreProviderProps = {
 const StoreProvider = ({ children }: StoreProviderProps) => {
   const [userInfo, setUserInfo] = useState<UserInfoType | null>(null);
   const [isRole, setRole] = useState<UserInfoType["roles"]>([]);
+  const [IdUser, setIdUser] = useState("");
 
   const handleLogout = () => {
     if (!Cookies.get("token")) return;
@@ -54,6 +58,8 @@ const StoreProvider = ({ children }: StoreProviderProps) => {
     window.location.href = "/";
   };
   const value: StoreContextType = {
+    IdUser,
+    setIdUser,
     userInfo,
     setUserInfo,
     handleLogout,

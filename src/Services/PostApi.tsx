@@ -1,5 +1,9 @@
 import { axiosClient } from "./ApiClient";
-
+//Nạp tiền
+const SePay_Payment = () => {
+  return axiosClient.get("/hooks/sepay-payment/start");
+};
+//post
 const Post = async (formData: FormData) => {
   for (let [key, value] of formData.entries()) {
     console.log(`${key}:`, value);
@@ -10,6 +14,34 @@ const Post = async (formData: FormData) => {
       "Content-Type": "multipart/form-data",
     },
   });
+};
+//MyPostVolunn
+const GetAllPostVolunnFromUser = async () => {
+  return await axiosClient.get("/postVolunteer/fulled");
+};
+//postVolunn
+const postVolunn = async (formData: FormData) => {
+  for (let [key, value] of formData.entries()) {
+    console.log(`${key}:`, value);
+  }
+  return await axiosClient.post("/postVolunteer", formData, {
+    //là để khai báo kiểu dữ liệu gửi đi là multipart/form-data, thường dùng để upload file.
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
+};
+const GetAllPostVolunn = async () => {
+  return await axiosClient.get("/postVolunteer/getAll");
+};
+const DonatePostVolunn = async (id: any, amount: any) => {
+  return await axiosClient.patch("postVolunteer/donate", {
+    postVolunteerId: id,
+    amount: amount,
+  });
+};
+const GetAlldonatePostVolunn = async (id: any) => {
+  return await axiosClient.get(`/support/post/${id}`);
 };
 
 //Post Công Ty
@@ -47,6 +79,9 @@ const PostProductHopeShops = async (body: any) => {
     },
   });
 };
+const GetAllProductFromSeller = async (page: number) => {
+  return await axiosClient.get(`/product/getAllBySeller?page=${page}&size=12`);
+};
 const GetAllProduct = async (page: number) => {
   return await axiosClient.get(`/product/getAll?page=${page}&size=12`);
 };
@@ -54,6 +89,10 @@ const DeleteProduct = async (id: any) => {
   return await axiosClient.delete(`/product/${id}`);
 };
 export default {
+  GetAllPostVolunnFromUser,
+  SePay_Payment,
+
+  GetAllProductFromSeller,
   Post,
   Company,
   HopeShopJob,
@@ -62,4 +101,8 @@ export default {
   PostProductHopeShops,
   GetAllProduct,
   DeleteProduct,
+  postVolunn,
+  GetAllPostVolunn,
+  DonatePostVolunn,
+  GetAlldonatePostVolunn,
 };

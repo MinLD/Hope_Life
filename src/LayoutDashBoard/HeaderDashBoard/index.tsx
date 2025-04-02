@@ -6,7 +6,7 @@ import { TbMenuDeep } from "react-icons/tb";
 import { LucideIcon } from "lucide-react";
 import JobPostingForm from "../../ComponentsDashBoard/Components/JobPostingForm";
 import { StoreContext } from "../../Context/StoreProvider";
-import logo from "../../assets/logoanhiu1.png"
+import logo from "../../../public/logoanhiu1.png"
 type props = {
   MenuItem?: {
     id?: string;

@@ -36,34 +36,31 @@ interface User {
 
 interface Image {
   url: string;
-  description?: string;
+  id: number;
 }
 
 interface Post {
   id: number;
   content: string;
-  createdAt: string;
-  updatedAt: string | null;
-  active: boolean;
-  commentCount: number;
-  comments: string[];
-  images: Image[];
-  likeCount: number;
-  likes: string[];
-  pinned: boolean;
-  published: boolean;
-  title: string | null;
+  bankName: string;
+  location: string;
+  stk: string;
+  files: Image[];
+  title: string;
   user: User;
 }
 
-const ManagePosts = () => {
+const ManagePostVolunn = () => {
+  const [fund, setFund] = useState<string>("");
   const [posts, setPosts] = useState<Post[]>([]);
+
   const [isLoading, setLoading] = useState<boolean>(false);
-  const handleGetAllPostNoneActive = async () => {
+  const handleGetAllPostVolunnNoneActive = async () => {
     setLoading(true);
-    await ApiAdmin.GetAllPostNoneActive()
+
+    await ApiAdmin.GetAllPostVolunnNoneActive()
       .then((res) => {
-        console.log(res.data.result);
+        console.log(res);
         setPosts(res.data.result.data);
         setLoading(false);
       })
@@ -74,10 +71,11 @@ const ManagePosts = () => {
   };
 
   const handleActivePost = (id: any) => {
-    ApiAdmin.ActivePost(id)
+    console.log(id);
+    ApiAdmin.ActivePostVolunn(id, fund)
       .then((res) => {
         console.log(res.data.result);
-        handleGetAllPostNoneActive();
+        handleGetAllPostVolunnNoneActive();
         toast.success("Kiểm duyệt bài viet!");
       })
       .catch((err) => {
@@ -86,10 +84,11 @@ const ManagePosts = () => {
   };
 
   const handleDeletePost = (id: any) => {
+    console.log(id);
     ApiAdmin.DeletePost(id)
       .then((res) => {
         console.log(res.data.result);
-        handleGetAllPostNoneActive();
+        handleGetAllPostVolunnNoneActive();
         toast.success("Xóa bài viet!");
       })
       .catch((err) => {
@@ -98,13 +97,13 @@ const ManagePosts = () => {
   };
 
   useEffect(() => {
-    handleGetAllPostNoneActive();
+    handleGetAllPostVolunnNoneActive();
   }, []);
   console.log(posts);
 
   return (
     <div>
-      <h2 className="mb-4 text-2xl font-bold">Quản lý bài viết</h2>
+      <h2 className="mb-4 text-2xl font-bold">Quản lý bài viết hoàn vốn</h2>
       <div className="mb-3 flex items-center gap-2"></div>
       {isLoading ? (
         <>
@@ -113,21 +112,41 @@ const ManagePosts = () => {
       ) : (
         <>
           {posts?.map((i, k) => (
-            <div key={k} className="relative mt-10 max-w-2xl">
+            <div key={k} className="mt-10 max-w-2xl">
               <ArticleItems
                 id={i.id}
-                images={i.images}
+                title={i.title}
+                location={i.location}
+                images={i.files}
                 content={i.content}
                 user={i.user}
                 setOpen={() => {}}
               />
-              <div className="absolute bottom-0 left-0 flex gap-2">
-                <div onClick={() => handleActivePost(i.id)}>
-                  <MyButton content={"Duyệt"} isColor="bg-[#333]" />
+              <div className="flex gap-2 flex-col">
+                <div className="flex gap-2">
+                  <div>
+                    <input
+                      type="text"
+                      placeholder="Nhập số tiền hoàn vốn"
+                      className="border rounded-2xl p-2"
+                      onChange={(e) => setFund(e.target.value)}
+                    />
+                  </div>
+                  <div onClick={() => handleActivePost(i.id)}>
+                    <button
+                      disabled={!fund} // Chỉ vô hiệu hóa khi không có giá trị trong `fund`
+                      className={`${fund ? "cursor-pointer" : "cursor-not-allowed pointer-events-none"} flex h-auto max-w-full bg-[#333] min-w-[100px] cursor-pointer items-center justify-center rounded-md border-none p-2 font-medium text-[#fff] transition hover:bg-[#79c776] active:scale-95`}
+                    >
+                      Duyệt
+                    </button>
+                  </div>
                 </div>
 
-                <div onClick={() => handleDeletePost(i.id)}>
-                  <MyButton content={"Xóa"} isColor="bg-[#333]" />
+                <div
+                  onClick={() => handleDeletePost(i.id)}
+                  className="max-w-[200px]"
+                >
+                  <MyButton content={"Không duyệt!"} isColor="bg-[#333]" />
                 </div>
               </div>
             </div>
@@ -143,4 +162,4 @@ const ManagePosts = () => {
   );
 };
 
-export default ManagePosts;
+export default ManagePostVolunn;

@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import {  useContext, useEffect, useState } from "react";
 import {
   IoIosArrowDown,
   IoIosArrowUp,
@@ -11,23 +11,21 @@ import { useNavigate } from "react-router-dom";
 import MyLayout from "../../../Layout/MyLayOut";
 import { FaRegUser } from "react-icons/fa";
 import Cookies from "js-cookie";
-import logo from "../../../assets/logoanhiu1.png";
+import logo from "../../../../public/logoanhiu1.png";
 import {
-  Bell,
+ 
   Briefcase,
-  Eye,
+
   FileText,
-  Gift,
+ 
   Heart,
   Lock,
   LogOut,
-  Mail,
-  Pencil,
-  Rocket,
-  Settings,
-  Shield,
+  Signpost,
 } from "lucide-react";
 import { StoreContext } from "../../../Context/StoreProvider";
+import DonationCard from "../../../Components/DonationCard";
+import { PostContext } from "../../../Context/PostProvider";
 
 function HeaderMenuBottom() {
   const [isShowUserMenu, setShowUserMenu] = useState<boolean>(false);
@@ -37,24 +35,23 @@ function HeaderMenuBottom() {
     { name: "Bài đăng", id: 2 },
     { id: 3, name: "Cửa hàng" },
   ];
+  const menuChild: { name: string; id: number }[] = [
+    { id: 4, name: "Bài đăng sẻ chia" },
+    { name: "Bài đăng hoàn vốn", id: 5 },
+  ];
   const MenuUser: { name: string; id: number; icon: any }[] = [
     { id: 1, name: "CV của tôi", icon: <FileText /> },
-    { id: 2, name: "Cover Letter của tôi", icon: <FileText /> },
+    { id: 2, name: "Nạp tiền vào hệ thống", icon: <FileText /> },
     { id: 3, name: "Việc làm đã lưu", icon: <Heart /> },
-    { id: 4, name: "Việc làm đã ứng tuyển", icon: <Briefcase /> },
-    { id: 5, name: "Cài đặt thông tin cá nhân", icon: <Pencil /> },
-    { id: 6, name: "Nâng cấp tài khoản VIP", icon: <Rocket /> },
-    { id: 7, name: "Kích hoạt quà tặng", icon: <Gift /> },
-    { id: 8, name: "Nhà tuyển dụng xem hồ sơ", icon: <Eye /> },
-    { id: 9, name: "Cài đặt gợi ý việc làm", icon: <Settings /> },
-    { id: 10, name: "Cài đặt thông báo việc làm", icon: <Bell /> },
-    { id: 11, name: "Cài đặt nhận email", icon: <Mail /> },
-    { id: 12, name: "Cài đặt bảo mật", icon: <Shield /> },
+    { id: 4, name: "Bài đăng hoàn vốn", icon: <Signpost /> },
+    { id: 5, name: "Việc làm đã ứng tuyển", icon: <Briefcase /> },
     { id: 13, name: "Đổi mật khẩu", icon: <Lock /> },
     { id: 14, name: "Đăng xuất", icon: <LogOut /> },
   ];
+  const [isShowQr, setShowQr] = useState<boolean>(false);
   const token = Cookies.get("token");
   const menuContext = useContext(MenuContext);
+
   if (!menuContext) return;
 
   const navigate = useNavigate();
@@ -63,13 +60,26 @@ function HeaderMenuBottom() {
   };
   const storeContext = useContext(StoreContext);
   if (!storeContext) return;
-  const { handleLogout, userInfo } = storeContext;
+  const { handleLogout, userInfo,  setIdUser } = storeContext;
+  const postcontext = useContext(PostContext);
+  if (!postcontext) {
+    return;
+  }
+  const {  setTypePost, setFund } = postcontext;
   const handleClickMenuUser = (id: number) => {
     if (id === 14) {
       handleLogout?.();
     }
+    if (id === 2) {
+      setShowQr(true);
+    }
+    if (id === 4) {
+      navigate("/paybackpost");
+      setTypePost("paybackpost");
+    }
   };
   const [hover, setHover] = useState<any>(false);
+
   const handleReturnComponent = (id: any) => {
     if (id === 1) {
       navigate("/post/job");
@@ -83,15 +93,23 @@ function HeaderMenuBottom() {
     if (id === 3) {
       navigate("/app/hopeshop");
     }
+    if (id === 4) {
+      setTypePost("post");
+    }
+    if (id === 5) {
+      setTypePost("postVolunn");
+    }
     window.scrollTo(0, 0);
   };
-
+  useEffect(() => {
+    setFund(userInfo?.fund);
+    setIdUser(userInfo?.id);
+  }, []);
   return (
     <div className="flex h-[62px] w-full items-center justify-center bg-[#fff] shadow-2xl">
       <MyLayout>
         <div className="flex items-center justify-between sm:gap-0">
           <div className="flex items-center justify-center gap-6">
-    
             <span
               onClick={() => {
                 navigate("/");
@@ -113,11 +131,37 @@ function HeaderMenuBottom() {
                   onMouseEnter={() => setHover(k)}
                 >
                   <h1 className="text-[16px] font-medium">{item.name}</h1>
-                  <div
-                    className={`absolute bottom-0 left-0 h-[3px] transform rounded-4xl bg-[#00b14f] transition-all duration-450 ${
-                      hover === k ? "w-full scale-x-50" : "w-0 scale-x-0"
-                    }`}
-                  ></div>
+
+                  {item.name !== "Bài đăng" && (
+                    <>
+                      <div
+                        className={`absolute bottom-0 left-0 h-[3px] transform rounded-4xl bg-[#00b14f] transition-all duration-450 ${
+                          hover === k ? "w-full scale-x-50" : "w-0 scale-x-0"
+                        }`}
+                      ></div>
+                    </>
+                  )}
+                  {item.name === "Bài đăng" && (
+                    <>
+                      <div
+                        className={` bg-[#fff] shadow-2xl transition-all duration-500  h-auto w-[200px] pl-4 p-2 rounded-2xl absolute flex flex-col gap-2 
+                          ${hover === k ? "opacity-[100%]" : "opacity-0 "}
+                          
+                          `}
+                      >
+                        {menuChild.map((i, k) => (
+                          <div
+                            key={k}
+                            className="text-md relative "
+                            onClick={() => handleReturnComponent(i.id)}
+                          >
+                            {" "}
+                            {i.name}
+                          </div>
+                        ))}
+                      </div>
+                    </>
+                  )}
                 </div>
               ))}
             </div>
@@ -186,6 +230,14 @@ function HeaderMenuBottom() {
                                 {userInfo?.id}
                               </span>
                             </p>
+                            <p>
+                              {" "}
+                              Số tiền:{" "}
+                              {userInfo?.fund
+                                ? userInfo?.fund.toLocaleString()
+                                : 0}
+                              đ
+                            </p>
                           </div>
                         </div>
                         <p className="pl-10 text-[14px]"></p>
@@ -217,6 +269,10 @@ function HeaderMenuBottom() {
           </div>
         </div>
       </MyLayout>
+
+      <div className="">
+        <DonationCard isOpen={isShowQr} onClose={() => setShowQr(false)} />
+      </div>
     </div>
   );
 }

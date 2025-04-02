@@ -5,7 +5,7 @@ import { MenuContext } from "../../Context/MenuProvider";
 import MenuHeader from "./Components/MenuHeader";
 import MenuDashBoard from "./Components/MenuDashBoard";
 import { useNavigate } from "react-router-dom";
-import logo from "../../assets/logoanhiu1.png";
+import logo from "../../../public/logoanhiu1.png";
 
 function MenuMobile() {
   //   ${isOpen ? "left-0 opacity-100" : "left-[-2500px] opacity-0"}

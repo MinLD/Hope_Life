@@ -9,22 +9,32 @@ import { AiOutlineMenu } from "react-icons/ai";
 import { MenuContext } from "../../../Context/MenuProvider";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
+import { PostContext } from "../../../Context/PostProvider";
 
 function HeaderMenuTop() {
   const data: {
     id: number;
     name: string;
   }[] = [
-    { id: 3, name: "Giới Thiệu" },
-    { name: "Tuyển dụng", id: 1 },
-    { name: "Bài đăng", id: 2 },
-    { id: 3, name: "Cửa hàng" },
+    { id: 1, name: "Giới Thiệu" },
+    { name: "Tuyển dụng", id: 2 },
+    { name: "Bài đăng", id: 3 },
+    { id: 4, name: "Cửa hàng" },
   ];
   const icons: { name: any; id: number }[] = [
     { name: <FaFacebookSquare />, id: 1 },
     { name: <FaInstagram />, id: 1 },
     { name: <FaYoutube />, id: 1 },
   ];
+  const menuChild: { name: string; id: number }[] = [
+    { id: 4, name: "Bài đăng sẻ chia" },
+    { name: "Bài đăng hoàn vốn", id: 5 },
+  ];
+  const postcontext = useContext(PostContext);
+  if (!postcontext) {
+    return;
+  }
+  const { setTypePost } = postcontext;
   const navigate = useNavigate();
   const token = Cookies.get("token");
   const [isShowMenuSub, setIsShowMenuSub] = useState<boolean>(false);
@@ -73,6 +83,12 @@ function HeaderMenuTop() {
     }
     if (id === 3) {
       navigate("/app/hopeshop");
+    }
+    if (id === 4) {
+      setTypePost("post");
+    }
+    if (id === 5) {
+      setTypePost("postVolunn");
     }
   };
 
@@ -126,11 +142,35 @@ function HeaderMenuTop() {
                     onMouseEnter={() => setHover(k)}
                   >
                     <h1 className="text-[16px] font-medium">{item.name}</h1>
-                    <div
-                      className={`absolute bottom-0 left-0 h-[3px] transform rounded-4xl bg-[#00b14f] transition-all duration-450 ${
-                        hover === k ? "w-full scale-x-50" : "w-0 scale-x-0"
-                      }`}
-                    ></div>
+                    {item.name !== "Bài đăng" && (
+                      <>
+                        <div
+                          className={`absolute bottom-0 left-0 h-[3px] transform rounded-4xl bg-[#00b14f] transition-all duration-450 ${
+                            hover === k ? "w-full scale-x-50" : "w-0 scale-x-0"
+                          }`}
+                        ></div>
+                      </>
+                    )}
+                    {item.name === "Bài đăng" && (
+                      <>
+                        <div
+                          className={`  bg-[#fff] shadow-2xl transition-all duration-500  h-auto w-[200px] pl-4 p-2 rounded-2xl absolute flex flex-col gap-2 
+                          ${hover === k ? "opacity-[100%]" : "opacity-0 "}
+                          `}
+                        >
+                          <div className="text-[#333] flex flex-col gap-2">
+                            {menuChild.map((i, k) => (
+                              <div
+                                key={k}
+                                onClick={() => handleReturnComponent(i.id)}
+                              >
+                                {i.name}
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      </>
+                    )}
                   </div>
                 ))}
               </div>

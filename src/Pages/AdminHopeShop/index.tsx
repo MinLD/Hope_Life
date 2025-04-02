@@ -33,6 +33,7 @@ type products = {
   description: string;
   imagesFile: string;
   categoryId: number;
+  information: string;
   inventory: number;
 };
 type GetProduct = {
@@ -43,6 +44,7 @@ type GetProduct = {
   images: [{ url: string }];
   categoryId: number;
   inventory: number;
+  information: string;
 };
 type typeTer = {
   id: number;
@@ -108,6 +110,7 @@ function AdminHopeShop() {
     imagesFile: "",
     categoryId: 1,
     inventory: 0,
+    information: "",
   });
   const [showForm, setShowForm] = useState(false);
 
@@ -130,6 +133,7 @@ function AdminHopeShop() {
     formData.append("imagesFile", newProduct.imagesFile);
     formData.append("categoryId", newProduct.categoryId.toString());
     formData.append("inventory", newProduct.inventory.toString());
+    formData.append("information", newProduct.information);
     // for (const pair of formData.entries()) {
     //   console.log(`${pair[0]}:`, pair[1]);
     // }
@@ -150,7 +154,7 @@ function AdminHopeShop() {
   };
   const handleGetAllProduct = () => {
     api
-      .GetAllProduct(isPage)
+      .GetAllProductFromSeller(isPage)
       .then((res) => {
         setElemetTotal(res.data.result.totalElements);
         setProducts(res.data.result.data);

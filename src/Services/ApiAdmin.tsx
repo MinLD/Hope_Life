@@ -1,4 +1,22 @@
 import { axiosClient } from "./ApiClient";
+//postVolunn
+const GetAllPostVolunnNoneActive = async () => {
+  return await axiosClient.get(`postVolunteer/non-active`);
+};
+const ActivePostVolunn = async (id: any, fund: any) => {
+  console.log(id);
+  console.log(fund);
+  return await axiosClient.patch(`/postVolunteer`, {
+    postVolunteerId: id,
+    fund: fund,
+  });
+};
+const GetAllPostVolunnWaiting = async () => {
+  return await axiosClient.get(`postVolunteer/waiting`);
+};
+const RestorePostVolunn = async (id: any) => {
+  return await axiosClient.patch(`/postVolunteer/restore/${id}`);
+};
 //post
 const GetAllPost = async () => {
   return await axiosClient.get("/post/getAll", {
@@ -62,6 +80,9 @@ const DeactiveShopJob = async (id: any) => {
   return await axiosClient.delete(`/sellerProfile/${id}`);
 };
 export default {
+  RestorePostVolunn,
+  GetAllPostVolunnWaiting,
+  ActivePostVolunn,
   getAllUser,
   GetAllPost,
   DeleteUser,
@@ -75,4 +96,5 @@ export default {
   DeactiveShopJob,
   DeletePost,
   DeactivePostJob,
+  GetAllPostVolunnNoneActive,
 };

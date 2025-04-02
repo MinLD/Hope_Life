@@ -28,6 +28,19 @@ const sidebarMenuAdmin: MenuItem[] = [
     badge: "0",
   },
   {
+    id: "manage-postVolunn",
+    title: "Quản lý bài đăng kêu gọi hoàng vốn",
+    icon: Newspaper,
+    badge: "0",
+  },
+  {
+    id: "manage-postVolunnWaiting",
+    title: "Quản lý bài đăng yêu cầu hoàn vốn",
+    icon: Newspaper,
+    badge: "0",
+  },
+
+  {
     id: "manage-recruitments",
     title: "Quản lý nhà tuyển dụng",
     icon: BriefcaseBusiness,

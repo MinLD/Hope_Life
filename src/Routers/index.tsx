@@ -48,5 +48,17 @@ const Routerss: {
     component: lazy(() => import("../Pages/AdminHopeShop/index.tsx")),
     allowedRoles: ["SELLER"], // Chỉ cho phép User hoặc chưa đăng nhập
   },
+  {
+    path: "/checkout",
+    component: lazy(
+      () => import("../ComponentsHopeShop/CheckoutPages/index.tsx")
+    ),
+    allowedRoles: ["USER", "NOROLES"], // Chỉ cho phép User hoặc chưa đăng nhập
+  },
+  {
+    path: "/paybackpost",
+    component: lazy(() => import("../Components/PaybackPost/index.tsx")),
+    allowedRoles: ["USER", "NOROLES"], // Chỉ cho phép User hoặc chưa đăng nhập
+  },
 ];
 export default Routerss;

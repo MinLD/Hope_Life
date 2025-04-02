@@ -119,7 +119,7 @@ function MyLogIn() {
     console.log("User Roles Updated:", isRole);
     if (isRole[0]?.name === "ADMIN") {
       navigate("/admin");
-    } else if (isRole[0]?.name === "USER" ) {
+    } else if (isRole[0]?.name === "USER") {
       navigate("/");
     } else if (isRole[0]?.name === "EMPLOYER") {
       navigate("/dashboard");

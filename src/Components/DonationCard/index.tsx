@@ -1,7 +1,8 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import QRCode from "react-qr-code";
-
+import QR from "../../assets/QR_Code-removebg-preview.png";
+import { CiWarning } from "react-icons/ci";
+import api from "../../Services/PostApi";
 interface Donor {
   name: string;
   amount: number;
@@ -21,28 +22,13 @@ interface DonationProps {
   onClose: () => void;
 }
 
-const DonationCard: React.FC<DonationProps> = ({
-  name = "Nguyễn Văn A",
-  age = 45,
-  location = "Hà Nội, Việt Nam",
-  story = "Anh Nguyễn Văn A là một lao động chính trong gia đình có 3 con nhỏ. Không may, anh gặp tai nạn lao động nghiêm trọng khiến gia đình rơi vào hoàn cảnh khó khăn. Hiện anh đang rất cần sự giúp đỡ để có thể tiếp tục chữa trị và ổn định cuộc sống.",
-  qrValue = "https://banking.example.com/donate",
-  accountNumber = "0123456789 - Ngân hàng Vietcombank",
-  contact = "Số điện thoại: 0987 654 321",
-  image = "https://photo.znews.vn/w660/Uploaded/qhj_yvobvhfwbv/2018_07_18/Nguyen_Nhat_Minh__2.jpg",
-  donors = [
-    { name: "Trần B", amount: 500000 },
-    { name: "Lê C", amount: 200000 },
-    { name: "Nguyễn D", amount: 1000000 },
-  ],
-  isOpen,
-  onClose,
-}) => {
+const DonationCard: React.FC<DonationProps> = ({ isOpen, onClose }) => {
   const [refundInfo, setRefundInfo] = useState({
     name: "",
     amount: "",
     reason: "",
   });
+  const [hopeSepay, setHopeSepay] = useState<string>("");
   const [isRefundOpen, setIsRefundOpen] = useState(false);
 
   const handleRefundSubmit = (e: React.FormEvent) => {
@@ -50,9 +36,17 @@ const DonationCard: React.FC<DonationProps> = ({
     console.log("Yêu cầu hoàn tiền:", refundInfo);
     setIsRefundOpen(false);
   };
-
-  const totalDonated = donors.reduce((sum, donor) => sum + donor.amount, 0);
+  const handleSePayment = () => {
+    api
+      .SePay_Payment()
+      .then((res) => {
+        console.log(res.data.result.content);
+        setHopeSepay(res.data.result.content);
+      })
+      .catch((err) => console.log(err));
+  };
   useEffect(() => {
+    handleSePayment();
     if (isOpen || isRefundOpen) {
       document.body.style.overflow = "hidden"; // Ngăn cuộn khi mở popup
     } else {
@@ -85,7 +79,7 @@ const DonationCard: React.FC<DonationProps> = ({
               >
                 ×
               </button>
-              <img
+              {/* <img
                 src={image}
                 alt={name}
                 className="mb-4 h-60 w-full rounded-lg object-cover"
@@ -98,28 +92,40 @@ const DonationCard: React.FC<DonationProps> = ({
               </p>
               <p className="mt-4 text-justify leading-relaxed text-gray-700">
                 {story}
-              </p>
-              <div className="mt-6 mb-4 flex flex-col items-center rounded-lg bg-gray-50 p-6 shadow-md">
-                <QRCode value={qrValue} size={150} className="mb-4" />
+              </p> */}
+              <div className="mt-6 mb-4 flex flex-col items-center p-6 ">
+                <img src={QR} alt="" />
                 <p className="text-center text-sm text-gray-600">
                   Quét mã QR để quyên góp
                 </p>
-                <a
+                <span className="mt-2 text-2xl text-red-600">
+                  {" "}
+                  <CiWarning />
+                </span>
+                <p className="text-center text-sm text-red-600 ">
+                  Vui lòng kèm theo nội dung chuyển khoản:{" "}
+                  <span className="bg-amber-300 text-xl font-bold text-blue-600 ">
+                    {hopeSepay}
+                  </span>
+                </p>
+                {/* <a
                   href={qrValue}
                   target="_blank"
                   className="mt-2 text-blue-500 underline"
                 >
                   Hoặc bấm vào đây để chuyển khoản
-                </a>
+                </a> */}
               </div>
               <div className="mt-4 text-center">
                 <p className="text-lg font-semibold text-gray-700">
-                  Số tài khoản:{" "}
-                  <span className="text-blue-600">{accountNumber}</span>
+                  Số tài khoản:
+                  <span className="text-blue-600"> 00006283916</span>
                 </p>
-                <p className="text-md mt-2 text-gray-600">{contact}</p>
+                <p className="text-md mt-2 text-gray-600">
+                  Ngân hàng: TPBANK - NH TMCP TIENPHONG
+                </p>
               </div>
-              <div className="mt-6 rounded-lg bg-gray-100 p-4 shadow-md">
+              {/* <div className="mt-6 rounded-lg bg-gray-100 p-4 shadow-md">
                 <h3 className="text-xl font-bold text-gray-800">
                   Tổng số tiền đã quyên góp:{" "}
                   <span className="text-green-600">
@@ -140,12 +146,12 @@ const DonationCard: React.FC<DonationProps> = ({
                   ))}
                 </ul>
               </div>
-              <button
+              {/* <button
                 onClick={() => setIsRefundOpen(true)}
                 className="mt-4 w-full rounded-lg bg-red-500 px-4 py-2 text-white"
               >
                 Yêu cầu hoàn tiền
-              </button>
+              </button> */}
             </motion.div>
           </div>
         </div>
