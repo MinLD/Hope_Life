@@ -200,8 +200,8 @@ function FromUS({ type }: propsType) {
         setLoading(false);
       })
       .catch((err) => {
-        console.log(err);
-        toast.error("Tài khoảng đã tạo cửa hàng rồi!!");
+        console.log(err.response.data.message);
+        toast.error(err.response.data.message);
         setLoading(false);
       });
   };
