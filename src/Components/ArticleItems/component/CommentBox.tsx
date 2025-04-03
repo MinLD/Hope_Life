@@ -48,18 +48,22 @@ function CommentBox({
     formData.append("content", text);
     formData.append("title", title);
     if (isWhatPost === "post") {
-      isFileImages.forEach((file) => {
-        formData.append("images", file);
-      });
+      if (isFileImages.length > 0) {
+        isFileImages.forEach((file) => {
+          formData.append("images", file);
+        });
+      }
       apiPost
         .Post(formData)
         .then((re) => {
-          console.log(re.data.result);
+          console.log(re?.data?.result);
           toast.success("Đăng bài viết thành công");
         })
         .catch((err) => {
-          console.log(err.response.data);
-          toast.error(err.response.data.message);
+          console.log(err?.response);
+          toast.error(
+            err?.response?.data?.message || "Có lỗi xảy ra, vui lòng thử lại!"
+          );
         });
     } else if (isWhatPost === "postVolunn") {
       isFileImages.forEach((file) => {
@@ -76,7 +80,9 @@ function CommentBox({
         })
         .catch((err) => {
           console.log(err);
-          toast.error(err.response.data.message);
+          toast.error(
+            err?.response?.data?.message || "Có lỗi xảy ra, vui lòng thử lại!"
+          );
         });
     }
     setText(""); // Xóa input sau khi đăng

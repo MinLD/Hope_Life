@@ -20,6 +20,7 @@ const sortOptions = [
   "Date, new to old",
 ];
 type ProductFormData = {
+  id: number;
   key: number;
   infomation: string;
   name: string;

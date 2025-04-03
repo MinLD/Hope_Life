@@ -17,9 +17,17 @@ const Post = async (formData: FormData) => {
 };
 //MyPostVolunn
 const GetAllPostVolunnFromUser = async () => {
-  return await axiosClient.get("/postVolunteer/fulled");
+  return await axiosClient.get("/postVolunteer/fulled", {
+    params: { page: 1, size: 100 },
+  });
 };
 //postVolunn
+const ReportPosrtVolunn = async (postId: any, content: any) => {
+  return await axiosClient.post(`/report`, {
+    postId,
+    content,
+  });
+};
 const postVolunn = async (formData: FormData) => {
   for (let [key, value] of formData.entries()) {
     console.log(`${key}:`, value);
@@ -32,7 +40,9 @@ const postVolunn = async (formData: FormData) => {
   });
 };
 const GetAllPostVolunn = async () => {
-  return await axiosClient.get("/postVolunteer/getAll");
+  return await axiosClient.get("/postVolunteer/getAll", {
+    params: { page: 1, size: 100 },
+  });
 };
 const DonatePostVolunn = async (id: any, amount: any) => {
   return await axiosClient.patch("postVolunteer/donate", {
@@ -88,7 +98,16 @@ const GetAllProduct = async (page: number) => {
 const DeleteProduct = async (id: any) => {
   return await axiosClient.delete(`/product/${id}`);
 };
+//postCartProduct
+const Cart = async (productId: any, quantity: any) => {
+  return await axiosClient.post("/cartitem", {
+    productId: productId,
+    quantity: quantity,
+  });
+};
 export default {
+  ReportPosrtVolunn,
+  Cart,
   GetAllPostVolunnFromUser,
   SePay_Payment,
 

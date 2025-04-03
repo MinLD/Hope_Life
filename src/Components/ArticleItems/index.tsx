@@ -7,6 +7,7 @@ import TextBox from "./component/textBox";
 import SliderCommon from "../SliderCommon";
 import { PostContext } from "../../Context/PostProvider";
 import DonationPostVolun from "../DonatePostVolun";
+import ReportWarning from "../RepostWaring";
 
 interface Post {
   id: any;
@@ -29,7 +30,7 @@ function ArticleItems({
   images,
   content,
   user,
- 
+
   title,
   location,
 }: Post) {
@@ -75,7 +76,9 @@ function ArticleItems({
                 {user?.profile?.fullName || "Ẩn danh"}
               </h1>
             </div>
-            <div className="text-[14px] text-[#c5c5c5]">5h</div>
+          </div>
+          <div className="">
+            <ReportWarning productId={id} />
           </div>
         </div>
         <h3 className="font-medium uppercase text-xl">{title && title}</h3>
@@ -170,7 +173,9 @@ function ArticleItems({
             onClick={() => setShowDonate(!isShowDonate)}
             className="mb-10 px-6 py-3 bg-blue-600 text-white rounded-2xl shadow-md hover:bg-blue-700 transition"
           >
-            {isTypePost === "postVolunn" ? "Đóng góp" : "Xem Danh sách người quyên góp"}
+            {isTypePost === "postVolunn"
+              ? "Đóng góp"
+              : "Xem Danh sách người quyên góp"}
           </button>
           {isShowDonate && (
             <DonationPostVolun

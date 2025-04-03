@@ -1,7 +1,9 @@
 import { axiosClient } from "./ApiClient";
 //postVolunn
 const GetAllPostVolunnNoneActive = async () => {
-  return await axiosClient.get(`postVolunteer/non-active`);
+  return await axiosClient.get(`postVolunteer/non-active`, {
+    params: { page: 1, size: 100 },
+  });
 };
 const ActivePostVolunn = async (id: any, fund: any) => {
   console.log(id);
@@ -12,10 +14,17 @@ const ActivePostVolunn = async (id: any, fund: any) => {
   });
 };
 const GetAllPostVolunnWaiting = async () => {
-  return await axiosClient.get(`postVolunteer/waiting`);
+  return await axiosClient.get(`postVolunteer/waiting`, {
+    params: { page: 1, size: 100 },
+  });
 };
 const RestorePostVolunn = async (id: any) => {
   return await axiosClient.patch(`/postVolunteer/restore/${id}`);
+};
+const GetAllReport = async (postId: any) => {
+  return await axiosClient.get(`/report/${postId}`, {
+    params: { page: 1, size: 100 },
+  });
 };
 //post
 const GetAllPost = async () => {
@@ -24,7 +33,9 @@ const GetAllPost = async () => {
   });
 };
 const GetAllPostNoneActive = async () => {
-  return await axiosClient.get(`/post/non-active`);
+  return await axiosClient.get(`/post/non-active`, {
+    params: { page: 1, size: 100 },
+  });
 };
 const ActivePost = async (id: any) => {
   return await axiosClient.patch(`/post/${id}`);
@@ -71,7 +82,9 @@ const DeactivePostJob = async (id: any) => {
 };
 //Shop
 const GetAllPostShopJobNoneActive = async () => {
-  return await axiosClient.get(`/sellerProfile/nonactive`);
+  return await axiosClient.get(`/sellerProfile/non-active`, {
+    params: { page: 1, size: 100 },
+  });
 };
 const ActiveShopJob = async (id: any) => {
   return await axiosClient.patch(`/sellerProfile/${id}/activate`);
@@ -80,6 +93,7 @@ const DeactiveShopJob = async (id: any) => {
   return await axiosClient.delete(`/sellerProfile/${id}`);
 };
 export default {
+  GetAllReport,
   RestorePostVolunn,
   GetAllPostVolunnWaiting,
   ActivePostVolunn,

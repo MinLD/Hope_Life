@@ -5,14 +5,16 @@ import { SideBarContext } from "../../Context/SideBarProvider";
 import SideBar from "../SlideBar";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import api from "../../Services/PostApi";
 type Product = {
+  id: number;
   name: string;
   price: number;
   image: { url: string }[];
   close?: () => void | "";
 };
 
-function BuyNowShop({ close, name, price, image }: Product) {
+function BuyNowShop({ close, name, price, image, id }: Product) {
   const navigate = useNavigate();
   const sideBarContext = useContext(SideBarContext);
   if (!sideBarContext) return null;
@@ -20,11 +22,20 @@ function BuyNowShop({ close, name, price, image }: Product) {
 
   const [selectedDesign, setSelectedDesign] = useState<string>();
   const [quantity, setQuantity] = useState(1);
+
   const handleAddToCart = () => {
     if (!selectedDesign) {
       toast.warning("Vui lòng chọn thiết kế");
       return;
     }
+    api
+      .Cart(id, quantity)
+      .then((res) => {
+        console.log(res.data.result);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
     console.log(selectedDesign);
     console.log(quantity);
     // setIsOpenSideBar(true);

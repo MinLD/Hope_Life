@@ -112,9 +112,11 @@ function HeaderMenuBottom() {
       navigate("/app/hopeshop");
     }
     if (id === 4) {
+      navigate("/post");
       setTypePost("post");
     }
     if (id === 5) {
+      navigate("/post");
       setTypePost("postVolunn");
     }
     window.scrollTo(0, 0);

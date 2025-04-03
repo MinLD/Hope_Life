@@ -1,6 +1,6 @@
 import HomePagesHopeShop from "../../LayoutHopeShop/HomePagesHopeShop";
 
-import {  useState } from "react";
+import { useState } from "react";
 
 import { useLocation } from "react-router-dom";
 import BuyNowShop from "../BuyNowShop";
@@ -24,6 +24,7 @@ function DetailProducts() {
   const [selectedImage, setSelectedImage] = useState(
     location.state.images[0].url
   );
+  console.log(location.state.id);
   return (
     <HomePagesHopeShop>
       <div className="w-full shadow-md mt-35  px-[10vw]">
@@ -72,6 +73,7 @@ function DetailProducts() {
               <pre>{location.state.infomation}</pre>
             </ul>
             <BuyNowShop
+              id={location.state.id}
               image={location.state.images}
               name={location.state.name}
               price={location.state.price}

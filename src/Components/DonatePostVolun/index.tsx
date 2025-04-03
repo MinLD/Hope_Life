@@ -76,7 +76,7 @@ export default function DonationPostVolun({ onClose, fund, id }: Props) {
     api
       .GetAlldonatePostVolunn(id)
       .then((res) => {
-        console.log(res.data);
+        console.log(res.data.result);
         setDonors(res.data.result);
       })
       .catch((err) => console.log(err));

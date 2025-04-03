@@ -8,7 +8,6 @@ import { toast } from "react-toastify";
 import LoadingTextCommon from "../../LoaddingCommon";
 import { useNavigate } from "react-router-dom";
 
-
 type formDataType = {
   name: string;
   description: string;

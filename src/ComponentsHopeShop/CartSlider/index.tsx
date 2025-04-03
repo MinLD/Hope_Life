@@ -7,6 +7,7 @@ type Props = {
   data: ProductFormData[];
 };
 type ProductFormData = {
+  id: number;
   key: number;
   infomation: string;
   name: string;
@@ -55,6 +56,7 @@ function CartSlider({ title, data }: Props) {
                   <div className="fixed bottom-2 right-5 z-[999999999999999]">
                     <div className=" ">
                       <BuyNowShop
+                        id={item.key}
                         close={() => setShowBuyNow(undefined)}
                         image={item.images}
                         name={item.name}

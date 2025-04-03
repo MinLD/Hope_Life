@@ -18,8 +18,8 @@ function AddImages({ setIsFileImages, setShowAddImage = () => {} }: Props) {
 
     setFiles((prevFiles) => [...prevFiles, ...selectedFiles]);
   };
-  const handleDeleteImage = (index: any) => {
-    setFiles((prevFiles) => prevFiles.filter((file) => file !== index));
+  const handleDeleteImage = (index: number) => {
+    setFiles((prevFiles) => prevFiles.filter((_, i) => i !== index));
   };
 
   return (
@@ -48,7 +48,7 @@ function AddImages({ setIsFileImages, setShowAddImage = () => {} }: Props) {
                 />
 
                 <button className="absolute top-0 right-0 cursor-pointer text-2xl text-[34px] font-bold text-[#333]">
-                  <IoClose onClick={() => handleDeleteImage(file)} />
+                  <IoClose onClick={() => handleDeleteImage(index)} />
                 </button>
               </div>
             ))}
