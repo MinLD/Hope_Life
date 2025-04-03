@@ -46,7 +46,7 @@ function HeaderMenuTop() {
     setIsType("MenuHeader/");
     setIsOpen(true);
   };
-
+  const [isShowMenuChild, setShowMenuChild] = useState(false);
   // // Khi `isOpen` thay đổi, cập nhật class của `body`
   // useEffect(() => {
   //   if (isOpen) {
@@ -75,9 +75,9 @@ function HeaderMenuTop() {
     if (id === 1) {
       navigate("/post/job");
     }
-    if (id === 2) {
-      navigate("/post");
-    }
+    // if (id === 2) {
+    //   navigate("/post");
+    // }
     if (id === 0) {
       navigate("/");
     }
@@ -86,9 +86,11 @@ function HeaderMenuTop() {
     }
     if (id === 4) {
       setTypePost("post");
+      navigate("/post");
     }
     if (id === 5) {
       setTypePost("postVolunn");
+      navigate("/post");
     }
   };
 
@@ -141,11 +143,19 @@ function HeaderMenuTop() {
                     className="relative cursor-pointer"
                     onMouseEnter={() => setHover(k)}
                   >
-                    <h1 className="text-[16px] font-medium">{item.name}</h1>
+                    <h1
+                      className="text-[16px] font-medium"
+                      onClick={() => {
+                        item.name === "Bài đăng" &&
+                          setShowMenuChild(!isShowMenuChild);
+                      }}
+                    >
+                      {item.name}
+                    </h1>
                     {item.name !== "Bài đăng" && (
                       <>
                         <div
-                          className={`absolute bottom-0 left-0 h-[3px] transform rounded-4xl bg-[#00b14f] transition-all duration-450 ${
+                          className={`absolute bottom-0  left-0 h-[3px] transform rounded-4xl bg-[#00b14f] transition-all duration-450 ${
                             hover === k ? "w-full scale-x-50" : "w-0 scale-x-0"
                           }`}
                         ></div>
@@ -154,8 +164,8 @@ function HeaderMenuTop() {
                     {item.name === "Bài đăng" && (
                       <>
                         <div
-                          className={`  bg-[#fff] shadow-2xl transition-all duration-500  h-auto w-[200px] pl-4 p-2 rounded-2xl absolute flex flex-col gap-2 
-                          ${hover === k ? "opacity-[100%]" : "opacity-0 "}
+                          className={`z-[99]  bg-[#fff] shadow-2xl transition-all duration-500  h-auto w-[200px] pl-4 p-2 rounded-2xl absolute flex flex-col gap-2 
+                          ${hover === k || isShowMenuChild ? "opacity-[100%]" : "opacity-0 "}
                           `}
                         >
                           <div className="text-[#333] flex flex-col gap-2">
@@ -163,6 +173,7 @@ function HeaderMenuTop() {
                               <div
                                 key={k}
                                 onClick={() => handleReturnComponent(i.id)}
+                                className="cursor-pointer text-[16px] font-medium hover:text-[#00b14f] "
                               >
                                 {i.name}
                               </div>

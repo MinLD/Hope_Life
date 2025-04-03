@@ -5,7 +5,7 @@ type Props = {
   name: string;
   price: number;
   description: string;
-  images: [{ url: string }];
+  images: { url: string }[];
   categoryId: number;
   inventory: number;
   handeleDeleteProduct: (id: number) => void;

@@ -28,8 +28,8 @@ function PayBackPost() {
     <div>
       <MainHomePages>
         <MyLayout>
-          <div className="mt-10 border-1-[#e1e1e1] s:px-6 h-auto w-full rounded-2xl border px-3 shadow-2xl lg:px-5 xl:px-5">
-            <h2 className="text-2xl font-bold mb-10 mt-5">
+          <div className="mt-10 border-1-[#e1e1e1] s:px-6 h-auto min-h-[600px] w-full rounded-2xl border px-3 shadow-2xl lg:px-5 xl:px-5">
+            <h2 className="text-2xl font-bold mb-2 mt-5">
               Tất cả bài đăng đã đủ vốn
             </h2>
             {postVolunn?.map((i, k) => (
@@ -46,6 +46,9 @@ function PayBackPost() {
                 />
               </div>
             ))}
+            {postVolunn?.length === 0 && (
+              <h2>(bạn chưa có bài đăng hoàn vốn nào!) </h2>
+            )}
           </div>
         </MyLayout>
       </MainHomePages>

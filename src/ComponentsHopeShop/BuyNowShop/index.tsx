@@ -4,34 +4,32 @@ import { TfiLayoutLineSolid } from "react-icons/tfi";
 import { SideBarContext } from "../../Context/SideBarProvider";
 import SideBar from "../SlideBar";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 type Product = {
   name: string;
-  price: string;
-  image: string;
-  designs: string[];
-};
-type prop = {
+  price: number;
+  image: { url: string }[];
   close?: () => void | "";
 };
-function BuyNowShop({ close }: prop) {
+
+function BuyNowShop({ close, name, price, image }: Product) {
   const navigate = useNavigate();
   const sideBarContext = useContext(SideBarContext);
   if (!sideBarContext) return null;
-  const { setIsOpenSideBar } = sideBarContext;
-  const product: Product = {
-    name: "Bộ Sưu Tập Lót Ly Gạch Hoa Cổ Điển",
-    price: "295.000₫",
-    image:
-      "https://thecrafthouse.vn/cdn/shop/files/387ad9b5fd0c43a885d7592931931219.png?v=1741943403&width=160", // Thay bằng link ảnh thật
-    designs: [
-      "Gạch Hoa CS-GH1",
-      "Gạch Hoa CS-GH2",
-      "Gạch Hoa CS-GH3",
-      "Gạch Hoa CS-GH4",
-      "Gạch Hoa CS-GH5",
-    ],
+  // const { setIsOpenSideBar } = sideBarContext;
+
+  const [selectedDesign, setSelectedDesign] = useState<string>();
+  const [quantity, setQuantity] = useState(1);
+  const handleAddToCart = () => {
+    if (!selectedDesign) {
+      toast.warning("Vui lòng chọn thiết kế");
+      return;
+    }
+    console.log(selectedDesign);
+    console.log(quantity);
+    // setIsOpenSideBar(true);
+    // close && close();
   };
-  const [selectedDesign, setSelectedDesign] = useState(product.designs[0]);
   return (
     <>
       <div className="w-full max-w-md bg-white rounded-lg shadow-lg p-4">
@@ -39,13 +37,15 @@ function BuyNowShop({ close }: prop) {
         <div className="flex justify-between items-center border-b pb-2">
           <div className="flex items-center gap-3">
             <img
-              src={product.image}
-              alt={product.name}
+              src={image[0].url}
+              alt=""
               className="w-12 h-12 rounded-lg object-cover"
             />
             <div>
-              <p className="text-lg font-semibold">{product.name}</p>
-              <p className="text-red-500 text-lg font-bold">{product.price}</p>
+              <p className="text-lg font-semibold">{name}</p>
+              <p className="text-red-500 text-lg font-bold">
+                {price?.toLocaleString()} đ
+              </p>
             </div>
           </div>
           {close && (
@@ -62,17 +62,21 @@ function BuyNowShop({ close }: prop) {
 
         {/* Chọn thiết kế */}
         <div className="mt-4">
-          <p className="text-gray-700 mb-2">
-            Thiết kế: <span className="font-semibold">{selectedDesign}</span>
-          </p>
-          <div className="grid grid-cols-2 gap-2">
-            {product.designs.map((design) => (
+          <p className="text-gray-700 mb-2 ">Thiết kế:</p>
+          <div className="grid grid-cols-4 gap-2">
+            {image.map((i, k) => (
               <button
-                key={design}
-                className={`border rounded-lg px-3 py-2 text-sm ${selectedDesign === design ? "border-black font-bold" : "border-gray-300"}`}
-                onClick={() => setSelectedDesign(design)}
+                className={`border rounded-lg  text-sm max-w-[80px] ${
+                  selectedDesign === i.url ? "border-red-500" : ""
+                }`}
+                key={k}
+                onClick={() => setSelectedDesign(i.url)}
               >
-                {design}
+                <img
+                  src={i.url}
+                  className="w-full h-full object-cover rounded-lg"
+                  alt=""
+                />
               </button>
             ))}
           </div>
@@ -81,11 +85,17 @@ function BuyNowShop({ close }: prop) {
           <p className="text-gray-700 mt-4 mb-2">Quantity:</p>
         </div>
         <div className="flex gap-2 p-2 border-[#e1e1e1] border-2 justify-between items-center max-w-[150px]">
-          <div>
+          <div
+            onClick={() => setQuantity(quantity + 1)}
+            className="cursor-pointer"
+          >
             <IoIosAdd size={30} />
           </div>
-          <div>1</div>
-          <div>
+          <div>{quantity}</div>
+          <div
+            onClick={() => quantity > 1 && setQuantity(quantity - 1)}
+            className="cursor-pointer"
+          >
             <TfiLayoutLineSolid size={20} />
           </div>
         </div>
@@ -93,10 +103,7 @@ function BuyNowShop({ close }: prop) {
         <div className="flex gap-2 mt-5">
           <button
             className="flex-1 bg-yellow-400 text-white font-semibold   p-4 rounded-lg cursor-pointer hover:text-yellow-500 hover:bg-transparent hover:border hover:border-yellow-500"
-            onClick={() => {
-              setIsOpenSideBar(true);
-              close && close();
-            }}
+            onClick={handleAddToCart}
           >
             Add to cart
           </button>

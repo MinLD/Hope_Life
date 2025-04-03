@@ -142,7 +142,7 @@ export default function DonationPostVolun({ onClose, fund, id }: Props) {
                       <span>{convertToVietnamTime(donor.donatedAt)}</span>
                       <span>{donor.userEmail || "Không có email"}</span>
                       <span className="font-bold text-blue-600">
-                        {donor.donatedMoney?.toLocaleString() || "0"} VND
+                        {donor?.donatedMoney?.toLocaleString() || "0"} VND
                       </span>
                     </li>
                   </div>
@@ -152,8 +152,8 @@ export default function DonationPostVolun({ onClose, fund, id }: Props) {
             </ul>
             <div className="mt-6">
               <div className="text-center mt-2 font-bold text-lg text-gray-800">
-                {togleAmout.toLocaleString()} VND /{" "}
-                {MAX_DONATION.toLocaleString()} VND
+                {togleAmout?.toLocaleString()} VND /{" "}
+                {MAX_DONATION?.toLocaleString()} VND
               </div>
             </div>
           </div>

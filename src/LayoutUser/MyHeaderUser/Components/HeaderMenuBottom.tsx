@@ -1,4 +1,4 @@
-import {  useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import {
   IoIosArrowDown,
   IoIosArrowUp,
@@ -13,11 +13,8 @@ import { FaRegUser } from "react-icons/fa";
 import Cookies from "js-cookie";
 import logo from "../../../../public/logoanhiu1.png";
 import {
- 
   Briefcase,
-
   FileText,
- 
   Heart,
   Lock,
   LogOut,
@@ -26,6 +23,7 @@ import {
 import { StoreContext } from "../../../Context/StoreProvider";
 import DonationCard from "../../../Components/DonationCard";
 import { PostContext } from "../../../Context/PostProvider";
+import { toast } from "react-toastify";
 
 function HeaderMenuBottom() {
   const [isShowUserMenu, setShowUserMenu] = useState<boolean>(false);
@@ -48,6 +46,7 @@ function HeaderMenuBottom() {
     { id: 13, name: "Đổi mật khẩu", icon: <Lock /> },
     { id: 14, name: "Đăng xuất", icon: <LogOut /> },
   ];
+  const [isShowMenuChild, setShowMenuChild] = useState<boolean>(false);
   const [isShowQr, setShowQr] = useState<boolean>(false);
   const token = Cookies.get("token");
   const menuContext = useContext(MenuContext);
@@ -60,22 +59,41 @@ function HeaderMenuBottom() {
   };
   const storeContext = useContext(StoreContext);
   if (!storeContext) return;
-  const { handleLogout, userInfo,  setIdUser } = storeContext;
+  const { handleLogout, userInfo, setIdUser } = storeContext;
   const postcontext = useContext(PostContext);
   if (!postcontext) {
     return;
   }
-  const {  setTypePost, setFund } = postcontext;
+  const { setTypePost, setFund } = postcontext;
   const handleClickMenuUser = (id: number) => {
+    if (id === 13) {
+      toast.warning("chưa được cập nhật!");
+      return;
+    }
+    if (id === 5) {
+      toast.warning("chưa được cập nhật!");
+      return;
+    }
+    if (id === 3) {
+      toast.warning("chưa được cập nhật!");
+      return;
+    }
+    if (id === 1) {
+      toast.warning("Cv chưa được cập nhật!");
+      return;
+    }
     if (id === 14) {
       handleLogout?.();
+      return;
     }
     if (id === 2) {
       setShowQr(true);
+      return;
     }
     if (id === 4) {
       navigate("/paybackpost");
       setTypePost("paybackpost");
+      return;
     }
   };
   const [hover, setHover] = useState<any>(false);
@@ -84,9 +102,9 @@ function HeaderMenuBottom() {
     if (id === 1) {
       navigate("/post/job");
     }
-    if (id === 2) {
-      navigate("/post");
-    }
+    // if (id === 2) {
+    //   navigate("/post");
+    // }
     if (id === 0) {
       navigate("/");
     }
@@ -130,7 +148,15 @@ function HeaderMenuBottom() {
                   className="relative cursor-pointer"
                   onMouseEnter={() => setHover(k)}
                 >
-                  <h1 className="text-[16px] font-medium">{item.name}</h1>
+                  <h1
+                    className="text-[16px] font-medium"
+                    onClick={() => {
+                      item.name === "Bài đăng" &&
+                        setShowMenuChild(!isShowMenuChild);
+                    }}
+                  >
+                    {item.name}
+                  </h1>
 
                   {item.name !== "Bài đăng" && (
                     <>
@@ -145,14 +171,14 @@ function HeaderMenuBottom() {
                     <>
                       <div
                         className={` bg-[#fff] shadow-2xl transition-all duration-500  h-auto w-[200px] pl-4 p-2 rounded-2xl absolute flex flex-col gap-2 
-                          ${hover === k ? "opacity-[100%]" : "opacity-0 "}
+                          ${hover === k || isShowMenuChild ? "opacity-[100%]" : "opacity-0 "}
                           
                           `}
                       >
                         {menuChild.map((i, k) => (
                           <div
                             key={k}
-                            className="text-md relative "
+                            className="text-md relative hover:text-[#00b14f] cursor-pointer"
                             onClick={() => handleReturnComponent(i.id)}
                           >
                             {" "}
@@ -234,7 +260,7 @@ function HeaderMenuBottom() {
                               {" "}
                               Số tiền:{" "}
                               {userInfo?.fund
-                                ? userInfo?.fund.toLocaleString()
+                                ? userInfo?.fund?.toLocaleString()
                                 : 0}
                               đ
                             </p>

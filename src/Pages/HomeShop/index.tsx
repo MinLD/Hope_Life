@@ -20,92 +20,35 @@ const sortOptions = [
   "Date, new to old",
 ];
 type ProductFormData = {
-  name: string | null;
+  key: number;
+  infomation: string;
+  name: string;
   seller_id: string;
-  price: string;
+  price: number;
   description: string;
-  categoryId: string;
   inventory: string;
   images: {
     url: string;
   }[];
-  weight: string;
 };
 function HomeShop() {
-  const [formData] = useState<ProductFormData[]>([
-    {
-      name: "Cờ Vua Luxury Thủ Công",
-      seller_id: "01",
-      price: "4.506.000₫",
-      description:
-        "*Mô tả: Cờ vua là một trò chơi không hề xa lạ với tất cả chúng ta và chúng tôi đã biến hóa bộ cơ vua thông thường lên 1 phiên bản vô cùng cao cấp và mới lạ.",
-      categoryId: "",
-      inventory: "Kích thước: 28x28x5.4cm",
-      images: [
-        {
-          url: "https://thecrafthouse.vn/cdn/shop/files/Maztermind-web02.jpg?v=1738702106&width=800",
-        },
-      ],
-      weight: "còn 20",
-    },
-    {
-      name: "Cờ Vua Regaly Thủ Công",
-      seller_id: "01",
-      price: "6.100.000₫",
-      description:
-        "**Mô tả: Bộ Cờ Vua Regal hội tụ đầy đủ các yếu tố giải trí, nghệ thuật, sang trọng giúp nâng tầm không gian sống của người sở hữu. Những quân cờ tối giản kết hợp cùng phong cách cổ điển sẽ biến không gian sống của bạn trở nên sang trọng và tinh tế hơn bao giờ hết. Mỗi quân cờ trong bộ cờ vua Regal đều là một tác phẩm nghệ thuật độc đáo, được chế tác tinh xảo bởi bàn tay tài hoa của 10 nghệ nhân lành nghề. Qua 19 công đoạn tỉ mỉ, bộ cờ mang đến một vẻ đẹp thanh lịch và cuốn hút, khẳng định cá tính riêng của người sở hữu. Nếu bạn đang phân vân tìm quà tặng cho bạn bè hoặc người thân yêu thích nghệ thuật, thì Bộ Cờ Vua Regal là sự lựa chọn phù hợp dành riêng cho bạn.",
-      categoryId: "",
-      inventory: "Kích thước: 28x28x5.4cm",
-      images: [
-        {
-          url: "https://thecrafthouse.vn/cdn/shop/files/1_c0a97aec87d1444da37faa14a6c8ba0d.jpg?v=1738702145&width=800",
-        },
-      ],
-      weight: "còn 20",
-    },
-    {
-      name: "Bộ Sưu Tập Móc Khoá Da Thú Cưng Chó",
-      seller_id: "01",
-      price: "100.000₫",
-      description:
-        "**Mô tả: Bộ Cờ Vua Regal hội tụ đầy đủ các yếu tố giải trí, nghệ thuật, sang trọng giúp nâng tầm không gian sống của người sở hữu. Những quân cờ tối giản kết hợp cùng phong cách cổ điển sẽ biến không gian sống của bạn trở nên sang trọng và tinh tế hơn bao giờ hết. Mỗi quân cờ trong bộ cờ vua Regal đều là một tác phẩm nghệ thuật độc đáo, được chế tác tinh xảo bởi bàn tay tài hoa của 10 nghệ nhân lành nghề. Qua 19 công đoạn tỉ mỉ, bộ cờ mang đến một vẻ đẹp thanh lịch và cuốn hút, khẳng định cá tính riêng của người sở hữu. Nếu bạn đang phân vân tìm quà tặng cho bạn bè hoặc người thân yêu thích nghệ thuật, thì Bộ Cờ Vua Regal là sự lựa chọn phù hợp dành riêng cho bạn.",
-      categoryId: "",
-      inventory: "Kích thước: 28x28x5.4cm",
-      images: [
-        {
-          url: "https://thecrafthouse.vn/cdn/shop/files/Bulldog_1.png?v=1738686117&width=500",
-        },
-      ],
-      weight: "còn 20",
-    },
-    {
-      name: "Bộ Sưu Tập Móc Khóa Da 12 Cung Hoàng Đạo",
-      seller_id: "01",
-      price: "420.000₫",
-      description:
-        "**Mô tả: Bộ Cờ Vua Regal hội tụ đầy đủ các yếu tố giải trí, nghệ thuật, sang trọng giúp nâng tầm không gian sống của người sở hữu. Những quân cờ tối giản kết hợp cùng phong cách cổ điển sẽ biến không gian sống của bạn trở nên sang trọng và tinh tế hơn bao giờ hết. Mỗi quân cờ trong bộ cờ vua Regal đều là một tác phẩm nghệ thuật độc đáo, được chế tác tinh xảo bởi bàn tay tài hoa của 10 nghệ nhân lành nghề. Qua 19 công đoạn tỉ mỉ, bộ cờ mang đến một vẻ đẹp thanh lịch và cuốn hút, khẳng định cá tính riêng của người sở hữu. Nếu bạn đang phân vân tìm quà tặng cho bạn bè hoặc người thân yêu thích nghệ thuật, thì Bộ Cờ Vua Regal là sự lựa chọn phù hợp dành riêng cho bạn.",
-      categoryId: "",
-      inventory: "Kích thước: 28x28x5.4cm",
-      images: [
-        {
-          url: "https://thecrafthouse.vn/cdn/shop/files/cancerzodiaccharm.jpg?v=1738686280&width=500",
-        },
-      ],
-      weight: "còn 20",
-    },
-  ]);
+  const [formData, setFormData] = useState<ProductFormData[]>([]);
   // const [isOpen, setIsOpen] = useState(false);
   const handleGetAllProduct = () => {
     api
       .GetAllProduct(1)
       .then((res) => {
         console.log(res.data.result);
+        setFormData(res.data.result.data);
       })
       .catch((err) => console.log(err));
   };
   useEffect(() => {
     handleGetAllProduct();
-  }, [handleGetAllProduct]);
+  }, []);
+  useEffect(() => {
+    console.log(formData);
+  }, [formData]);
 
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState(sortOptions[1]); // Mặc định: Best selling
@@ -244,12 +187,12 @@ function HomeShop() {
                 <br />
                 Mỗi sáng tạo của{" "}
                 <span className="font-semibold text-green-600">
-                HopeVn<span className="text-[16px] text-red-600">Shop</span>
-              </span>{" "} đều
-                được chế tác tỉ mỉ với kỹ thuật độc đáo bởi những nghệ nhân tài
-                hoa. Chúng tôi tuyển chọn những nguyên liệu thượng hạng, chăm
-                chút từng chi tiết nhỏ nhất, từ đường nét, góc cạnh đến lớp hoàn
-                thiện cuối cùng.
+                  HopeVn<span className="text-[16px] text-red-600">Shop</span>
+                </span>{" "}
+                đều được chế tác tỉ mỉ với kỹ thuật độc đáo bởi những nghệ nhân
+                tài hoa. Chúng tôi tuyển chọn những nguyên liệu thượng hạng,
+                chăm chút từng chi tiết nhỏ nhất, từ đường nét, góc cạnh đến lớp
+                hoàn thiện cuối cùng.
                 <br />
                 <br />
                 Từng sản phẩm đều toát lên niềm đam mê và sự tự hào của người

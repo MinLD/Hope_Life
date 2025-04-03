@@ -31,7 +31,7 @@ type products = {
   name: string;
   price: number;
   description: string;
-  imagesFile: string;
+  imagesFile: File[];
   categoryId: number;
   information: string;
   inventory: number;
@@ -41,7 +41,7 @@ type GetProduct = {
   name: string;
   price: number;
   description: string;
-  images: [{ url: string }];
+  images: { url: string }[];
   categoryId: number;
   inventory: number;
   information: string;
@@ -107,7 +107,7 @@ function AdminHopeShop() {
     name: "",
     price: 0,
     description: "",
-    imagesFile: "",
+    imagesFile: [] as any,
     categoryId: 1,
     inventory: 0,
     information: "",
@@ -119,24 +119,30 @@ function AdminHopeShop() {
 
   const handlechange = (e: any) => {
     const { name, value, files } = e.target;
-
-    setNewProduct({
-      ...newProduct,
-      [name]: name === "imagesFile" ? files[0] : value,
-    });
+    if (name === "imagesFile" && files?.length) {
+      setNewProduct({
+        ...newProduct,
+        imagesFile: Array.from(files),
+      });
+    } else {
+      setNewProduct({
+        ...newProduct,
+        [name]: value,
+      });
+    }
   };
   const handlePostProduct = () => {
     const formData = new FormData();
+    newProduct.imagesFile.forEach((file, index) => {
+      formData.append(`imagesFile[${index}]`, file);
+    });
     formData.append("name", newProduct.name);
     formData.append("price", newProduct.price.toString());
     formData.append("description", newProduct.description);
-    formData.append("imagesFile", newProduct.imagesFile);
-    formData.append("categoryId", newProduct.categoryId.toString());
+
     formData.append("inventory", newProduct.inventory.toString());
-    formData.append("information", newProduct.information);
-    // for (const pair of formData.entries()) {
-    //   console.log(`${pair[0]}:`, pair[1]);
-    // }
+    formData.append("infomation", newProduct.information);
+
     setLoading(true);
     api
       .PostProductHopeShops(formData)
@@ -158,6 +164,7 @@ function AdminHopeShop() {
       .then((res) => {
         setElemetTotal(res.data.result.totalElements);
         setProducts(res.data.result.data);
+        console.log(res.data.result);
       })
       .catch((err) => console.log(err));
   };
@@ -201,6 +208,7 @@ function AdminHopeShop() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {typeInput.map((i) => (
                 <input
+                  multiple
                   type={i.type}
                   placeholder={i.placeholder}
                   className="w-full rounded-lg border pt-2 pb-2 pl-4"

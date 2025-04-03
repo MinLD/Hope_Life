@@ -87,7 +87,7 @@ const CheckoutPage: React.FC = () => {
               <div className="pt-4">
                 <div className="flex justify-between">
                   <span>Subtotal • {products.length} items</span>
-                  <span>₫{subtotal.toLocaleString()}</span>
+                  <span>₫{subtotal?.toLocaleString()}</span>
                 </div>
                 <div className="flex justify-between">
                   <span>Shipping</span>
@@ -95,7 +95,7 @@ const CheckoutPage: React.FC = () => {
                 </div>
                 <div className="flex justify-between font-semibold text-lg mt-2">
                   <span>Total</span>
-                  <span>₫{subtotal.toLocaleString()}</span>
+                  <span>₫{subtotal?.toLocaleString()}</span>
                 </div>
               </div>
             </div>

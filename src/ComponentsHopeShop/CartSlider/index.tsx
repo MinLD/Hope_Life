@@ -1,23 +1,22 @@
-
 import CartProdcut from "../CartProduct";
 import BuyNowShop from "../BuyNowShop";
-import {  useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 type Props = {
   title: string;
   data: ProductFormData[];
 };
 type ProductFormData = {
-  name: string | null;
+  key: number;
+  infomation: string;
+  name: string;
   seller_id: string;
-  price: string;
+  price: number;
   description: string;
-  categoryId: string;
   inventory: string;
   images: {
     url: string;
   }[];
-  weight: string;
 };
 
 function CartSlider({ title, data }: Props) {
@@ -33,10 +32,14 @@ function CartSlider({ title, data }: Props) {
     <div>
       <h1 className="text-xl font-bold">{title}</h1>
       <div className="mt-4 grid grid-cols-1  gap-4 px-3 pb-3 s:grid-cols-2 sm:grid-cols-3 md:grid-cols-3">
-        {data.map((item, index) => (
+        {data.map((item: ProductFormData, index) => (
           <>
             <div key={index}>
               <CartProdcut
+                data={item}
+                description={item.description}
+                inventory={item.inventory}
+                infomation={item.infomation}
                 images={item.images}
                 name={item.name}
                 price={item.price}
@@ -51,7 +54,12 @@ function CartSlider({ title, data }: Props) {
                   </div>
                   <div className="fixed bottom-2 right-5 z-[999999999999999]">
                     <div className=" ">
-                      <BuyNowShop close={() => setShowBuyNow(undefined)} />
+                      <BuyNowShop
+                        close={() => setShowBuyNow(undefined)}
+                        image={item.images}
+                        name={item.name}
+                        price={item.price}
+                      />
                     </div>
                   </div>
                 </>
